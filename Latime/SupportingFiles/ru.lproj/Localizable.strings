@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  Latime
+
+  Created by Andrei Niunin on 16.06.2021.
+  
+*/
+
+/* name of title */
+"NewPhaseItemTitle" = "Фаза";
+
+/* context menu item */
+"EditTitle" = "Изменить";
+"AddPhaseTitle" = "Добавить фазу";
+"DeleteTitle" = "Удалить";
+
+/* */
+"OKTitle" = "OK";
+"DaysTitle" = "дн.";
+
+"RelativePickerTitle" = "Относительно";
+"AbsolutePickerTitle" = "Абсолютно";
