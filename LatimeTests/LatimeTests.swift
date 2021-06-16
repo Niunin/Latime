@@ -8,26 +8,90 @@
 import XCTest
 @testable import Latime
 
+protocol X: AnyObject {
+    
+    func timePoint(forCellAt index: Int) -> TimePoint
+    
+    // TODO: Fix these guys
+    func numberOfVisiblePhases(forParentAt index: Int) -> Int
+    func indexOfParentPoint(forCellAt index: Int) -> Int?
+    func positionOfPhaseAmongPhases(at index: Int) -> Int?
+    // --------
+    
+}
+
 class LatimeTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var coreDataStack: CoreDataTestStack!
+    var dataManager: GlanceDataManagerProtocol!
+    var interactor: GlanceInteractorProtocol!
+    var presenter: GlancePresenterStub!
+    
+    override func setUp() {
+        super.setUp()
+        interactor = GlanceInteractor()
+        presenter = GlancePresenterStub()
+        coreDataStack = CoreDataTestStack()
+        dataManager = GlanceCoreDataManager(context: coreDataStack.context)
+        
+        interactor.dataManager = dataManager
+        interactor.presenter = presenter
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+        
+        interactor = nil
+        presenter = nil
+        dataManager = nil
+        coreDataStack = nil
+        
+        super.tearDown()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func test_create_parent_point() throws {
+        let _ = interactor.addParentPoint()
+        interactor.updateModels()
+        XCTAssertEqual(presenter.numberOfTimepoints, 1)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func test_create_phase() throws {
+        let _ = interactor.addParentPoint()
+        interactor.updateModels()
+        interactor.addPhase(toParentAt: 0)
+        interactor.updateModels()
+        XCTAssertEqual(presenter.numberOfTimepoints, 2)
+    }
+    
+    func test_hide_phases() throws {
+        let _ = interactor.addParentPoint()
+        interactor.updateModels()
+        interactor.addPhase(toParentAt: 0)
+        interactor.updateModels()
+        interactor.addPhase(toParentAt: 0)
+        interactor.updateModels()
+        interactor.cellWasTapped(at: 0)
+        XCTAssertEqual(presenter.numberOfChanges, 2)
+        XCTAssertFalse(presenter.isAdditive)
+    }
+    
+    func test_delete_phase() throws {
+        let _ = interactor.addParentPoint()
+        interactor.updateModels()
+        interactor.addPhase(toParentAt: 0)
+        interactor.updateModels()
+        interactor.delete(timePointAt: 1)
+        interactor.updateModels()
+        XCTAssertEqual(presenter.numberOfTimepoints, 1)
+    }
+    
+    func test_delete_parent_point() throws {
+        let _ = interactor.addParentPoint()
+        interactor.updateModels()
+        interactor.addPhase(toParentAt: 0)
+        interactor.updateModels()
+        interactor.delete(timePointAt: 0)
+        interactor.updateModels()
+        XCTAssertEqual(presenter.numberOfTimepoints, 0)
     }
 
 }

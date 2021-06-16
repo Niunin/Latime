@@ -12,7 +12,6 @@
 		C96754C6267A5FC2003A016A /* Latime.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C96754C4267A5FC2003A016A /* Latime.xcdatamodeld */; };
 		C96754C8267A5FC6003A016A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C96754C7267A5FC6003A016A /* Assets.xcassets */; };
 		C96754CB267A5FC6003A016A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C96754C9267A5FC6003A016A /* LaunchScreen.storyboard */; };
-		C96754D6267A5FC7003A016A /* LatimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96754D5267A5FC7003A016A /* LatimeTests.swift */; };
 		C96754F1267A6242003A016A /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96754F0267A6242003A016A /* CoreDataStack.swift */; };
 		C96754F6267A6363003A016A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C96754F8267A6363003A016A /* Localizable.strings */; };
 		C9675529267A6671003A016A /* CoreData+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96754FB267A6671003A016A /* CoreData+Extensions.swift */; };
@@ -50,6 +49,9 @@
 		C967554A267A6671003A016A /* GlanceCellPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675525267A6671003A016A /* GlanceCellPhase.swift */; };
 		C967554B267A6671003A016A /* GlanceDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675527267A6671003A016A /* GlanceDataManager.swift */; };
 		C967554C267A6671003A016A /* GlanceInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675528267A6671003A016A /* GlanceInteractor.swift */; };
+		C9675551267A6B35003A016A /* CoreDataTestStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967554E267A6B34003A016A /* CoreDataTestStack.swift */; };
+		C9675552267A6B35003A016A /* GlancePresenterStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967554F267A6B35003A016A /* GlancePresenterStub.swift */; };
+		C9A02AF0267A6D5A00F8E85F /* LatimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A02AEF267A6D5A00F8E85F /* LatimeTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +73,6 @@
 		C96754CA267A5FC6003A016A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C96754CC267A5FC6003A016A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C96754D1267A5FC7003A016A /* LatimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LatimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C96754D5267A5FC7003A016A /* LatimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatimeTests.swift; sourceTree = "<group>"; };
 		C96754D7267A5FC7003A016A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C96754F0267A6242003A016A /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		C96754F7267A6363003A016A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -111,6 +112,9 @@
 		C9675525267A6671003A016A /* GlanceCellPhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceCellPhase.swift; sourceTree = "<group>"; };
 		C9675527267A6671003A016A /* GlanceDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceDataManager.swift; sourceTree = "<group>"; };
 		C9675528267A6671003A016A /* GlanceInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceInteractor.swift; sourceTree = "<group>"; };
+		C967554E267A6B34003A016A /* CoreDataTestStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTestStack.swift; sourceTree = "<group>"; };
+		C967554F267A6B35003A016A /* GlancePresenterStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlancePresenterStub.swift; sourceTree = "<group>"; };
+		C9A02AEF267A6D5A00F8E85F /* LatimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatimeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,7 +168,9 @@
 		C96754D4267A5FC7003A016A /* LatimeTests */ = {
 			isa = PBXGroup;
 			children = (
-				C96754D5267A5FC7003A016A /* LatimeTests.swift */,
+				C967554E267A6B34003A016A /* CoreDataTestStack.swift */,
+				C967554F267A6B35003A016A /* GlancePresenterStub.swift */,
+				C9A02AEF267A6D5A00F8E85F /* LatimeTests.swift */,
 				C96754D7267A5FC7003A016A /* Info.plist */,
 			);
 			path = LatimeTests;
@@ -459,7 +465,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C96754D6267A5FC7003A016A /* LatimeTests.swift in Sources */,
+				C9A02AF0267A6D5A00F8E85F /* LatimeTests.swift in Sources */,
+				C9675552267A6B35003A016A /* GlancePresenterStub.swift in Sources */,
+				C9675551267A6B35003A016A /* CoreDataTestStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
