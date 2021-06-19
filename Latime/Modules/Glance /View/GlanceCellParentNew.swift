@@ -138,7 +138,7 @@ class GlanceMissionTVCell: UITableViewCell {
     
     private func setupConstraints() {
         imageWidthConstraint = myImageView.heightAnchor.constraint(equalToConstant: 0)
-        print("-- Constraints")
+
         let constraints = [
             titleLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),

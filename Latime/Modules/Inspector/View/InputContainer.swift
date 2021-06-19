@@ -107,7 +107,8 @@ class InputContainer: UIView {
     // MARK: setup constraints
     
     func setupConstraints() {
-        // I should do it once? Or remove and activate again
+        // TODO: I should do it once? Or remove and activate again.
+        // TODO: this function is called in wrong place
         bottomConstraint = callImagePickerButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -8)
         imageHeightConstraint = imagePreview.heightAnchor.constraint(equalToConstant: 0)
         imageHeightConstraint.constant = imagePreview.image == nil ? 0 : 50

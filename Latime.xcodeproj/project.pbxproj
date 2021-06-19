@@ -43,7 +43,7 @@
 		C9675544267A6671003A016A /* GlanceContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967551F267A6671003A016A /* GlanceContextMenu.swift */; };
 		C9675545267A6671003A016A /* IndicatorLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675520267A6671003A016A /* IndicatorLayer.swift */; };
 		C9675546267A6671003A016A /* GlanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675521267A6671003A016A /* GlanceViewController.swift */; };
-		C9675547267A6671003A016A /* GlanceNewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675522267A6671003A016A /* GlanceNewCell.swift */; };
+		C9675547267A6671003A016A /* GlanceCellParentNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675522267A6671003A016A /* GlanceCellParentNew.swift */; };
 		C9675548267A6671003A016A /* GlanceTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675523267A6671003A016A /* GlanceTableView.swift */; };
 		C9675549267A6671003A016A /* GlanceCellParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675524267A6671003A016A /* GlanceCellParent.swift */; };
 		C967554A267A6671003A016A /* GlanceCellPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675525267A6671003A016A /* GlanceCellPhase.swift */; };
@@ -106,7 +106,7 @@
 		C967551F267A6671003A016A /* GlanceContextMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceContextMenu.swift; sourceTree = "<group>"; };
 		C9675520267A6671003A016A /* IndicatorLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorLayer.swift; sourceTree = "<group>"; };
 		C9675521267A6671003A016A /* GlanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceViewController.swift; sourceTree = "<group>"; };
-		C9675522267A6671003A016A /* GlanceNewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceNewCell.swift; sourceTree = "<group>"; };
+		C9675522267A6671003A016A /* GlanceCellParentNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceCellParentNew.swift; sourceTree = "<group>"; };
 		C9675523267A6671003A016A /* GlanceTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceTableView.swift; sourceTree = "<group>"; };
 		C9675524267A6671003A016A /* GlanceCellParent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceCellParent.swift; sourceTree = "<group>"; };
 		C9675525267A6671003A016A /* GlanceCellPhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceCellPhase.swift; sourceTree = "<group>"; };
@@ -297,14 +297,14 @@
 		C967551D267A6671003A016A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C967551E267A6671003A016A /* IndicatorView.swift */,
-				C967551F267A6671003A016A /* GlanceContextMenu.swift */,
-				C9675520267A6671003A016A /* IndicatorLayer.swift */,
 				C9675521267A6671003A016A /* GlanceViewController.swift */,
-				C9675522267A6671003A016A /* GlanceNewCell.swift */,
+				C967551F267A6671003A016A /* GlanceContextMenu.swift */,
 				C9675523267A6671003A016A /* GlanceTableView.swift */,
 				C9675524267A6671003A016A /* GlanceCellParent.swift */,
+				C9675522267A6671003A016A /* GlanceCellParentNew.swift */,
 				C9675525267A6671003A016A /* GlanceCellPhase.swift */,
+				C967551E267A6671003A016A /* IndicatorView.swift */,
+				C9675520267A6671003A016A /* IndicatorLayer.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -426,7 +426,7 @@
 				C9675535267A6671003A016A /* InputContainer.swift in Sources */,
 				C9675543267A6671003A016A /* IndicatorView.swift in Sources */,
 				C9675533267A6671003A016A /* InspectorPresenter.swift in Sources */,
-				C9675547267A6671003A016A /* GlanceNewCell.swift in Sources */,
+				C9675547267A6671003A016A /* GlanceCellParentNew.swift in Sources */,
 				C9675530267A6671003A016A /* Date+Extensions.swift in Sources */,
 				C96754BC267A5FC1003A016A /* AppDelegate.swift in Sources */,
 				C96754BE267A5FC1003A016A /* SceneDelegate.swift in Sources */,

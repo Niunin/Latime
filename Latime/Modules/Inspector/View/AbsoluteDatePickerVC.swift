@@ -18,7 +18,7 @@ class AbsoluteDatePickerViewController: UIViewController {
     /// views
     private lazy var titleStackView: UIStackView = UIStackView()
     private lazy var datePicker: UIDatePicker = UIDatePicker()
-    private lazy var intervalLabel = PaddingLabel(withInsets: 0, 0, 5, 5)
+    private lazy var intervalLabel = PaddingLabel(withInsets: UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5))
     
     // MARK: life cycle
     
@@ -50,6 +50,7 @@ class AbsoluteDatePickerViewController: UIViewController {
         label.backgroundColor = .systemGray6
         label.layer.cornerRadius = corner
         label.layer.masksToBounds = true
+        
     }
     
     private func setupDatePicker(_ picker: UIDatePicker) {

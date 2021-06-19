@@ -149,7 +149,6 @@ class GlanceMissionTVCellOld: UITableViewCell {
         indicatorLayer.configureInitialState(numberOfMarks:  phases, indexOfLongMark: mission)
     }
     
-    
     func insertIndicatorMark() {
         indicatorLayer.insertMark()
     }
