@@ -19,7 +19,7 @@ struct GlanceCountDown {
 
 // MARK: - Object
 
-class GlanceMissionTVCell: UITableViewCell {
+class GlanceMissionTVCell_1: UITableViewCell {
         
     static let identifier = "GlanceMissionTVCell2"
     
@@ -174,7 +174,6 @@ class GlanceMissionTVCell: UITableViewCell {
     }
 
     private func configureCountdownLabel(_ date: Date) {
-        
         let result = getDateDescription(from: Date(), to: date)
         countdownMain.attributedText = result.countdownMain
         countdown2.attributedText = result.countdown2
@@ -235,9 +234,6 @@ func getDateDescription(from start: Date, to end: Date) -> GlanceCountDown {
         )
     }
 }
-
-
-
 
 // TODO: Refactor this
 func getAttributedDate(description: String, timeFont: UIFont) -> NSAttributedString {
