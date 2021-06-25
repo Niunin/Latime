@@ -30,6 +30,7 @@ class RelativeDatePickerViewController: UIViewController {
         setupConstraints()
         
         plate.setupViews()
+        plate.setupNuew()
     }
 
     // MARK: actions
@@ -58,14 +59,14 @@ private extension RelativeDatePickerViewController {
         view.addSubview(pre)
         view.addSubview(post)
         
-//        post.backgroundColor = .brown
+        pre.setGray()
         pre.translatesAutoresizingMaskIntoConstraints = false
         post.translatesAutoresizingMaskIntoConstraints = false
         plate.translatesAutoresizingMaskIntoConstraints = false
     }
         
     func setupSelf() {
-        view.backgroundColor = .myViewBackground
+        view.backgroundColor = UIColor.specGray
     }
     
     func setupConstraints() {
@@ -78,9 +79,7 @@ private extension RelativeDatePickerViewController {
 
             plate.topAnchor.constraint(equalTo: pre.bottomAnchor, constant: 20),
             plate.leadingAnchor.constraint(equalTo: sa.leadingAnchor, constant: 8),
-            plate.trailingAnchor.constraint(equalTo: sa.trailingAnchor, constant: -8),
-            plate.heightAnchor.constraint(equalToConstant: 70),
-            
+            plate.trailingAnchor.constraint(equalTo: sa.trailingAnchor, constant: -8),            
             
             post.topAnchor.constraint(equalTo: plate.bottomAnchor, constant: 20),
             post.leadingAnchor.constraint(equalTo: sa.leadingAnchor, constant: 15),

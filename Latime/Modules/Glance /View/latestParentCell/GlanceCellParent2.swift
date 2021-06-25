@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - Object
 
-public class GlanceMissionTVCell: UITableViewCell {
+class GlanceMissionTVCell: UITableViewCell {
         
     static let identifier = "GlanceMissionTVCell"
     
@@ -19,13 +19,20 @@ public class GlanceMissionTVCell: UITableViewCell {
     private lazy var countdownView = CountdownView()
     private lazy var indicatorView = IndicatorView()
     
+    
     private var imageWidthConstraint = NSLayoutConstraint()
     private var imageHeightConstraint =  NSLayoutConstraint()
     
-    public override func didMoveToSuperview() {
+    override func didMoveToSuperview() {
         setupViews()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8))
+    }
+    
+    // MARK: configure
     func configure(timePoint: GlanceModel) {
         titleLabel.text = timePoint.title
         customImageView.image = timePoint.image
@@ -99,8 +106,10 @@ private extension GlanceMissionTVCell {
     }
     
     func setupSelf() {
-        contentView.backgroundColor = .systemGray5
-        contentView.layer.cornerRadius = 5
+        selectionStyle = .none
+        contentView.backgroundColor = .white
+        contentView.layer.cornerRadius = 15
+        contentView.clipsToBounds = true
         selectionStyle = .none
     }
     
@@ -111,6 +120,7 @@ private extension GlanceMissionTVCell {
         imageHeightConstraint = customImageView.heightAnchor.constraint(equalToConstant: 60)
         
         let constraints = [
+            
             titleLabel.topAnchor.constraint(equalTo: lmg.topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: lmg.leadingAnchor, constant: 8),
             titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: customImageView.leadingAnchor, constant: 8),
@@ -128,9 +138,10 @@ private extension GlanceMissionTVCell {
             indicatorView.bottomAnchor.constraint(equalTo: countdownView.lastBaselineAnchor),
             indicatorView.heightAnchor.constraint(equalToConstant: 6),
             
-            lmg.bottomAnchor.constraint(equalTo: countdownView.lastBaselineAnchor, constant: 10)
+            lmg.bottomAnchor.constraint(equalTo: countdownView.lastBaselineAnchor, constant: 10),
+            
         ]
         NSLayoutConstraint.activate(constraints)
     }
-    
+
 }

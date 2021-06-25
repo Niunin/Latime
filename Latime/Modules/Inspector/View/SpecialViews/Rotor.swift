@@ -134,9 +134,10 @@ class RotorScaleView: UIView {
         // setup path
         let x = layer.bounds.midX
         let y = layer.bounds.midX
-        let path = UIBezierPath(arcCenter: CGPoint(x: x, y: y),
-                radius: 40, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: false)
+        let path = UIBezierPath(roundedRect:CGRect(x: layer.bounds.midX-20, y: layer.bounds.midX+20, width: 80, height: 30), cornerRadius: 7)
+//        let path = UIBezierPath(arcCenter: CGPoint(x: x, y: y), radius: 40, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: false)
         layer.path = path.cgPath
+        
         
         tapCircleLayer = layer
     }
@@ -193,7 +194,7 @@ class RotorScaleView: UIView {
     private func shrinkRotor() {
         delegate?.scaleDisappeared()
         startWaitingAnimation()
-        setXPositionAnimated(for: scaleMarkLayer, value: 180)
+        setXPositionAnimated(for: scaleMarkLayer, value: 200)
         setPositionAnimated(for: scaleMaskingLayer, value: shirnkedCenter)
         tapCircleAnimation(for: tapCircleLayer, opacity: 1, pos: shirnkedCenter, scale: 1)
     }

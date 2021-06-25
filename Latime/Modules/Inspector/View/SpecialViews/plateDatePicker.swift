@@ -21,10 +21,16 @@ public class datePickerPlate: UIView {
     }
     
     // MARK: Sizes
+    
     struct Sizes {
-        static let stroke: CGFloat = 2.0
-        static let corner: CGFloat = 5.0
+        static let corner: CGFloat = 15.0
+        static let borderWidth: CGFloat = 1.0
         static let textFieldInsets = UIEdgeInsets(top: 1, left: 8, bottom: 1, right: 0)
+        
+        static let topAnchorOffset: CGFloat = 10.0
+        static let btmAnchorOffset: CGFloat = 10.0
+        static let leadingAnchorOffset: CGFloat = 20.0
+        static let trailingAnchorOffset: CGFloat = -20.0
     }
     
     public override func didMoveToSuperview() {
@@ -67,10 +73,9 @@ private extension datePickerPlate {
         let sa = self.safeAreaLayoutGuide
         
         let constraints = [
-            datePicker.topAnchor.constraint(equalTo: sa.topAnchor, constant: 10),
-            datePicker.leadingAnchor.constraint(equalTo: sa.leadingAnchor,  constant: 20),
+            datePicker.topAnchor.constraint(equalTo: sa.topAnchor, constant: Sizes.topAnchorOffset),
+            datePicker.leadingAnchor.constraint(equalTo: sa.leadingAnchor,  constant: Sizes.leadingAnchorOffset),
             datePicker.trailingAnchor.constraint(lessThanOrEqualTo: sa.trailingAnchor, constant: -10),
-            
             sa.bottomAnchor.constraint(equalTo: datePicker.bottomAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
@@ -78,18 +83,20 @@ private extension datePickerPlate {
     
     func setupSelf() {
         self.backgroundColor = .white
+//        self.backgroundColor = UIColor(white: 0.98, alpha: 1)
+//        self.backgroundColor = .clear
         self.layer.cornerRadius = Sizes.corner
-        self.layer.borderColor = UIColor.systemGray5.cgColor
+//        self.layer.borderColor = UIColor.systemGray5.cgColor
         
-        self.layer.cornerRadius = 8
-        self.layer.borderWidth = 1
+        self.layer.cornerRadius = Sizes.corner
+        // self.layer.borderWidth = Sizes.borderWidth
         self.layer.masksToBounds = false
         
         
-        self.layer.shadowRadius = 4
-        self.layer.shadowColor = UIColor.systemGray3.cgColor
-        self.layer.shadowOpacity = 0.4
-        self.layer.shadowOffset = CGSize(width: 2, height: 2)
+//        self.layer.shadowRadius = 6
+//        self.layer.shadowColor = UIColor.systemGray3.cgColor
+//        self.layer.shadowOpacity = 0.4
+//        self.layer.shadowOffset = CGSize(width: 0, height: 0)
     }
     
 }

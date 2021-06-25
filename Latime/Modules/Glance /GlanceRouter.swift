@@ -59,7 +59,7 @@ extension GlanceRouter: GlanceRouterProtocol {
     func showInspector(model: TimePoint) {
         let viewController  = InspectorRouter.build(context: context, model: model)
         let navModalVC =  UINavigationController(rootViewController: viewController)
-        navModalVC.modalPresentationStyle = .formSheet
+        navModalVC.modalPresentationStyle = .fullScreen // .formSheet
         navModalVC.modalTransitionStyle = .coverVertical
         entry.present(navModalVC, animated: true, completion: nil)
     }

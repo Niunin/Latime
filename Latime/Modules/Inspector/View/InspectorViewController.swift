@@ -37,9 +37,13 @@ class InspectorViewController: UIViewController {
         setupObservers()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigationBar()
+    }
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
-        inputContainer.setupConstraints()
+        inputContainer.configureConstraints()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -53,7 +57,6 @@ class InspectorViewController: UIViewController {
     // MARK: setup views
     
     private func setupViews() {
-        setupNavigationBar()
         setupInputContainer()
         setupDatePickers()
         setupSegmentedControl(segmentedControl)
@@ -77,8 +80,19 @@ class InspectorViewController: UIViewController {
         removeButton.tintColor = .systemRed
         navigationItem.leftBarButtonItems = [removeButton]
         navigationItem.rightBarButtonItems = [doneButton]
-        self.navigationController?.navigationBar.tintColor = UIColor.myAccent
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.tintColor = UIColor.myAccent
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        navigationController?.navigationBar.tintColor = UIColor.myAccent
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.topItem?.title = "Time point"
+        
+        navigationController?.view.backgroundColor = .clear
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) //UIImage.init(named: "transparent.png")
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
     }
     
     @IBAction private func doneButtonAction() {

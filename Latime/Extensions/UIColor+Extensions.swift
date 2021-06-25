@@ -15,6 +15,8 @@ extension UIColor {
     private static let myWhite = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
     private static let myGray = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1)
     
+    static let specGray = UIColor(white: 0.95, alpha: 1)
+    
     static let myPink = UIColor(hexString: "FEBDB3")
     static let myBlue = UIColor(hexString: "529FB5")
     static let myGreen = UIColor(hexString: "A0DEA6")

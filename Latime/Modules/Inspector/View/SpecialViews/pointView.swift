@@ -36,4 +36,9 @@ public class TimePointView: UIView {
         NSLayoutConstraint.activate(constraints)
     }
     
+    func setGray() {
+        self.desctiptionLabel.textColor = .systemGray3
+        self.timePointLabel.textColor = .systemGray3
+    }
+    
 }

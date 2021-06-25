@@ -49,9 +49,9 @@ class GlancePhaseTVCell: UITableViewCell {
         stack.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(stack)
         
-        stack.axis = .vertical
-        stack.addArrangedSubview(countdownLabel)
+        stack.axis = .horizontal
         stack.addArrangedSubview(titleLabel)
+        stack.addArrangedSubview(countdownLabel)
         stack.setCustomSpacing(8, after: countdownLabel)
     }
     
@@ -84,17 +84,16 @@ class GlancePhaseTVCell: UITableViewCell {
     
     private func setupConstraints() {
         let constraints = [
-            countdownLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            stack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            stack.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            stack.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1),
             
-            stack.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
-            stack.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.6),
+//            myImageView.topAnchor.constraint(equalTo: stack.topAnchor),
+//            myImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+//            myImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25),
+//            myImageView.heightAnchor.constraint(lessThanOrEqualToConstant: 50),
             
-            myImageView.topAnchor.constraint(equalTo: stack.topAnchor),
-            myImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            myImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25),
-            myImageView.heightAnchor.constraint(lessThanOrEqualToConstant: 50),
-            
-            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 70),
+            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
             contentView.layoutMarginsGuide.bottomAnchor.constraint(equalTo: stack.bottomAnchor)
         ]
         NSLayoutConstraint.activate(constraints)

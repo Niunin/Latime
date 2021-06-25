@@ -60,6 +60,7 @@
 		C979048A267E26F6008C8093 /* GlanceCellParent2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9790489267E26F6008C8093 /* GlanceCellParent2.swift */; };
 		C9790490267E29C0008C8093 /* GlanceCountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C979048F267E29C0008C8093 /* GlanceCountdownView.swift */; };
 		C9A02AF0267A6D5A00F8E85F /* LatimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A02AEF267A6D5A00F8E85F /* LatimeTests.swift */; };
+		C9DE3C412684A94900FE773D /* UIKit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DE3C402684A94900FE773D /* UIKit+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		C9790489267E26F6008C8093 /* GlanceCellParent2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceCellParent2.swift; sourceTree = "<group>"; };
 		C979048F267E29C0008C8093 /* GlanceCountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceCountdownView.swift; sourceTree = "<group>"; };
 		C9A02AEF267A6D5A00F8E85F /* LatimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatimeTests.swift; sourceTree = "<group>"; };
+		C9DE3C402684A94900FE773D /* UIKit+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,10 @@
 		C93DEB97267E36D8000072E2 /* SpecialViews */ = {
 			isa = PBXGroup;
 			children = (
+				C93DEB9F267E3A83000072E2 /* pointView.swift */,
+				C93DEB9B267E399B000072E2 /* paddingTextField.swift */,
+				C93DEBA6267E4ADE000072E2 /* plateDatePicker.swift */,
+				C93DEB9D267E39D2000072E2 /* plateView.swift */,
 				C967550C267A6671003A016A /* InputContainer.swift */,
 				C967550B267A6671003A016A /* UnsplashLogo.swift */,
 				C9675511267A6671003A016A /* Rotor.swift */,
@@ -161,17 +167,13 @@
 			path = SpecialViews;
 			sourceTree = "<group>";
 		};
-		C93DEB98267E3712000072E2 /* NewRelativePicker */ = {
+		C93DEB98267E3712000072E2 /* NewPickers */ = {
 			isa = PBXGroup;
 			children = (
 				C93DEBA4267E462D000072E2 /* AbsolutePicker.swift */,
 				C93DEBA1267E3A9A000072E2 /* RelativePicker.swift */,
-				C93DEB9D267E39D2000072E2 /* plateView.swift */,
-				C93DEBA6267E4ADE000072E2 /* plateDatePicker.swift */,
-				C93DEB9B267E399B000072E2 /* paddingTextField.swift */,
-				C93DEB9F267E3A83000072E2 /* pointView.swift */,
 			);
-			path = NewRelativePicker;
+			path = NewPickers;
 			sourceTree = "<group>";
 		};
 		C93DEB99267E3771000072E2 /* REMOVEIT */ = {
@@ -273,6 +275,7 @@
 				C9675501267A6671003A016A /* Foundation+Extensions.swift */,
 				C9675502267A6671003A016A /* CoreAnimation+Extensions.swift */,
 				C9675503267A6671003A016A /* Date+Extensions.swift */,
+				C9DE3C402684A94900FE773D /* UIKit+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -311,7 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				C93DEBA3267E447C000072E2 /* REMOVEIT */,
-				C93DEB98267E3712000072E2 /* NewRelativePicker */,
+				C93DEB98267E3712000072E2 /* NewPickers */,
 				C93DEB97267E36D8000072E2 /* SpecialViews */,
 				C9675512267A6671003A016A /* InspectorViewController.swift */,
 				C967550D267A6671003A016A /* InspectorViewController+InputContainer.swift */,
@@ -545,6 +548,7 @@
 				C967552C267A6671003A016A /* UIFont+Extensions.swift in Sources */,
 				C967552E267A6671003A016A /* Foundation+Extensions.swift in Sources */,
 				C93DEBA5267E462D000072E2 /* AbsolutePicker.swift in Sources */,
+				C9DE3C412684A94900FE773D /* UIKit+Extension.swift in Sources */,
 				C93DEBA0267E3A83000072E2 /* pointView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

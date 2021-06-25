@@ -99,8 +99,6 @@ class IndicatorView: UIView {
         self.numberOfMarks = numberOfMarks
         self.indexOfLongMark = indexOfLongMark
         self.aimedMark = aimedMark
-        
-        
     }
     
     func setup() {
@@ -398,13 +396,13 @@ extension IndicatorView {
         
         static let numberOfParts = 4
         static let sectorAngle = 2 * CGFloat.pi / CGFloat(numberOfParts)
-        static let sizeOfAimPart = CGSize(width: 4, height: 2.8)
+        static let sizeOfAimPart = CGSize(width: 3, height: 2.8)
         static let aimPartCornerRadius = min(sizeOfAimPart.width, sizeOfAimPart.height)/2
         
         // AimPart animation positions
-        static let exposedAim: CGFloat = 22
-        static let shrinkedAim: CGFloat = 15
-        static let bouncedAim: CGFloat = 24
+        static let exposedAim: CGFloat = 21.6
+        static let shrinkedAim: CGFloat = 17
+        static let bouncedAim: CGFloat = 30
         static let shrinkingAimValues = [exposedAim, bouncedAim, shrinkedAim]
         static let exposingAimValues = [shrinkedAim, bouncedAim, exposedAim]
         
@@ -412,11 +410,11 @@ extension IndicatorView {
     
     private struct AimAnimationTimes {
         
-        static let shrinkAim: Double = 0.6
-        static let shrinkAimKeyTimes: [NSNumber] = [0.0, 0.4, 0.6 ]
+        static let shrinkAim: Double = 0.5
+        static let shrinkAimKeyTimes: [NSNumber] = [0.0, 0.3, 0.5]
         
-        static let exposeAim: Double = 0.6
-        static let exposeAimKeyTimes: [NSNumber] = [0.0, 0.2, 0.6 ]
+        static let exposeAim: Double = 0.5
+        static let exposeAimKeyTimes: [NSNumber] = [0.0, 0.2, 0.5]
         
     }
     

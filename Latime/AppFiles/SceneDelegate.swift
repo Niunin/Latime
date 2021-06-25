@@ -16,12 +16,38 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Core data
         let context = (UIApplication.shared.delegate as? AppDelegate)?.coreDataStack.persistentContainer.viewContext
 
+        let boards = UITabBarItem()
+        boards.title = "Boards"
+        boards.image = UIImage(systemName: "square.grid.3x3.fill")
+        
+        let nested = UITabBarItem()
+        nested.title = "Nested"
+        nested.image = UIImage(systemName: "rectangle.center.inset.fill")
+        
+        let flat = UITabBarItem()
+        flat.title = "Flat"
+        flat.image = UIImage(systemName: "ruler.fill")
         
         // ViewController
         let viewController = GlanceRouter.build(context: context!)
-        let navigationController =  UINavigationController(rootViewController: viewController)
-        navigationController.navigationBar.topItem?.title = "Latime"
-        navigationController.navigationBar.prefersLargeTitles = true
+        let nestedVC =  UINavigationController(rootViewController: viewController)
+        nestedVC.navigationBar.topItem?.title = "Latime"
+        nestedVC.navigationBar.prefersLargeTitles = true
+        nestedVC.tabBarItem = nested
+        
+        let boardsVC = UIViewController()
+        boardsVC.view.backgroundColor = .systemTeal
+        boardsVC.tabBarItem = boards
+        
+        let flatVC = UIViewController()
+        flatVC.view.backgroundColor = .systemRed
+        flatVC.tabBarItem = flat
+
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [boardsVC, nestedVC, flatVC]
+        tabBarController.tabBar.barTintColor = UIColor.white
+
+
         
         // Window
         guard let windowScene = (scene as? UIWindowScene) else {
@@ -29,7 +55,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = navigationController
+        window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
     }
 
