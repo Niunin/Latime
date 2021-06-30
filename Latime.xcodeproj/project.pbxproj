@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C93DEB9C267E399B000072E2 /* paddingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEB9B267E399B000072E2 /* paddingTextField.swift */; };
-		C93DEB9E267E39D2000072E2 /* plateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEB9D267E39D2000072E2 /* plateView.swift */; };
-		C93DEBA0267E3A83000072E2 /* pointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEB9F267E3A83000072E2 /* pointView.swift */; };
+		C905D955268AFA2D005F22E4 /* InspectorCountdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D954268AFA2D005F22E4 /* InspectorCountdown.swift */; };
+		C93DEB9C267E399B000072E2 /* PaddingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEB9B267E399B000072E2 /* PaddingTextField.swift */; };
+		C93DEB9E267E39D2000072E2 /* CountdownInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEB9D267E39D2000072E2 /* CountdownInput.swift */; };
+		C93DEBA0267E3A83000072E2 /* PointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEB9F267E3A83000072E2 /* PointView.swift */; };
 		C93DEBA2267E3A9A000072E2 /* RelativePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEBA1267E3A9A000072E2 /* RelativePicker.swift */; };
 		C93DEBA5267E462D000072E2 /* AbsolutePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEBA4267E462D000072E2 /* AbsolutePicker.swift */; };
-		C93DEBA7267E4ADE000072E2 /* plateDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEBA6267E4ADE000072E2 /* plateDatePicker.swift */; };
 		C96754BC267A5FC1003A016A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96754BB267A5FC1003A016A /* AppDelegate.swift */; };
 		C96754BE267A5FC1003A016A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96754BD267A5FC1003A016A /* SceneDelegate.swift */; };
 		C96754C6267A5FC2003A016A /* Latime.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C96754C4267A5FC2003A016A /* Latime.xcdatamodeld */; };
@@ -33,9 +33,6 @@
 		C9675534267A6671003A016A /* UnsplashLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967550B267A6671003A016A /* UnsplashLogo.swift */; };
 		C9675535267A6671003A016A /* InputContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967550C267A6671003A016A /* InputContainer.swift */; };
 		C9675536267A6671003A016A /* InspectorViewController+InputContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967550D267A6671003A016A /* InspectorViewController+InputContainer.swift */; };
-		C9675537267A6671003A016A /* AbsoluteDatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967550E267A6671003A016A /* AbsoluteDatePickerVC.swift */; };
-		C9675538267A6671003A016A /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967550F267A6671003A016A /* PaddingLabel.swift */; };
-		C9675539267A6671003A016A /* RelativeDatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675510267A6671003A016A /* RelativeDatePickerVC.swift */; };
 		C967553A267A6671003A016A /* Rotor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675511267A6671003A016A /* Rotor.swift */; };
 		C967553B267A6671003A016A /* InspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675512267A6671003A016A /* InspectorViewController.swift */; };
 		C967553C267A6671003A016A /* InspectorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675513267A6671003A016A /* InspectorRouter.swift */; };
@@ -45,21 +42,17 @@
 		C9675540267A6671003A016A /* GlanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967551A267A6671003A016A /* GlanceModel.swift */; };
 		C9675541267A6671003A016A /* GlanceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967551B267A6671003A016A /* GlanceProtocols.swift */; };
 		C9675542267A6671003A016A /* GlancePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967551C267A6671003A016A /* GlancePresenter.swift */; };
-		C9675543267A6671003A016A /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967551E267A6671003A016A /* IndicatorView.swift */; };
 		C9675544267A6671003A016A /* GlanceContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967551F267A6671003A016A /* GlanceContextMenu.swift */; };
-		C9675545267A6671003A016A /* IndicatorLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675520267A6671003A016A /* IndicatorLayer.swift */; };
 		C9675546267A6671003A016A /* GlanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675521267A6671003A016A /* GlanceViewController.swift */; };
-		C9675547267A6671003A016A /* GlanceCellParent1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675522267A6671003A016A /* GlanceCellParent1.swift */; };
-		C9675548267A6671003A016A /* GlanceTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675523267A6671003A016A /* GlanceTableView.swift */; };
-		C9675549267A6671003A016A /* GlanceCellParent0.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675524267A6671003A016A /* GlanceCellParent0.swift */; };
 		C967554A267A6671003A016A /* GlanceCellPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675525267A6671003A016A /* GlanceCellPhase.swift */; };
 		C967554B267A6671003A016A /* GlanceDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675527267A6671003A016A /* GlanceDataManager.swift */; };
 		C967554C267A6671003A016A /* GlanceInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675528267A6671003A016A /* GlanceInteractor.swift */; };
 		C9675551267A6B35003A016A /* CoreDataTestStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967554E267A6B34003A016A /* CoreDataTestStack.swift */; };
 		C9675552267A6B35003A016A /* GlancePresenterStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967554F267A6B35003A016A /* GlancePresenterStub.swift */; };
-		C979048A267E26F6008C8093 /* GlanceCellParent2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9790489267E26F6008C8093 /* GlanceCellParent2.swift */; };
+		C979048A267E26F6008C8093 /* GlanceCellParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9790489267E26F6008C8093 /* GlanceCellParent.swift */; };
 		C9790490267E29C0008C8093 /* GlanceCountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C979048F267E29C0008C8093 /* GlanceCountdownView.swift */; };
 		C9A02AF0267A6D5A00F8E85F /* LatimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A02AEF267A6D5A00F8E85F /* LatimeTests.swift */; };
+		C9B9AD312689C46C00A182DA /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B9AD302689C46C00A182DA /* Indicator.swift */; };
 		C9DE3C412684A94900FE773D /* UIKit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DE3C402684A94900FE773D /* UIKit+Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,12 +67,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C93DEB9B267E399B000072E2 /* paddingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paddingTextField.swift; sourceTree = "<group>"; };
-		C93DEB9D267E39D2000072E2 /* plateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = plateView.swift; sourceTree = "<group>"; };
-		C93DEB9F267E3A83000072E2 /* pointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pointView.swift; sourceTree = "<group>"; };
+		C905D954268AFA2D005F22E4 /* InspectorCountdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorCountdown.swift; sourceTree = "<group>"; };
+		C93DEB9B267E399B000072E2 /* PaddingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextField.swift; sourceTree = "<group>"; };
+		C93DEB9D267E39D2000072E2 /* CountdownInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownInput.swift; sourceTree = "<group>"; };
+		C93DEB9F267E3A83000072E2 /* PointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointView.swift; sourceTree = "<group>"; };
 		C93DEBA1267E3A9A000072E2 /* RelativePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativePicker.swift; sourceTree = "<group>"; };
 		C93DEBA4267E462D000072E2 /* AbsolutePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsolutePicker.swift; sourceTree = "<group>"; };
-		C93DEBA6267E4ADE000072E2 /* plateDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = plateDatePicker.swift; sourceTree = "<group>"; };
 		C96754B8267A5FC1003A016A /* Latime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Latime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C96754BB267A5FC1003A016A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C96754BD267A5FC1003A016A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,9 +98,6 @@
 		C967550B267A6671003A016A /* UnsplashLogo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashLogo.swift; sourceTree = "<group>"; };
 		C967550C267A6671003A016A /* InputContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputContainer.swift; sourceTree = "<group>"; };
 		C967550D267A6671003A016A /* InspectorViewController+InputContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InspectorViewController+InputContainer.swift"; sourceTree = "<group>"; };
-		C967550E267A6671003A016A /* AbsoluteDatePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbsoluteDatePickerVC.swift; sourceTree = "<group>"; };
-		C967550F267A6671003A016A /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
-		C9675510267A6671003A016A /* RelativeDatePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelativeDatePickerVC.swift; sourceTree = "<group>"; };
 		C9675511267A6671003A016A /* Rotor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rotor.swift; sourceTree = "<group>"; };
 		C9675512267A6671003A016A /* InspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorViewController.swift; sourceTree = "<group>"; };
 		C9675513267A6671003A016A /* InspectorRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorRouter.swift; sourceTree = "<group>"; };
@@ -117,21 +107,17 @@
 		C967551A267A6671003A016A /* GlanceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceModel.swift; sourceTree = "<group>"; };
 		C967551B267A6671003A016A /* GlanceProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceProtocols.swift; sourceTree = "<group>"; };
 		C967551C267A6671003A016A /* GlancePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlancePresenter.swift; sourceTree = "<group>"; };
-		C967551E267A6671003A016A /* IndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
 		C967551F267A6671003A016A /* GlanceContextMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceContextMenu.swift; sourceTree = "<group>"; };
-		C9675520267A6671003A016A /* IndicatorLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorLayer.swift; sourceTree = "<group>"; };
 		C9675521267A6671003A016A /* GlanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceViewController.swift; sourceTree = "<group>"; };
-		C9675522267A6671003A016A /* GlanceCellParent1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceCellParent1.swift; sourceTree = "<group>"; };
-		C9675523267A6671003A016A /* GlanceTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceTableView.swift; sourceTree = "<group>"; };
-		C9675524267A6671003A016A /* GlanceCellParent0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceCellParent0.swift; sourceTree = "<group>"; };
 		C9675525267A6671003A016A /* GlanceCellPhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceCellPhase.swift; sourceTree = "<group>"; };
 		C9675527267A6671003A016A /* GlanceDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceDataManager.swift; sourceTree = "<group>"; };
 		C9675528267A6671003A016A /* GlanceInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceInteractor.swift; sourceTree = "<group>"; };
 		C967554E267A6B34003A016A /* CoreDataTestStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTestStack.swift; sourceTree = "<group>"; };
 		C967554F267A6B35003A016A /* GlancePresenterStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlancePresenterStub.swift; sourceTree = "<group>"; };
-		C9790489267E26F6008C8093 /* GlanceCellParent2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceCellParent2.swift; sourceTree = "<group>"; };
+		C9790489267E26F6008C8093 /* GlanceCellParent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceCellParent.swift; sourceTree = "<group>"; };
 		C979048F267E29C0008C8093 /* GlanceCountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceCountdownView.swift; sourceTree = "<group>"; };
 		C9A02AEF267A6D5A00F8E85F /* LatimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatimeTests.swift; sourceTree = "<group>"; };
+		C9B9AD302689C46C00A182DA /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		C9DE3C402684A94900FE773D /* UIKit+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,10 +142,10 @@
 		C93DEB97267E36D8000072E2 /* SpecialViews */ = {
 			isa = PBXGroup;
 			children = (
-				C93DEB9F267E3A83000072E2 /* pointView.swift */,
-				C93DEB9B267E399B000072E2 /* paddingTextField.swift */,
-				C93DEBA6267E4ADE000072E2 /* plateDatePicker.swift */,
-				C93DEB9D267E39D2000072E2 /* plateView.swift */,
+				C93DEB9F267E3A83000072E2 /* PointView.swift */,
+				C93DEB9B267E399B000072E2 /* PaddingTextField.swift */,
+				C905D954268AFA2D005F22E4 /* InspectorCountdown.swift */,
+				C93DEB9D267E39D2000072E2 /* CountdownInput.swift */,
 				C967550C267A6671003A016A /* InputContainer.swift */,
 				C967550B267A6671003A016A /* UnsplashLogo.swift */,
 				C9675511267A6671003A016A /* Rotor.swift */,
@@ -174,25 +160,6 @@
 				C93DEBA1267E3A9A000072E2 /* RelativePicker.swift */,
 			);
 			path = NewPickers;
-			sourceTree = "<group>";
-		};
-		C93DEB99267E3771000072E2 /* REMOVEIT */ = {
-			isa = PBXGroup;
-			children = (
-				C9675524267A6671003A016A /* GlanceCellParent0.swift */,
-				C9675522267A6671003A016A /* GlanceCellParent1.swift */,
-			);
-			path = REMOVEIT;
-			sourceTree = "<group>";
-		};
-		C93DEBA3267E447C000072E2 /* REMOVEIT */ = {
-			isa = PBXGroup;
-			children = (
-				C967550E267A6671003A016A /* AbsoluteDatePickerVC.swift */,
-				C967550F267A6671003A016A /* PaddingLabel.swift */,
-				C9675510267A6671003A016A /* RelativeDatePickerVC.swift */,
-			);
-			path = REMOVEIT;
 			sourceTree = "<group>";
 		};
 		C96754AF267A5FC1003A016A = {
@@ -313,11 +280,10 @@
 		C967550A267A6671003A016A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C93DEBA3267E447C000072E2 /* REMOVEIT */,
-				C93DEB98267E3712000072E2 /* NewPickers */,
-				C93DEB97267E36D8000072E2 /* SpecialViews */,
 				C9675512267A6671003A016A /* InspectorViewController.swift */,
 				C967550D267A6671003A016A /* InspectorViewController+InputContainer.swift */,
+				C93DEB98267E3712000072E2 /* NewPickers */,
+				C93DEB97267E36D8000072E2 /* SpecialViews */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -355,14 +321,11 @@
 		C967551D267A6671003A016A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C93DEB99267E3771000072E2 /* REMOVEIT */,
-				C979048B267E274B008C8093 /* latestParentCell */,
-				C979048E267E27E6008C8093 /* countdownCell */,
-				C979048C267E27A4008C8093 /* indicatorView */,
+				C979048C267E27A4008C8093 /* specViews */,
 				C9675521267A6671003A016A /* GlanceViewController.swift */,
-				C967551F267A6671003A016A /* GlanceContextMenu.swift */,
-				C9675523267A6671003A016A /* GlanceTableView.swift */,
+				C9790489267E26F6008C8093 /* GlanceCellParent.swift */,
 				C9675525267A6671003A016A /* GlanceCellPhase.swift */,
+				C967551F267A6671003A016A /* GlanceContextMenu.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -376,29 +339,13 @@
 			path = Interactor;
 			sourceTree = "<group>";
 		};
-		C979048B267E274B008C8093 /* latestParentCell */ = {
+		C979048C267E27A4008C8093 /* specViews */ = {
 			isa = PBXGroup;
 			children = (
-				C9790489267E26F6008C8093 /* GlanceCellParent2.swift */,
 				C979048F267E29C0008C8093 /* GlanceCountdownView.swift */,
+				C9B9AD302689C46C00A182DA /* Indicator.swift */,
 			);
-			path = latestParentCell;
-			sourceTree = "<group>";
-		};
-		C979048C267E27A4008C8093 /* indicatorView */ = {
-			isa = PBXGroup;
-			children = (
-				C967551E267A6671003A016A /* IndicatorView.swift */,
-				C9675520267A6671003A016A /* IndicatorLayer.swift */,
-			);
-			path = indicatorView;
-			sourceTree = "<group>";
-		};
-		C979048E267E27E6008C8093 /* countdownCell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = countdownCell;
+			path = specViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -503,41 +450,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				C967553C267A6671003A016A /* InspectorRouter.swift in Sources */,
-				C9675549267A6671003A016A /* GlanceCellParent0.swift in Sources */,
+				C905D955268AFA2D005F22E4 /* InspectorCountdown.swift in Sources */,
 				C96754F1267A6242003A016A /* CoreDataStack.swift in Sources */,
 				C9675532267A6671003A016A /* InspectorProtocols.swift in Sources */,
 				C9675535267A6671003A016A /* InputContainer.swift in Sources */,
-				C9675543267A6671003A016A /* IndicatorView.swift in Sources */,
 				C9675533267A6671003A016A /* InspectorPresenter.swift in Sources */,
-				C9675547267A6671003A016A /* GlanceCellParent1.swift in Sources */,
 				C9675530267A6671003A016A /* Date+Extensions.swift in Sources */,
 				C96754BC267A5FC1003A016A /* AppDelegate.swift in Sources */,
 				C96754BE267A5FC1003A016A /* SceneDelegate.swift in Sources */,
-				C9675545267A6671003A016A /* IndicatorLayer.swift in Sources */,
 				C967554A267A6671003A016A /* GlanceCellPhase.swift in Sources */,
-				C93DEB9C267E399B000072E2 /* paddingTextField.swift in Sources */,
-				C9675548267A6671003A016A /* GlanceTableView.swift in Sources */,
+				C93DEB9C267E399B000072E2 /* PaddingTextField.swift in Sources */,
 				C93DEBA2267E3A9A000072E2 /* RelativePicker.swift in Sources */,
 				C9675540267A6671003A016A /* GlanceModel.swift in Sources */,
-				C93DEBA7267E4ADE000072E2 /* plateDatePicker.swift in Sources */,
 				C9790490267E29C0008C8093 /* GlanceCountdownView.swift in Sources */,
 				C967554B267A6671003A016A /* GlanceDataManager.swift in Sources */,
-				C9675538267A6671003A016A /* PaddingLabel.swift in Sources */,
 				C9675544267A6671003A016A /* GlanceContextMenu.swift in Sources */,
 				C967552F267A6671003A016A /* CoreAnimation+Extensions.swift in Sources */,
 				C967552D267A6671003A016A /* UIColor+Extensions.swift in Sources */,
 				C9675542267A6671003A016A /* GlancePresenter.swift in Sources */,
 				C967553B267A6671003A016A /* InspectorViewController.swift in Sources */,
-				C9675537267A6671003A016A /* AbsoluteDatePickerVC.swift in Sources */,
 				C9675529267A6671003A016A /* CoreData+Extensions.swift in Sources */,
-				C979048A267E26F6008C8093 /* GlanceCellParent2.swift in Sources */,
+				C979048A267E26F6008C8093 /* GlanceCellParent.swift in Sources */,
 				C967553F267A6671003A016A /* GlanceRouter.swift in Sources */,
 				C9675531267A6671003A016A /* InspectorModel.swift in Sources */,
 				C967553E267A6671003A016A /* InspectorInteractor.swift in Sources */,
 				C967552B267A6671003A016A /* Notification+Extensions.swift in Sources */,
+				C9B9AD312689C46C00A182DA /* Indicator.swift in Sources */,
 				C9675541267A6671003A016A /* GlanceProtocols.swift in Sources */,
-				C9675539267A6671003A016A /* RelativeDatePickerVC.swift in Sources */,
-				C93DEB9E267E39D2000072E2 /* plateView.swift in Sources */,
+				C93DEB9E267E39D2000072E2 /* CountdownInput.swift in Sources */,
 				C967553D267A6671003A016A /* InspectorDataManager.swift in Sources */,
 				C967554C267A6671003A016A /* GlanceInteractor.swift in Sources */,
 				C9675546267A6671003A016A /* GlanceViewController.swift in Sources */,
@@ -549,7 +489,7 @@
 				C967552E267A6671003A016A /* Foundation+Extensions.swift in Sources */,
 				C93DEBA5267E462D000072E2 /* AbsolutePicker.swift in Sources */,
 				C9DE3C412684A94900FE773D /* UIKit+Extension.swift in Sources */,
-				C93DEBA0267E3A83000072E2 /* pointView.swift in Sources */,
+				C93DEBA0267E3A83000072E2 /* PointView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

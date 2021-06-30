@@ -46,8 +46,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [boardsVC, nestedVC, flatVC]
         tabBarController.tabBar.barTintColor = UIColor.white
-
-
+        tabBarController.selectedIndex = 1
         
         // Window
         guard let windowScene = (scene as? UIWindowScene) else {

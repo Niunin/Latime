@@ -10,11 +10,11 @@ import CoreData
 
 // MARK: - Object
 
-class GlanceViewController: UIViewController {
+class GlanceViewController: UITableViewController {
     
     var presenter: GlancePresenterProtocol!
     
-    private var tableView: GlanceTableView!
+    // private var tableView: GlanceTableView!
     
     private var model: [GlanceModel] = []
     private var numberOfRows: Int {
@@ -25,14 +25,19 @@ class GlanceViewController: UIViewController {
     
     // MARK: view life cycle
     
-    override func loadView() {
-        tableView = GlanceTableView(self)
-        view = tableView
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupSelf()
         setupNavigationView()
+    }
+    
+    // MARK: Setup Views
+    
+    private func setupSelf() {
+        tableView.register(GlanceMissionTVCell.self, forCellReuseIdentifier: GlanceMissionTVCell.reuseIdentifier)
+        tableView.register(GlancePhaseTVCell.self, forCellReuseIdentifier: GlancePhaseTVCell.reuseIdentifier)
+        tableView.backgroundColor = UIColor.myViewBackground
+        tableView.separatorStyle = .none
     }
     
 }
@@ -111,43 +116,45 @@ extension GlanceViewController: GlanceViewProtocol {
 
 // MARK: - UITableView DataSource
 
-extension GlanceViewController: UITableViewDataSource {
+extension GlanceViewController {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return numberOfRows
     }
     
     // FIXME: This implementation is super ugly and wrong. But i don't know how to fix. Maybe using diffable data source
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellData = model[indexPath.row]
         
         if cellData.type == .mission {
             typealias cellType = GlanceMissionTVCell
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellType.identifier, for: indexPath) as! cellType
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellType.reuseIdentifier, for: indexPath) as! cellType
             cell.configure(timePoint: cellData)
             return cell
         } else {
             typealias cellType = GlancePhaseTVCell
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellType.identifier, for: indexPath) as! cellType
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellType.reuseIdentifier, for: indexPath) as! cellType
             cell.configure(timePoint: cellData)
             return cell
         }
     }
     
+    
+    
 }
 
 // MARK: - UITableView Delegate
 
-extension GlanceViewController: UITableViewDelegate {
+extension GlanceViewController {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         presenter.cellWasTapped(AtRowWith: indexPath)
     }
     
     // MARK: context menu
     
-    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         
         let identifierString = NSString(string: "\(indexPath.row)")
         return UIContextMenuConfiguration(

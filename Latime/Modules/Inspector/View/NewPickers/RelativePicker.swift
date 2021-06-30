@@ -11,6 +11,22 @@ import UIKit
 
 class RelativeDatePickerViewController: UIViewController {
     
+    struct Sizes {
+        
+        static let topOffset: CGFloat = 20
+        static let btmOffset: CGFloat = 0
+        static let leadingOffset: CGFloat = 15
+        static let trailingOffset: CGFloat = -15
+        static let centerOffset: CGFloat = 15
+        static let widthOffset: CGFloat = -(leadingOffset + (-trailingOffset))
+        static let spacer: CGFloat = 8
+        
+        static let titleSpacingBefore: CGFloat = 40
+        static let titleSpacingAfter: CGFloat = 5
+        
+    }
+    
+    
     let identifier: String = "RelativePickerTitle".localized
     weak var delegate: InspectorDatePickerDelegate!
     
@@ -18,9 +34,11 @@ class RelativeDatePickerViewController: UIViewController {
     private var rotor: RotorScaleView!
     
     /// views
-    private let plate = TimeDifferenceView()
+    private let plateTitleLabel = UILabel()
     private let pre = TimePointView()
     private let post = TimePointView()
+    private let plate = CountdownInput()
+    
     
     // MARK: life cycle
     
@@ -29,8 +47,8 @@ class RelativeDatePickerViewController: UIViewController {
         setupViews()
         setupConstraints()
         
+        // FIXME: Wrong calling place
         plate.setupViews()
-        plate.setupNuew()
     }
 
     // MARK: actions
@@ -41,12 +59,36 @@ class RelativeDatePickerViewController: UIViewController {
 
 }
 
+// MARK: - Setup Views
+
 private extension RelativeDatePickerViewController {
-    // MARK: setup views
     
     func setupViews() {
         setupSelf()
+        setupPlateTitle(plateTitleLabel)
+        setupPlates()
         setupRotor()
+    }
+    
+    func setupSelf() {
+        view.backgroundColor = UIColor.white
+        
+        view.addSubview(pre)
+        view.addSubview(post)
+        view.addSubview(plateTitleLabel)
+        view.addSubview(plate)
+    }
+    
+    func setupPlateTitle(_ label: UILabel) {
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Time difference"
+        label.font = UIFont.boldSystemFont(ofSize: 24)
+    }
+    
+    func setupPlates() {
+        pre.translatesAutoresizingMaskIntoConstraints = false
+        post.translatesAutoresizingMaskIntoConstraints = false
+        plate.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func setupRotor() {
@@ -54,37 +96,27 @@ private extension RelativeDatePickerViewController {
         view.addSubview(rotor)
         rotor.delegate = self
         rotor.setupSelf()
-        
-        view.addSubview(plate)
-        view.addSubview(pre)
-        view.addSubview(post)
-        
-        pre.setGray()
-        pre.translatesAutoresizingMaskIntoConstraints = false
-        post.translatesAutoresizingMaskIntoConstraints = false
-        plate.translatesAutoresizingMaskIntoConstraints = false
     }
-        
-    func setupSelf() {
-        view.backgroundColor = UIColor.specGray
-    }
-    
+
     func setupConstraints() {
         let sa = view.safeAreaLayoutGuide
+        
         let constraints = [
-            pre.topAnchor.constraint(equalTo: sa.topAnchor, constant: 20),
-            pre.leadingAnchor.constraint(equalTo: sa.leadingAnchor, constant: 15),
-            pre.trailingAnchor.constraint(equalTo: sa.trailingAnchor, constant: -8),
-            pre.heightAnchor.constraint(equalToConstant: 50),
-
-            plate.topAnchor.constraint(equalTo: pre.bottomAnchor, constant: 20),
-            plate.leadingAnchor.constraint(equalTo: sa.leadingAnchor, constant: 8),
-            plate.trailingAnchor.constraint(equalTo: sa.trailingAnchor, constant: -8),            
+            pre.topAnchor.constraint(equalTo: sa.topAnchor, constant: Sizes.topOffset),
+            pre.leadingAnchor.constraint(equalTo: sa.leadingAnchor, constant: Sizes.leadingOffset),
+            pre.trailingAnchor.constraint(equalTo: sa.centerXAnchor, constant: -Sizes.centerOffset),
             
-            post.topAnchor.constraint(equalTo: plate.bottomAnchor, constant: 20),
-            post.leadingAnchor.constraint(equalTo: sa.leadingAnchor, constant: 15),
-            post.trailingAnchor.constraint(equalTo: sa.trailingAnchor, constant: -8),
-            post.heightAnchor.constraint(equalToConstant: 50)
+            post.topAnchor.constraint(equalTo: pre.topAnchor),
+            post.leadingAnchor.constraint(equalTo: sa.centerXAnchor, constant: Sizes.centerOffset),
+            post.trailingAnchor.constraint(equalTo: sa.trailingAnchor, constant: Sizes.trailingOffset),
+
+            plateTitleLabel.topAnchor.constraint(equalTo: pre.bottomAnchor, constant: Sizes.titleSpacingBefore),
+            plateTitleLabel.leadingAnchor.constraint(equalTo: pre.leadingAnchor),
+            plateTitleLabel.trailingAnchor.constraint(lessThanOrEqualTo: post.trailingAnchor),
+            
+            plate.topAnchor.constraint(equalTo: plateTitleLabel.bottomAnchor, constant: Sizes.titleSpacingAfter),
+            plate.leadingAnchor.constraint(equalTo: pre.leadingAnchor),
+            plate.trailingAnchor.constraint(equalTo: post.trailingAnchor),
         ]
         NSLayoutConstraint.activate(constraints)
     }

@@ -1,18 +1,17 @@
 //
-//  PaddingLabel.swift
-//  Timeboy
+//  paddingTextField.swift
+//  Latime
 //
-//  Created by Andrei Niunin on 17.05.2021.
+//  Created by Andrei Niunin on 19.06.2021.
 //
-
-import Foundation
 
 import UIKit
 
 // MARK: - Object
 
-class PaddingLabel: UILabel {
-    private var insets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+class PaddingTextField: UITextField {
+    
+    private var insets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
     
     // MARK: init
     
@@ -27,8 +26,14 @@ class PaddingLabel: UILabel {
     
     // MARK: functions
     
-    override func drawText(in rect: CGRect) {
-        super.drawText(in: rect.inset(by: insets))
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        let rect = super.textRect(forBounds: bounds)
+        return rect.inset(by: insets)
+    }
+    
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        let rect = super.editingRect(forBounds: bounds)
+        return rect.inset(by: insets)
     }
     
     override var intrinsicContentSize: CGSize {

@@ -11,101 +11,138 @@ import UIKit
 
 class GlancePhaseTVCell: UITableViewCell {
     
-    // MARK: properties
+    static let reuseIdentifier = "GlancePhaseCell"
     
-    static let identifier = "GlancePhaseTVCell"
+    // MARK: properties
+
     // Views
-    private lazy var stack = UIStackView()
-    private lazy var titleLabel = UILabel()
-    private lazy var countdownLabel = UILabel()
-    private lazy var myImageView = UIImageView()
+    private lazy var label = UILabel()
     
     // MARK: init - deinit
     
     override init (style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupStack(stack)
-        setupTitleLabel(titleLabel)
-        setupCountdownLabel(countdownLabel)
-        setupImageView(myImageView)
-        setupSelf()
-        setupConstraints()
+        setupViews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: lifecycle
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-    }
-    
-    // MARK: setup views and constraints
-    
-    private func setupStack(_ stack: UIStackView) {
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(stack)
-        
-        stack.axis = .horizontal
-        stack.addArrangedSubview(titleLabel)
-        stack.addArrangedSubview(countdownLabel)
-        stack.setCustomSpacing(8, after: countdownLabel)
-    }
-    
-    private func setupCountdownLabel(_ label: UILabel) {
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor.myAccent
-    }
-    
-    private func setupTitleLabel(_ label: UILabel) {
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        label.font = UIFont.phaseLabelFont
-        label.textColor = UIColor.systemGray
-        label.numberOfLines = 0
-    }
-    
-    private func setupImageView(_ imageView: UIImageView) {
-        contentView.addSubview(imageView)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = 8
-        imageView.layer.masksToBounds = true
-    }
-    
-    private func setupSelf() {
-        contentView.backgroundColor = UIColor.myViewBackground
-        selectionStyle = .none
-        
-    }
-    
-    private func setupConstraints() {
-        let constraints = [
-            stack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            stack.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
-            stack.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1),
-            
-//            myImageView.topAnchor.constraint(equalTo: stack.topAnchor),
-//            myImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-//            myImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25),
-//            myImageView.heightAnchor.constraint(lessThanOrEqualToConstant: 50),
-            
-            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
-            contentView.layoutMarginsGuide.bottomAnchor.constraint(equalTo: stack.bottomAnchor)
-        ]
-        NSLayoutConstraint.activate(constraints)
-    }
-    
     // MARK: configure
     
     func configure(timePoint: GlanceModel) {
-        titleLabel.text = timePoint.title
-        countdownLabel.text = DateModel.fullDateDescription(from: Date(), to: timePoint.date)
-        myImageView.image = timePoint.image
+        let title = timePoint.title
+        let time = DateModel.fullDateDescription(from: Date(), to: timePoint.date)
+        label.attributedText = getDescriptionText(title, time)
     }
     
 }
 
+// MARK: - Setup Views and Constraints
+
+private extension GlancePhaseTVCell {
+    
+    func setupViews() {
+        setupSelf()
+        setupLabel(label)
+        setupConstraints()
+    }
+    
+    func setupSelf() {
+        self.backgroundColor = UIColor.clear
+        contentView.backgroundColor = UIColor.myViewBackground
+        selectionStyle = .none
+        
+        contentView.addSubview(label)
+    }
+    
+    func setupLabel(_ label: UILabel) {
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+    }
+    
+    func setupConstraints() {
+        let mg = contentView.layoutMarginsGuide
+        let constraints = [
+            label.topAnchor.constraint(equalTo: mg.topAnchor),
+            label.leadingAnchor.constraint(equalTo: mg.leadingAnchor, constant: 30),
+            label.widthAnchor.constraint(equalTo: mg.widthAnchor, multiplier: 1, constant: -30),
+            mg.heightAnchor.constraint(greaterThanOrEqualToConstant: 30),
+        ]
+        NSLayoutConstraint.activate(constraints)
+        let h = mg.bottomAnchor.constraint(equalTo: label.bottomAnchor)
+        h.isActive = true
+        h.priority = UILayoutPriority(999)
+    }
+    
+}
+
+// MARK: prepare attributed text
+
+private extension GlancePhaseTVCell {
+    
+    // FIXME: Bad impleentation
+    func getDescriptionText(_ title: String,_ time: String) -> NSAttributedString{
+        let attributedTitle: NSAttributedString = configureTitleText(title)
+        let attributedTime: NSAttributedString = configureCounterText(time)
+        
+        let space = NSMutableAttributedString(string: "  ")
+        let result = NSMutableAttributedString()
+        result.append(attributedTitle)
+        result.append(space)
+        result.append(attributedTime)
+        return result
+    }
+    
+    func configureTitleText(_ text: String) -> NSAttributedString {
+        
+        //        // Substrings
+        //        let index: String.Index = descriptionString.firstIndex(of: "\n") ?? descriptionString.endIndex
+        //        let countdownSubstring = descriptionString[..<index]
+        //        let suffixSubstring = descriptionString[index..<descriptionString.endIndex]
+        //
+        //        // NSRanges
+        //        let fullNSRange = NSRange(location: 0, length: descriptionString.count)
+        //        let countdownRange = descriptionString.range(of: countdownSubstring)!
+        //        let countdownNSRange = NSRange(countdownRange, in: descriptionString)
+
+        
+        let attributedString = NSMutableAttributedString(string: text)
+        let fullRange = NSRange(location: 0, length: text.count)
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = 0
+        style.lineBreakMode = .byTruncatingTail
+        style.alignment = .left
+        
+        let font = UIFont.systemFont(ofSize: 17)
+        let color = UIColor.black
+        
+        attributedString.addAttribute(.paragraphStyle, value: style, range: fullRange)
+        attributedString.addAttribute(.font, value: font, range: fullRange)
+        attributedString.addAttribute(.foregroundColor, value: color, range: fullRange)
+        
+        return attributedString
+    }
+    
+    func configureCounterText(_ text: String) -> NSAttributedString {
+        let attributedString = NSMutableAttributedString(string: text)
+        
+        let fullRange = NSRange(location: 0, length: text.count)
+        
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = 0
+        style.lineBreakMode = .byTruncatingTail
+        style.alignment = .left
+        
+        let font = UIFont.systemFont(ofSize: 17)
+        let color = UIColor.gray
+        
+        attributedString.addAttribute(.paragraphStyle, value: style, range: fullRange)
+        attributedString.addAttribute(.font, value: font, range: fullRange)
+        attributedString.addAttribute(.foregroundColor, value: color, range: fullRange)
+        
+        return attributedString
+    }
+        
+}

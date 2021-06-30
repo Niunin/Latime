@@ -14,11 +14,9 @@ enum RotorStatus {
 }
 
 protocol RotorScaleDelegate {
-    
     func scaleAppeared()
     func scaleDisappeared()
-    func valueChanged(to: Int)
-
+    func valueChanged(to value: Int)
 }
 
 // MARK: - Object
@@ -132,13 +130,12 @@ class RotorScaleView: UIView {
         layer.fillColor = UIColor.myAccentCG
         
         // setup path
-        let x = layer.bounds.midX
-        let y = layer.bounds.midX
-        let path = UIBezierPath(roundedRect:CGRect(x: layer.bounds.midX-20, y: layer.bounds.midX+20, width: 80, height: 30), cornerRadius: 7)
-//        let path = UIBezierPath(arcCenter: CGPoint(x: x, y: y), radius: 40, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: false)
+        let path = UIBezierPath(roundedRect: CGRect(
+                                    x: layer.bounds.midX-20,
+                                    y: layer.bounds.midX+20,
+                                    width: 80, height: 30),
+                                cornerRadius: 7)
         layer.path = path.cgPath
-        
-        
         tapCircleLayer = layer
     }
     

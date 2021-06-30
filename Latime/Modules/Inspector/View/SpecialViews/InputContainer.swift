@@ -208,7 +208,7 @@ private extension InputContainer {
     
     func setupSelf() {
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = UIColor.specGray
+        backgroundColor = UIColor.myViewBackground
         layer.borderColor = UIColor.white.cgColor
         layer.borderWidth = 0
         layer.zPosition = CGFloat(Float.greatestFiniteMagnitude)

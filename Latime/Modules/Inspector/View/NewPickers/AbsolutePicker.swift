@@ -11,13 +11,27 @@ import UIKit
 
 class AbsoluteDatePickerViewController: UIViewController {
     
+    struct Sizes {
+    
+        static let corner: CGFloat = 0.0
+        static let borderWidth: CGFloat = 0.0
+        
+        static let topOffset: CGFloat = 0
+        static let btmOffset: CGFloat = 0
+        static let leadingOffset: CGFloat = 15
+        static let trailingOffset: CGFloat = -15
+        static let widthOffset: CGFloat = -(leadingOffset + (-trailingOffset))
+        static let spacer: CGFloat = 8
+    
+    }
+    
     let identifier: String = "AbsolutePickerTitle".localized
     weak var delegate: InspectorDatePickerDelegate!
     
     /// views
     private lazy var titleStackView: UIStackView = UIStackView()
-    private lazy var datePicker = datePickerPlate()
-    private let plate = TimeDifferenceView()
+    private lazy var datePicker: UIDatePicker = UIDatePicker()
+    private let countdown = InspectorCountdownView()
     private let scrollView = UIScrollView()
 
     // MARK: life cycle
@@ -25,8 +39,6 @@ class AbsoluteDatePickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        plate.setupViews()
-        plate.setupSpecial()
         notificationsListener()
     }
     
@@ -44,8 +56,7 @@ class AbsoluteDatePickerViewController: UIViewController {
             bottom: keyboardSize.height,
             right: 0)
         scrollView.contentInset = contentInsets
-//        scrollView.setContentOffset(CGPoint(x: 0, y: 50), animated: true)
-        scrollView.scrollRectToVisible(plate.frame, animated: true)
+        scrollView.scrollRectToVisible(countdown.frame, animated: true)
     }
 
     @IBAction func keyboardWillHide(notification: NSNotification) {
@@ -67,8 +78,8 @@ class AbsoluteDatePickerViewController: UIViewController {
 private extension AbsoluteDatePickerViewController {
     
     func setupViews() {
-        setupDatePicker()
-        setupPlate()
+        setupDatePicker(datePicker)
+        setupCountdown()
         setupScrollView(scrollView)
         setupSelf()
 
@@ -79,21 +90,36 @@ private extension AbsoluteDatePickerViewController {
         view.addSubview(scrollView)
         scrollView.isScrollEnabled = true
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(plate)
+        scrollView.addSubview(countdown)
         scrollView.addSubview(datePicker)
     }
     
-    func setupDatePicker() {
-        datePicker.translatesAutoresizingMaskIntoConstraints = false
+    private func setupDatePicker(_ picker: UIDatePicker) {
+        view.addSubview(picker)
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        picker.datePickerMode = .dateAndTime
+        picker.preferredDatePickerStyle = .inline
+        picker.minuteInterval = 5
+        picker.date = Date()
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+        picker.tintColor = UIColor.myAccent
+        
+        let referenceDate = Date(timeIntervalSinceReferenceDate: 0)
+        picker.minimumDate = referenceDate
+        picker.maximumDate = Calendar.current.date(byAdding: .year, value: 100, to: referenceDate)
     }
     
-    func setupPlate() {
-        plate.translatesAutoresizingMaskIntoConstraints = false
+    @IBAction private func datePickerValueChanged(_ sender: UIDatePicker) {
+        delegate.dateChanged(sender.date)
+        // updateDateInterval(datePicker.date)
+    }
+    
+    func setupCountdown() {
+        countdown.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func setupSelf() {
-        view.backgroundColor = UIColor.specGray
-        datePicker.backgroundColor = .white
+        view.backgroundColor = UIColor.myViewBackground
     }
     
     func setupConstraints() {
@@ -106,16 +132,14 @@ private extension AbsoluteDatePickerViewController {
             scrollView.bottomAnchor.constraint(equalTo: sa.bottomAnchor),
         
             datePicker.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 15),
-            datePicker.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 8),
-            datePicker.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 8),
-            datePicker.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -16),
+            datePicker.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Sizes.leadingOffset),
+            datePicker.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: Sizes.trailingOffset),
+            datePicker.widthAnchor.constraint(equalTo: view.widthAnchor, constant: Sizes.widthOffset),
             
-            plate.leadingAnchor.constraint(equalTo: datePicker.leadingAnchor),
-            plate.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 5),
-            plate.widthAnchor.constraint(equalTo: datePicker.widthAnchor),
-            plate.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
-            
-            
+            countdown.topAnchor.constraint(equalToSystemSpacingBelow: datePicker.bottomAnchor, multiplier: 3 ),
+            countdown.leadingAnchor.constraint(equalTo: datePicker.leadingAnchor),
+            countdown.widthAnchor.constraint(equalTo: datePicker.widthAnchor),
+            countdown.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }
