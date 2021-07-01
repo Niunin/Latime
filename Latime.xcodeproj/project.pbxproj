@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C905D955268AFA2D005F22E4 /* InspectorCountdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D954268AFA2D005F22E4 /* InspectorCountdown.swift */; };
-		C93DEB9C267E399B000072E2 /* PaddingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEB9B267E399B000072E2 /* PaddingTextField.swift */; };
+		C93DEB9C267E399B000072E2 /* PaddingTextField2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEB9B267E399B000072E2 /* PaddingTextField2.swift */; };
 		C93DEB9E267E39D2000072E2 /* CountdownInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEB9D267E39D2000072E2 /* CountdownInput.swift */; };
 		C93DEBA0267E3A83000072E2 /* PointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEB9F267E3A83000072E2 /* PointView.swift */; };
 		C93DEBA2267E3A9A000072E2 /* RelativePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEBA1267E3A9A000072E2 /* RelativePicker.swift */; };
@@ -68,7 +68,7 @@
 
 /* Begin PBXFileReference section */
 		C905D954268AFA2D005F22E4 /* InspectorCountdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorCountdown.swift; sourceTree = "<group>"; };
-		C93DEB9B267E399B000072E2 /* PaddingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextField.swift; sourceTree = "<group>"; };
+		C93DEB9B267E399B000072E2 /* PaddingTextField2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextField2.swift; sourceTree = "<group>"; };
 		C93DEB9D267E39D2000072E2 /* CountdownInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownInput.swift; sourceTree = "<group>"; };
 		C93DEB9F267E3A83000072E2 /* PointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointView.swift; sourceTree = "<group>"; };
 		C93DEBA1267E3A9A000072E2 /* RelativePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativePicker.swift; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				C93DEB9F267E3A83000072E2 /* PointView.swift */,
-				C93DEB9B267E399B000072E2 /* PaddingTextField.swift */,
+				C93DEB9B267E399B000072E2 /* PaddingTextField2.swift */,
 				C905D954268AFA2D005F22E4 /* InspectorCountdown.swift */,
 				C93DEB9D267E39D2000072E2 /* CountdownInput.swift */,
 				C967550C267A6671003A016A /* InputContainer.swift */,
@@ -459,7 +459,7 @@
 				C96754BC267A5FC1003A016A /* AppDelegate.swift in Sources */,
 				C96754BE267A5FC1003A016A /* SceneDelegate.swift in Sources */,
 				C967554A267A6671003A016A /* GlanceCellPhase.swift in Sources */,
-				C93DEB9C267E399B000072E2 /* PaddingTextField.swift in Sources */,
+				C93DEB9C267E399B000072E2 /* PaddingTextField2.swift in Sources */,
 				C93DEBA2267E3A9A000072E2 /* RelativePicker.swift in Sources */,
 				C9675540267A6671003A016A /* GlanceModel.swift in Sources */,
 				C9790490267E29C0008C8093 /* GlanceCountdownView.swift in Sources */,

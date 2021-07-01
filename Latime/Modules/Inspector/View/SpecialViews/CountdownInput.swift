@@ -35,20 +35,22 @@ class CountdownInput: UIView {
     private let daysTitle = UILabel()
     private let hoursTitle = UILabel()
     private let minutesTitle = UILabel()
-        
+    
     // MARK: configure
     private var inputText = ""
     //private var notChangedYet = true
     private var changeNumber = 0
-    private var currentLimit = 23
     
     func configure() {
         daysTitle.text = "days"
         hoursTitle.text = "hrs"
         minutesTitle.text = "mins"
-        daysCounter.text = "2"
-        minutesCounter.text = "14"
-        hoursCounter.text = "30"
+        daysCounter.text = "0"
+        hoursCounter.text = "14"
+        minutesCounter.text = "30"
+        
+        hoursCounter.maxValue = 47
+        minutesCounter.maxValue = 59
     }
     
     // FIXME: bad implementation
@@ -87,6 +89,8 @@ private extension CountdownInput {
         setupStackView(stackView)
         
         setupConstarints()
+        
+        
     }
     
     func setupTextField(_ tf: UITextField) {
@@ -136,7 +140,7 @@ private extension CountdownInput {
         self.layer.cornerRadius = Sizes.corner
     }
     
-        
+    
     func setupConstarints() {
         let sa = self.safeAreaLayoutGuide
         let constraints = [
@@ -148,47 +152,74 @@ private extension CountdownInput {
         ]
         NSLayoutConstraint.activate(constraints)
     }
-
-
+    
+    
 }
 
 extension CountdownInput: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        dayStarted()
+        // TODO: fix this color
+        textField.layer.borderColor = UIColor.black.cgColor
     }
-
+    
+    // TODO: refactor textFieldShouldChange
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         print(string)
-        switch changeNumber {
-        case 1:
-//            textField.text = "0" + string
-            let stringf = textField.text ?? ""
-            let firstSign = stringf.last!
-            let catString = String(firstSign) + string
-            if Int(String(catString))! > currentLimit {
-                textField.text = "0" + string
-                changeNumber = 1
-            } else {
-                textField.text = catString
-                changeNumber = 0
+        if let ptf = textField as? PaddingTextField, let max = ptf.maxValue {
+            var currentText = textField.text ?? ""
+            // TODO: rename these vars
+            if string == "" {
+                currentText.removeLast()
+                if currentText == "" {
+                    currentText = "00"
+                    changeNumber = 0
+                } else {
+                    currentText = "0" + currentText
+                    changeNumber = 1
+                }
+                textField.text = currentText
+            } else{
+                switch changeNumber {
+                case 1:
+                    let firstSign = currentText.last!
+                    let newString = String(firstSign) + string
+                    if Int(String(newString))! > max {
+                        textField.text = "0" + string
+                        changeNumber = 1
+                    } else {
+                        textField.text = newString
+                        changeNumber = 0
+                    }
+                default:
+                    textField.text = "0" + string
+                    changeNumber = 1
+                }
+                
             }
-        default:
-            textField.text = "0" + string
-            changeNumber = 1
+        } else {
+            var currentString = textField.text ?? ""
+            if string == "" {
+                currentString.removeLast()
+                textField.text = currentString
+            } else {
+                textField.text = currentString + string
+            }
+            if textField.text?.first == "0" {
+                textField.text?.removeFirst()
+            }
+            if textField.text == "" {
+                textField.text = "0"
+            }
         }
         return false
-        
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         changeNumber = 0
-        dayFinished()
+        
+        textField.layer.borderColor = UIColor.systemGray6.cgColor
     }
     
-//    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-//        false
-//    }
-
 }
 
 
