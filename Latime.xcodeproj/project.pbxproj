@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C905D955268AFA2D005F22E4 /* InspectorCountdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D954268AFA2D005F22E4 /* InspectorCountdown.swift */; };
-		C93DEB9C267E399B000072E2 /* PaddingTextField2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEB9B267E399B000072E2 /* PaddingTextField2.swift */; };
+		C90CE905268E038400EB4FE7 /* NewRotor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90CE904268E038400EB4FE7 /* NewRotor.swift */; };
+		C90CE907268E03B200EB4FE7 /* GesturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90CE906268E03B200EB4FE7 /* GesturesView.swift */; };
+		C93DEB9C267E399B000072E2 /* PaddingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEB9B267E399B000072E2 /* PaddingTextField.swift */; };
 		C93DEB9E267E39D2000072E2 /* CountdownInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEB9D267E39D2000072E2 /* CountdownInput.swift */; };
 		C93DEBA0267E3A83000072E2 /* PointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEB9F267E3A83000072E2 /* PointView.swift */; };
 		C93DEBA2267E3A9A000072E2 /* RelativePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEBA1267E3A9A000072E2 /* RelativePicker.swift */; };
@@ -68,7 +70,9 @@
 
 /* Begin PBXFileReference section */
 		C905D954268AFA2D005F22E4 /* InspectorCountdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorCountdown.swift; sourceTree = "<group>"; };
-		C93DEB9B267E399B000072E2 /* PaddingTextField2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextField2.swift; sourceTree = "<group>"; };
+		C90CE904268E038400EB4FE7 /* NewRotor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRotor.swift; sourceTree = "<group>"; };
+		C90CE906268E03B200EB4FE7 /* GesturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GesturesView.swift; sourceTree = "<group>"; };
+		C93DEB9B267E399B000072E2 /* PaddingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextField.swift; sourceTree = "<group>"; };
 		C93DEB9D267E39D2000072E2 /* CountdownInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownInput.swift; sourceTree = "<group>"; };
 		C93DEB9F267E3A83000072E2 /* PointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointView.swift; sourceTree = "<group>"; };
 		C93DEBA1267E3A9A000072E2 /* RelativePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativePicker.swift; sourceTree = "<group>"; };
@@ -139,11 +143,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C90CE903268E037000EB4FE7 /* Rotor */ = {
+			isa = PBXGroup;
+			children = (
+				C90CE904268E038400EB4FE7 /* NewRotor.swift */,
+				C90CE906268E03B200EB4FE7 /* GesturesView.swift */,
+			);
+			path = Rotor;
+			sourceTree = "<group>";
+		};
 		C93DEB97267E36D8000072E2 /* SpecialViews */ = {
 			isa = PBXGroup;
 			children = (
+				C90CE903268E037000EB4FE7 /* Rotor */,
 				C93DEB9F267E3A83000072E2 /* PointView.swift */,
-				C93DEB9B267E399B000072E2 /* PaddingTextField2.swift */,
+				C93DEB9B267E399B000072E2 /* PaddingTextField.swift */,
 				C905D954268AFA2D005F22E4 /* InspectorCountdown.swift */,
 				C93DEB9D267E39D2000072E2 /* CountdownInput.swift */,
 				C967550C267A6671003A016A /* InputContainer.swift */,
@@ -459,11 +473,12 @@
 				C96754BC267A5FC1003A016A /* AppDelegate.swift in Sources */,
 				C96754BE267A5FC1003A016A /* SceneDelegate.swift in Sources */,
 				C967554A267A6671003A016A /* GlanceCellPhase.swift in Sources */,
-				C93DEB9C267E399B000072E2 /* PaddingTextField2.swift in Sources */,
+				C93DEB9C267E399B000072E2 /* PaddingTextField.swift in Sources */,
 				C93DEBA2267E3A9A000072E2 /* RelativePicker.swift in Sources */,
 				C9675540267A6671003A016A /* GlanceModel.swift in Sources */,
 				C9790490267E29C0008C8093 /* GlanceCountdownView.swift in Sources */,
 				C967554B267A6671003A016A /* GlanceDataManager.swift in Sources */,
+				C90CE907268E03B200EB4FE7 /* GesturesView.swift in Sources */,
 				C9675544267A6671003A016A /* GlanceContextMenu.swift in Sources */,
 				C967552F267A6671003A016A /* CoreAnimation+Extensions.swift in Sources */,
 				C967552D267A6671003A016A /* UIColor+Extensions.swift in Sources */,
@@ -480,6 +495,7 @@
 				C93DEB9E267E39D2000072E2 /* CountdownInput.swift in Sources */,
 				C967553D267A6671003A016A /* InspectorDataManager.swift in Sources */,
 				C967554C267A6671003A016A /* GlanceInteractor.swift in Sources */,
+				C90CE905268E038400EB4FE7 /* NewRotor.swift in Sources */,
 				C9675546267A6671003A016A /* GlanceViewController.swift in Sources */,
 				C967553A267A6671003A016A /* Rotor.swift in Sources */,
 				C9675534267A6671003A016A /* UnsplashLogo.swift in Sources */,

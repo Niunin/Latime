@@ -67,7 +67,7 @@ private extension GlancePhaseTVCell {
         let constraints = [
             label.topAnchor.constraint(equalTo: mg.topAnchor),
             label.leadingAnchor.constraint(equalTo: mg.leadingAnchor, constant: 30),
-            label.widthAnchor.constraint(equalTo: mg.widthAnchor, multiplier: 1, constant: -30),
+            label.widthAnchor.constraint(equalTo: mg.widthAnchor, multiplier: 1, constant: -60),
             mg.heightAnchor.constraint(greaterThanOrEqualToConstant: 30),
         ]
         NSLayoutConstraint.activate(constraints)

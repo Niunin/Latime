@@ -11,6 +11,8 @@ import UIKit
 
 class RelativeDatePickerViewController: UIViewController {
     
+    
+    
     struct Sizes {
         
         static let topOffset: CGFloat = 20
@@ -23,15 +25,17 @@ class RelativeDatePickerViewController: UIViewController {
         
         static let titleSpacingBefore: CGFloat = 40
         static let titleSpacingAfter: CGFloat = 5
-        
     }
-    
     
     let identifier: String = "RelativePickerTitle".localized
     weak var delegate: InspectorDatePickerDelegate!
     
     /// old views
-    private var rotor: RotorScaleView!
+    // private var rotor: RotorScaleView!
+    private var rotor: RotorView!
+    private var gesturesLayer = GesturesControl()
+
+    
     
     /// views
     private let plateTitleLabel = UILabel()
@@ -59,6 +63,35 @@ class RelativeDatePickerViewController: UIViewController {
 
 }
 
+extension RelativeDatePickerViewController: GestureControlDelegate {
+    func exposeRotor() {
+        rotor.expose()
+    }
+    
+    func hideRotor() {
+        rotor.hide()
+    }
+    
+    func rotate(to markIndex: Int) {
+        rotor.rotateToMark(at: markIndex)
+    }
+    
+    func switchRing(to markIndex: Int) {
+        switch markIndex {
+        case 0:
+            rotor.switchWheelTo(.inner)
+        case 1:
+            rotor.switchWheelTo(.middle)
+        default:
+            rotor.switchWheelTo(.outer)
+        }
+    }
+    
+    func offsetRing() {
+        
+    }
+}
+
 // MARK: - Setup Views
 
 private extension RelativeDatePickerViewController {
@@ -68,11 +101,13 @@ private extension RelativeDatePickerViewController {
         setupPlateTitle(plateTitleLabel)
         setupPlates()
         setupRotor()
+//        setupGesturesView()
     }
     
     func setupSelf() {
         view.backgroundColor = UIColor.white
         
+//        view.addSubview(gesturesLayer)
         view.addSubview(pre)
         view.addSubview(post)
         view.addSubview(plateTitleLabel)
@@ -92,10 +127,23 @@ private extension RelativeDatePickerViewController {
     }
     
     func setupRotor() {
-        self.rotor = RotorScaleView(frame: view.bounds)
-        view.addSubview(rotor)
-        rotor.delegate = self
-        rotor.setupSelf()
+//        rotor = RotorView(frame: view.bounds)
+//        self.rotor = RotorScaleView(frame: view.bounds)
+        
+//        view.addSubview(rotor)
+//        rotor.delegate = self
+//        rotor.setupSelf()
+    }
+    
+    func setupGesturesView() {
+        gesturesLayer.delegate = self
+        gesturesLayer.setupSelf()
+        gesturesLayer.translatesAutoresizingMaskIntoConstraints = false
+        gesturesLayer.backgroundColor = .clear
+//        gesturesLayer.frame = self.view.frame
+
+        
+        
     }
 
     func setupConstraints() {
@@ -117,6 +165,11 @@ private extension RelativeDatePickerViewController {
             plate.topAnchor.constraint(equalTo: plateTitleLabel.bottomAnchor, constant: Sizes.titleSpacingAfter),
             plate.leadingAnchor.constraint(equalTo: pre.leadingAnchor),
             plate.trailingAnchor.constraint(equalTo: post.trailingAnchor),
+            
+//            gesturesLayer.topAnchor.constraint(equalTo: view.topAnchor),
+//            gesturesLayer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            gesturesLayer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+//            gesturesLayer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ]
         NSLayoutConstraint.activate(constraints)
     }

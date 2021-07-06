@@ -115,6 +115,8 @@ private extension Indicator2 {
             let layer = makeShortMarkLayer(at: index)
             containerLayer.addSublayer(layer)
         }
+        let layer = makeLongMarkLayer()
+        containerLayer.addSublayer(layer)
     }
     
     func makeShortMarkLayer(at index: Int) -> CAShapeLayer {
@@ -140,20 +142,25 @@ private extension Indicator2 {
     
     func positionOfShortMark(at index: Int) -> CGPoint {
         var offset: CGFloat = CGFloat(index) * SizeofOfScale.shortMarkOffset
-                
         if index > indexOfLongMark {
             offset += SizeofOfScale.shortMarkOffset + SizeofOfScale.longMarkOffset
         }
         return CGPoint(x: offset+6, y: 6)
     }
     
-    func positionOfAnchorOfMark(at index: Int) -> CGPoint {
-        var offset: CGFloat = CGFloat(index) * SizeofOfScale.shortMarkOffset
-                
-        if index > indexOfLongMark {
-            offset += SizeofOfScale.shortMarkOffset + SizeofOfScale.longMarkOffset
-        }
-        return CGPoint(x: 0, y: 0)
+    func makeLongMarkLayer() -> CAShapeLayer {
+        let layer = CAShapeLayer()
+        layer.fillColor = UIColor.black.cgColor
+        layer.path = markPath(longMarkRect)
+        layer.position = positionOfLongMark()
+        layer.bounds.size = CGSize(width: 18, height: 6)
+//        layer.anchorPoint = CGPoint(x: 1, y: 1)
+        return layer
+    }
+    
+    func positionOfLongMark() -> CGPoint {
+        let offset: CGFloat = CGFloat(indexOfLongMark+1) * SizeofOfScale.shortMarkOffset
+        return CGPoint(x: offset, y: 0)
     }
     
 }

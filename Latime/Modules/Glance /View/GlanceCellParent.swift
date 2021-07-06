@@ -164,7 +164,7 @@ private extension GlanceMissionTVCell {
             countdownView.leadingAnchor.constraint(equalTo: mg.leadingAnchor),
             countdownView.widthAnchor.constraint(lessThanOrEqualTo: mg.widthAnchor),
             
-            titleLabel.topAnchor.constraint(equalToSystemSpacingBelow: countdownView.lastBaselineAnchor, multiplier: 1),
+            titleLabel.topAnchor.constraint(equalToSystemSpacingBelow: countdownView.lastBaselineAnchor, multiplier: 0.7),
             titleLabel.leadingAnchor.constraint(equalTo: countdownView.leadingAnchor),
             titleLabel.widthAnchor.constraint(lessThanOrEqualTo: mg.widthAnchor),
             
