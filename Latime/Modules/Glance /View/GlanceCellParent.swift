@@ -63,7 +63,7 @@ class GlanceMissionTVCell: UITableViewCell {
     func configure(timePoint: GlanceModel) {
         titleLabel.text = timePoint.title
         customImageView.image = timePoint.image
-        imageWidthConstraint.constant = timePoint.image != nil ? 40 : 0
+//        imageWidthConstraint.constant = timePoint.image != nil ? 40 : 0
         countdownView.configure(timePoint.date)
 
         
@@ -109,19 +109,17 @@ private extension GlanceMissionTVCell {
     }
     
     func setupSelf() {
-//        self.layer.cornerRadius = 5
-//        self.layer.masksToBounds = true
         self.backgroundColor = .clear
         
-        selectionStyle = .none
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 15
         contentView.clipsToBounds = true
         selectionStyle = .none
+        separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         contentView.addSubview(countdownView)
         contentView.addSubview(indicatorView)
-//        contentView.addSubview(customImageView)
+        contentView.addSubview(customImageView)
         contentView.addSubview(titleLabel)
     }
     
@@ -130,23 +128,21 @@ private extension GlanceMissionTVCell {
         label.text = "New point in time"
         label.setContentHuggingPriority(UILayoutPriority(000), for: .vertical)
 //         label.font = UIFont.systemFont(ofSize: 17)
-        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.font = UIFont.fontNoticable
         label.numberOfLines = 1
     }
     
     func setupCountdown() {
         countdownView.translatesAutoresizingMaskIntoConstraints = false
-//        setNeedsLayout()
     }
     
     func setupIndicator() {
         indicatorView.translatesAutoresizingMaskIntoConstraints = false
-//        indicatorView.backgroundColor = .green
     }
     
     func setupImageView(_ imageView: UIImageView) {
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .brown
+        imageView.backgroundColor = .systemPink
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 8
         imageView.layer.masksToBounds = true
@@ -155,8 +151,8 @@ private extension GlanceMissionTVCell {
     func setupConstraints() {
         let mg = contentView.layoutMarginsGuide
         
-//        imageWidthConstraint = customImageView.widthAnchor.constraint(equalToConstant: 80)
-//        imageHeightConstraint = customImageView.heightAnchor.constraint(equalToConstant: 60)
+        imageWidthConstraint = customImageView.widthAnchor.constraint(equalToConstant: 70)
+        imageHeightConstraint = customImageView.heightAnchor.constraint(equalToConstant: 80)
         
         let constraints = [
             
@@ -168,10 +164,10 @@ private extension GlanceMissionTVCell {
             titleLabel.leadingAnchor.constraint(equalTo: countdownView.leadingAnchor),
             titleLabel.widthAnchor.constraint(lessThanOrEqualTo: mg.widthAnchor),
             
-//            imageWidthConstraint,
-//            imageHeightConstraint,
-//            customImageView.trailingAnchor.constraint(equalTo: mg.trailingAnchor),
-//            customImageView.bottomAnchor.constraint(equalTo: countdownView.bottomAnchor),
+            imageWidthConstraint,
+            imageHeightConstraint,
+            customImageView.trailingAnchor.constraint(equalTo: mg.trailingAnchor),
+            customImageView.topAnchor.constraint(equalTo: countdownView.topAnchor),
             
             indicatorView.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 1),
             indicatorView.leadingAnchor.constraint(equalTo: countdownView.leadingAnchor),

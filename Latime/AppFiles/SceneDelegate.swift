@@ -14,39 +14,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Core data
+        
         let context = (UIApplication.shared.delegate as? AppDelegate)?.coreDataStack.persistentContainer.viewContext
 
-        let boards = UITabBarItem()
-        boards.title = "Boards"
-        boards.image = UIImage(systemName: "square.grid.3x3.fill")
+        let timepoints = UITabBarItem()
+        timepoints.title = "Timepoints"
+        timepoints.image = UIImage(named: "TBTimepoints")
         
-        let nested = UITabBarItem()
-        nested.title = "Nested"
-        nested.image = UIImage(systemName: "rectangle.center.inset.fill")
-        
-        let flat = UITabBarItem()
-        flat.title = "Flat"
-        flat.image = UIImage(systemName: "ruler.fill")
+        let phases = UITabBarItem()
+        phases.title = "Phases"
+        phases.image = UIImage(named: "TBPhases")
         
         // ViewController
         let viewController = GlanceRouter.build(context: context!)
         let nestedVC =  UINavigationController(rootViewController: viewController)
         nestedVC.navigationBar.topItem?.title = "Latime"
         nestedVC.navigationBar.prefersLargeTitles = true
-        nestedVC.tabBarItem = nested
-        
-        let boardsVC = UIViewController()
-        boardsVC.view.backgroundColor = .systemTeal
-        boardsVC.tabBarItem = boards
-        
-        let flatVC = UIViewController()
-        flatVC.view.backgroundColor = .systemRed
-        flatVC.tabBarItem = flat
+        nestedVC.tabBarItem = timepoints
+                
+        let flatVC = TimelineRouter.build(context: context!)
+//        flatVC.view.backgroundColor = .systemGray5
+        flatVC.tabBarItem = phases
 
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [boardsVC, nestedVC, flatVC]
+        tabBarController.viewControllers = [nestedVC, flatVC]
         tabBarController.tabBar.barTintColor = UIColor.white
-        tabBarController.selectedIndex = 1
+        tabBarController.selectedIndex = 0
         
         // Window
         guard let windowScene = (scene as? UIWindowScene) else {
@@ -58,6 +51,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
     }
 
+    private func myTabBarController() {
+        
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.

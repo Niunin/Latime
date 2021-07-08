@@ -1,30 +1,15 @@
 //
-//  InspectorCountdown.swift
+//  GlanceCountdownView.swift
 //  Latime
 //
-//  Created by Andrei Niunin on 29.06.2021.
+//  Created by Andrei Niunin on 19.06.2021.
 //
 
 import UIKit
 
 //MARK: - Object
 
-class InspectorCountdownView: UIView {
-    
-    // MARK: sizes data
-    
-    private struct Sizes {
-    
-        static let corner: CGFloat = 10.0
-        
-        static let topOffset: CGFloat = 20
-        static let btmOffset: CGFloat = 15
-        static let leadingOffset: CGFloat = 15
-        static let trailingOffset: CGFloat = 15
-    
-    }
-    
-    // MARK: properties
+class GlanceCountdownView: UIView {
     
     private var countdown1 = UILabel()
     private var countdown2 = UILabel()
@@ -72,12 +57,12 @@ class InspectorCountdownView: UIView {
         countdownUnits1.text = array1.last!
         
         if let array2 = c2?.components(separatedBy: " ") {
-            countdown2.text = array2.first!
+            countdown2.text = "• " + array2.first!
             countdownUnits2.text = array2.last!
         }
         
         if let array3 = c3?.components(separatedBy: " ") {
-            countdown3.text = array3.first!
+            countdown3.text = "• " + array3.first!
             countdownUnits3.text = array3.last!
         }
     }
@@ -86,10 +71,9 @@ class InspectorCountdownView: UIView {
 
 // MARK: - Setup Views
 
-private extension InspectorCountdownView {
+private extension GlanceCountdownView {
     
     private func setupViews() {
-        setupSelf()
         setupCountdown(countdown1)
         setupCountdown(countdown2)
         setupCountdown(countdown3)
@@ -100,10 +84,10 @@ private extension InspectorCountdownView {
 
         self.setContentHuggingPriority(UILayoutPriority(1000), for: .horizontal)
         
-        countdown1.text = "6"
-        countdown1.font = UIFont.init(name: "Futura-CondensedMedium", size: 38)
-//        countdown1.font = UIFont.systemFont(ofSize: 38)
         
+        countdown1.font = UIFont.fontGiant
+        
+        countdown1.text = "6"
         countdown2.text = "12"
         countdown3.text = "30"
         countdownUnits1.text = "days"
@@ -111,12 +95,6 @@ private extension InspectorCountdownView {
         countdownUnits3.text = "mins"
         
         setupConstraints()
-    }
-    
-    func setupSelf() {
-        self.backgroundColor = .systemGray6
-        self.layer.cornerRadius = Sizes.corner
-        self.clipsToBounds = true
     }
     
     func setupStackView(_ stack: UIStackView) {
@@ -141,29 +119,28 @@ private extension InspectorCountdownView {
     private func setupCountdown(_ label: UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
-        label.font = UIFont.init(name: "GillSans", size: 19)!
-        label.font = UIFont.systemFont(ofSize: 19)
-        label.textColor = .systemGray
+        label.font = UIFont.fontNormal
     }
     
     private func setupCountdownUnits(_ label: UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
-        label.font = UIFont.init(name: "GillSans", size: 14)!
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = .systemGray
+        label.font = UIFont.fontNormal
     }
     
     private func setupConstraints() {
-        let sa = self.safeAreaLayoutGuide
+        //let lmg = self.layoutMarginsGuide
         
         let constraints =  [
-            stack.topAnchor.constraint(equalTo: sa.topAnchor, constant: Sizes.topOffset),
-            stack.leadingAnchor.constraint(equalTo: sa.leadingAnchor, constant: Sizes.leadingOffset),
-            sa.bottomAnchor.constraint(equalTo: stack.lastBaselineAnchor, constant: Sizes.btmOffset)
+            stack.topAnchor.constraint(equalTo: self.topAnchor),
+            stack.leadingAnchor.constraint(equalTo: leadingAnchor),
+        //    bottomAnchor.constraint(equalTo: stack.bottomAnchor),
+          //  trailingAnchor.constraint(equalToSystemSpacingAfter: stack.trailingAnchor, multiplier: 1)
         ]
         
         NSLayoutConstraint.activate(constraints)
+        heightAnchor.constraint(greaterThanOrEqualTo: stack.heightAnchor).isActive = true
     }
     
 }
+

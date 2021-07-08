@@ -8,6 +8,20 @@
 import Foundation
 import UIKit.UIColor
 
+
+extension UIColor {
+    static let mb = UIColor(hue: 0, saturation: 0, brightness: 0, alpha: 1)
+    static let mg1 = UIColor(hue: 0, saturation: 0, brightness: 0.93, alpha: 1)
+    static let mg2 = UIColor(hue: 0, saturation: 0, brightness: 0.62, alpha: 1)
+    static let mw = UIColor(hue: 0, saturation: 0, brightness: 1, alpha: 1)
+}
+
+
+
+
+
+
+
 // MARK: - UIColor extension
 
 extension UIColor {

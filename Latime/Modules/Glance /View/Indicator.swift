@@ -39,7 +39,7 @@ class Indicator2: UIView {
     override var bounds: CGRect {
         didSet {
             layer.frame = bounds
-            setupContainerLayer()
+            setupMarks()
         }
     }
     
@@ -47,7 +47,8 @@ class Indicator2: UIView {
     private var indexOfLongMark: Int = 0
     private var isMinimized: Bool = false
     
-    private var containerLayer = CALayer()
+    private var shortMarksContainerLayer = CALayer()
+    private lazy var longMarkLayer = makeLongMarkLayer()
     
     private var timer: Timer?
     private var runCount = 0
@@ -64,7 +65,6 @@ class Indicator2: UIView {
     
     override func didMoveToSuperview() {
         setupSelf()
-        //setupContainerLayer()
     }
     
     // MARK: configure
@@ -100,23 +100,26 @@ private extension Indicator2 {
     }
     
     func setupSelf() {
-        self.layer.addSublayer(containerLayer)
+        self.layer.addSublayer(shortMarksContainerLayer)
     }
     
-    func setupContainerLayer() {
-        containerLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        containerLayer.position = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
-        containerLayer.bounds = self.bounds
-        containerLayer.masksToBounds = false
+    func setupMarks() {
+        setupShortMarksContainerLayer()
+        setupLongMark()
+    }
+    
+    func setupShortMarksContainerLayer() {
+        shortMarksContainerLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        shortMarksContainerLayer.position = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
+        shortMarksContainerLayer.bounds = self.bounds
+        shortMarksContainerLayer.masksToBounds = false
         
         Swift.debugPrint(self.layer.sublayers?.count)
-        containerLayer.sublayers = []
+        shortMarksContainerLayer.sublayers = []
         for index in 0..<numberOfShortMarks {
             let layer = makeShortMarkLayer(at: index)
-            containerLayer.addSublayer(layer)
+            shortMarksContainerLayer.addSublayer(layer)
         }
-        let layer = makeLongMarkLayer()
-        containerLayer.addSublayer(layer)
     }
     
     func makeShortMarkLayer(at index: Int) -> CAShapeLayer {
@@ -125,8 +128,7 @@ private extension Indicator2 {
         layer.path = markPath(shortMarkRect)
         layer.position = positionOfShortMark(at: index)
         layer.bounds.size = CGSize(width: 6, height: 6)
-        layer.anchorPoint = CGPoint(x: 1, y: 1)
-        
+        layer.anchorPoint = CGPoint(x: 0.5, y: 1)
         return layer
     }
 
@@ -148,19 +150,22 @@ private extension Indicator2 {
         return CGPoint(x: offset+6, y: 6)
     }
     
+    func setupLongMark() {
+        self.layer.addSublayer(longMarkLayer)
+    }
+    
     func makeLongMarkLayer() -> CAShapeLayer {
         let layer = CAShapeLayer()
         layer.fillColor = UIColor.black.cgColor
         layer.path = markPath(longMarkRect)
         layer.position = positionOfLongMark()
         layer.bounds.size = CGSize(width: 18, height: 6)
-//        layer.anchorPoint = CGPoint(x: 1, y: 1)
         return layer
     }
     
     func positionOfLongMark() -> CGPoint {
         let offset: CGFloat = CGFloat(indexOfLongMark+1) * SizeofOfScale.shortMarkOffset
-        return CGPoint(x: offset, y: 0)
+        return CGPoint(x: offset, y: 3)
     }
     
 }
@@ -180,7 +185,7 @@ private extension Indicator2 {
     }
     
     func performScaleEffect(_ scale: CGFloat) {
-        guard let layers = containerLayer.sublayers else { return }
+        guard let layers = shortMarksContainerLayer.sublayers else { return }
         
         let delay = TimesOfScaleAnimations.foldingDuration/Double(numberOfShortMarks)
         
@@ -217,7 +222,7 @@ private extension Indicator2 {
         CATransaction.begin()
         CATransaction.setAnimationDuration(0.2)
         CATransaction.setCompletionBlock {
-            self.containerLayer.insertSublayer(layer, at: UInt32(index))
+            self.shortMarksContainerLayer.insertSublayer(layer, at: UInt32(index))
             self.numberOfShortMarks += 1
             if index <= self.indexOfLongMark {
                 self.indexOfLongMark += 1
@@ -230,7 +235,7 @@ private extension Indicator2 {
     }
     
     func performRemove(at index: Int) {
-        guard let layer = containerLayer.sublayers?[index] else { return }
+        guard let layer = shortMarksContainerLayer.sublayers?[index] else { return }
         
         numberOfShortMarks -= 1
         if index <= indexOfLongMark {
@@ -247,7 +252,8 @@ private extension Indicator2 {
     }
     
     private func offsetMarks(afterMarkAt index: Int) {
-        guard let layers = containerLayer.sublayers else { return }
+        guard let layers = shortMarksContainerLayer.sublayers else { return }
+        
         for i in index..<layers.count {
             let layer = layers[i]
             layer.position = positionOfShortMark(at: i)
@@ -260,6 +266,7 @@ private extension Indicator2 {
             layer.removeAnimation(forKey: "position.x")
             layer.add(animation, forKey: "position.x")
         }
+        longMarkLayer.position = positionOfLongMark()
     }
     
 }

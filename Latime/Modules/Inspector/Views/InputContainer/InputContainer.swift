@@ -24,7 +24,7 @@ class InputContainer: UIView {
     
     struct Sizes {
         
-        static let textFieldCorner: CGFloat = 15.0
+        static let textFieldCorner: CGFloat = 12.0
         static let borderWidth: CGFloat = 1.0
         static let textFieldInsets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 0)
         
@@ -39,7 +39,7 @@ class InputContainer: UIView {
     }
     
     /// Views
-    private let titleTextField = PaddingTextField(withInsets: Sizes.textFieldInsets)
+    private let titleTextField = ICPaddingTextField(withInsets: Sizes.textFieldInsets)
     private let callImagePickerButton = UIButton(type: .system)
     private let imagePreview = UIImageView()
     
@@ -146,7 +146,7 @@ class InputContainer: UIView {
 private extension InputContainer {
     
     func setupVeiws() {
-        setupPickImageButton(callImagePickerButton)
+        setupButton(callImagePickerButton)
         setupTitleTF(titleTextField)
         setupImagePreview(imagePreview)
         setupSelf()
@@ -156,17 +156,47 @@ private extension InputContainer {
         addSubview(imagePreview)
     }
     
-    func setupPickImageButton(_ button: UIButton) {
+    func setupButton(_ button: UIButton) {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(pickImage), for: .touchUpInside)
+        button.layer.cornerRadius = Sizes.textFieldCorner
         button.layer.masksToBounds = true
-        button.tintColor = UIColor.myAccent
+        button.backgroundColor = UIColor.mg1
+        button.tintColor = UIColor.mb
         button.isUserInteractionEnabled = true
-        let logo = UnsplashLogo()
-        let layer = logo.draw()
-        let image = logo.imageFromLayer(layer: layer)
+        
+        let image = UIImage(systemName: "paintbrush.fill")
         button.setImage(image, for: .normal)
         button.contentMode = .scaleAspectFit
+        
+            
+        // Setup the button's context menu directly.
+        let inspectAction = self.imageAction()
+        let duplicateAction = self.photoAction()
+        let deleteAction = self.unsplashAction()
+        button.menu = UIMenu(title: "", children: [inspectAction, duplicateAction, deleteAction])
+        button.showsMenuAsPrimaryAction = true
+    }
+    
+    func imageAction() -> UIAction {
+        return UIAction(title: NSLocalizedString("Photo", comment: ""),
+                        image: UIImage(systemName: "camera.fill")) { action in
+            print("v")
+        }
+    }
+        
+    func photoAction() -> UIAction {
+        return UIAction(title: NSLocalizedString("Image", comment: ""),
+                        image: UIImage(systemName: "photo.fill")) { action in
+            print("v")
+        }
+    }
+        
+    func unsplashAction() -> UIAction {
+        return UIAction(title: NSLocalizedString("Unsplash", comment: ""),
+                        image: UIImage(systemName: "camera.aperture")) { action in
+            print("v")
+        }
     }
     
     @IBAction func pickImage() {
@@ -182,7 +212,7 @@ private extension InputContainer {
     
     func setupTitleTF(_ textField: UITextField) {
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.font = UIFont.inputContainerFont
+        textField.font = UIFont.fontNoticable
         textField.placeholder = "New time point"
         textField.textColor = UIColor.myAccent
         textField.adjustsFontForContentSizeCategory = true
@@ -217,21 +247,25 @@ private extension InputContainer {
     // MARK: setup constraints
     
     func setupConstraints() {
+        
+        let mg = layoutMarginsGuide
+        let sa = safeAreaLayoutGuide
+        
         // TODO: I should do it once? Or remove and activate again.
         // TODO: this function is called in wrong place
-        bottomConstraint = callImagePickerButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -8)
+        bottomConstraint = callImagePickerButton.bottomAnchor.constraint(equalTo: sa.bottomAnchor, constant: -8)
         imageHeightConstraint = imagePreview.heightAnchor.constraint(equalToConstant: 0)
         imageHeightConstraint.constant = imagePreview.image == nil ? 0 : 50
         imageTrailingConstrain = imagePreview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
         
         let constraints = [
-            callImagePickerButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            callImagePickerButton.leadingAnchor.constraint(equalTo: mg.leadingAnchor,  constant: 8),
             callImagePickerButton.widthAnchor.constraint(equalToConstant: 40),
             callImagePickerButton.heightAnchor.constraint(equalToConstant: 40),
             bottomConstraint,
             
-            titleTextField.leadingAnchor.constraint(equalTo: callImagePickerButton.trailingAnchor, constant: 8),
-            titleTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            titleTextField.leadingAnchor.constraint(equalToSystemSpacingAfter: callImagePickerButton.trailingAnchor, multiplier: 1 ),
+            titleTextField.trailingAnchor.constraint(equalTo: mg.trailingAnchor, constant: -8),
             titleTextField.bottomAnchor.constraint(equalTo: callImagePickerButton.bottomAnchor),
             titleTextField.heightAnchor.constraint(equalTo: callImagePickerButton.heightAnchor),
             
@@ -246,9 +280,8 @@ private extension InputContainer {
             topAnchor.constraint(equalTo: imagePreview.topAnchor, constant: -6)
         ]
         NSLayoutConstraint.activate(constraints)
-        
-        
     }
+    
 }
 
 // MARK: - UIContextMenu Delegate

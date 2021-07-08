@@ -37,7 +37,10 @@ class GlanceViewController: UITableViewController {
         tableView.register(GlanceMissionTVCell.self, forCellReuseIdentifier: GlanceMissionTVCell.reuseIdentifier)
         tableView.register(GlancePhaseTVCell.self, forCellReuseIdentifier: GlancePhaseTVCell.reuseIdentifier)
         tableView.backgroundColor = UIColor.myViewBackground
-        tableView.separatorStyle = .none
+        tableView.separatorStyle = .singleLine
+        // For hiding unwanted separators
+        tableView.tableFooterView = UIView()
+
     }
     
 }

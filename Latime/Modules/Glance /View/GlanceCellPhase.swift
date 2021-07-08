@@ -11,6 +11,13 @@ import UIKit
 
 class GlancePhaseTVCell: UITableViewCell {
     
+    struct Sizes {
+        
+        static let separatorInsets = UIEdgeInsets(top: 0, left: 42, bottom: 0, right: 0)
+        static let leadingOffset: CGFloat = 30
+        static let widthOffset = -1 * (leadingOffset * 2)
+    }
+    
     static let reuseIdentifier = "GlancePhaseCell"
     
     // MARK: properties
@@ -43,6 +50,8 @@ class GlancePhaseTVCell: UITableViewCell {
 
 private extension GlancePhaseTVCell {
     
+    
+    
     func setupViews() {
         setupSelf()
         setupLabel(label)
@@ -53,7 +62,7 @@ private extension GlancePhaseTVCell {
         self.backgroundColor = UIColor.clear
         contentView.backgroundColor = UIColor.myViewBackground
         selectionStyle = .none
-        
+        separatorInset = Sizes.separatorInsets
         contentView.addSubview(label)
     }
     
@@ -66,8 +75,8 @@ private extension GlancePhaseTVCell {
         let mg = contentView.layoutMarginsGuide
         let constraints = [
             label.topAnchor.constraint(equalTo: mg.topAnchor),
-            label.leadingAnchor.constraint(equalTo: mg.leadingAnchor, constant: 30),
-            label.widthAnchor.constraint(equalTo: mg.widthAnchor, multiplier: 1, constant: -60),
+            label.leadingAnchor.constraint(equalTo: mg.leadingAnchor, constant: Sizes.leadingOffset),
+            label.widthAnchor.constraint(equalTo: mg.widthAnchor, multiplier: 1, constant: Sizes.widthOffset),
             mg.heightAnchor.constraint(greaterThanOrEqualToConstant: 30),
         ]
         NSLayoutConstraint.activate(constraints)
@@ -107,7 +116,6 @@ private extension GlancePhaseTVCell {
         //        let countdownRange = descriptionString.range(of: countdownSubstring)!
         //        let countdownNSRange = NSRange(countdownRange, in: descriptionString)
 
-        
         let attributedString = NSMutableAttributedString(string: text)
         let fullRange = NSRange(location: 0, length: text.count)
         let style = NSMutableParagraphStyle()
@@ -115,7 +123,7 @@ private extension GlancePhaseTVCell {
         style.lineBreakMode = .byTruncatingTail
         style.alignment = .left
         
-        let font = UIFont.systemFont(ofSize: 17)
+        let font = UIFont.fontNormal
         let color = UIColor.black
         
         attributedString.addAttribute(.paragraphStyle, value: style, range: fullRange)
@@ -135,7 +143,7 @@ private extension GlancePhaseTVCell {
         style.lineBreakMode = .byTruncatingTail
         style.alignment = .left
         
-        let font = UIFont.systemFont(ofSize: 17)
+        let font = UIFont.fontNormal
         let color = UIColor.gray
         
         attributedString.addAttribute(.paragraphStyle, value: style, range: fullRange)
