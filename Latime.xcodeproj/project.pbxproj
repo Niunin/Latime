@@ -62,6 +62,7 @@
 		C9EA160F2696D67A005105F0 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA160E2696D67A005105F0 /* TimelineViewController.swift */; };
 		C9EA16122696DFAB005105F0 /* TimelineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA16112696DFAB005105F0 /* TimelineCell.swift */; };
 		C9EA16142697045B005105F0 /* TimelineCellToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA16132697045B005105F0 /* TimelineCellToday.swift */; };
+		C9EA161826971F40005105F0 /* CombinedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA161726971F40005105F0 /* CombinedPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,7 @@
 		C9EA160E2696D67A005105F0 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		C9EA16112696DFAB005105F0 /* TimelineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCell.swift; sourceTree = "<group>"; };
 		C9EA16132697045B005105F0 /* TimelineCellToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCellToday.swift; sourceTree = "<group>"; };
+		C9EA161726971F40005105F0 /* CombinedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,15 +157,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C93DEB98267E3712000072E2 /* Pickers */ = {
-			isa = PBXGroup;
-			children = (
-				C93DEBA4267E462D000072E2 /* AbsolutePicker.swift */,
-				C93DEBA1267E3A9A000072E2 /* RelativePicker.swift */,
-			);
-			path = Pickers;
-			sourceTree = "<group>";
-		};
 		C96754AF267A5FC1003A016A = {
 			isa = PBXGroup;
 			children = (
@@ -262,8 +255,10 @@
 		C9675505267A6671003A016A /* Inspector */ = {
 			isa = PBXGroup;
 			children = (
-				C967550A267A6671003A016A /* Views */,
+				C977242F2694A5100050665A /* InputContainer */,
+				C9EA161526971E5C005105F0 /* DatePicker */,
 				C9675508267A6671003A016A /* InspectorProtocols.swift */,
+				C9675509267A6671003A016A /* InspectorPresenter.swift */,
 				C9675512267A6671003A016A /* InspectorViewController.swift */,
 				C967550D267A6671003A016A /* InspectorViewController+InputContainer.swift */,
 				C9675513267A6671003A016A /* InspectorRouter.swift */,
@@ -279,18 +274,6 @@
 				C9675507267A6671003A016A /* InspectorModel.swift */,
 			);
 			path = Entity;
-			sourceTree = "<group>";
-		};
-		C967550A267A6671003A016A /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				C93DEB98267E3712000072E2 /* Pickers */,
-				C9B062662695C01500009383 /* InfoPlate */,
-				C9B062682695C05300009383 /* InputDate */,
-				C977242F2694A5100050665A /* InputContainer */,
-				C9675509267A6671003A016A /* InspectorPresenter.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		C9675514267A6671003A016A /* Interactor */ = {
@@ -348,9 +331,9 @@
 		C977242F2694A5100050665A /* InputContainer */ = {
 			isa = PBXGroup;
 			children = (
-				C967550B267A6671003A016A /* UnsplashLogo.swift */,
 				C967550C267A6671003A016A /* InputContainer.swift */,
 				C97724302694A5290050665A /* ICPaddingTextField.swift */,
+				C967550B267A6671003A016A /* UnsplashLogo.swift */,
 			);
 			path = InputContainer;
 			sourceTree = "<group>";
@@ -394,6 +377,18 @@
 				C9EA16132697045B005105F0 /* TimelineCellToday.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		C9EA161526971E5C005105F0 /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				C9EA161726971F40005105F0 /* CombinedPicker.swift */,
+				C93DEBA4267E462D000072E2 /* AbsolutePicker.swift */,
+				C93DEBA1267E3A9A000072E2 /* RelativePicker.swift */,
+				C9B062662695C01500009383 /* InfoPlate */,
+				C9B062682695C05300009383 /* InputDate */,
+			);
+			path = DatePicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -508,6 +503,7 @@
 				C9B0626E2695C12200009383 /* InfoView.swift in Sources */,
 				C9EA160D2696D65E005105F0 /* TimelineInteractor.swift in Sources */,
 				C967554A267A6671003A016A /* GlanceCellPhase.swift in Sources */,
+				C9EA161826971F40005105F0 /* CombinedPicker.swift in Sources */,
 				C93DEBA2267E3A9A000072E2 /* RelativePicker.swift in Sources */,
 				C9675540267A6671003A016A /* GlanceModel.swift in Sources */,
 				C9790490267E29C0008C8093 /* GlanceCountdownView.swift in Sources */,

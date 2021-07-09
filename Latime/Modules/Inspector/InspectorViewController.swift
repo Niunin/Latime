@@ -13,24 +13,34 @@ typealias InspectorDatePickerContainer = InspectorDatePickerProtocol & UIViewCon
 // MARK: - Object
 
 class InspectorViewController: UIViewController {
+    struct Sizes {
+    
+        static let corner: CGFloat = 0.0
+        static let borderWidth: CGFloat = 0.0
+        
+        static let topOffset: CGFloat = 0
+        static let btmOffset: CGFloat = 0
+        static let leadingOffset: CGFloat = 15
+        static let trailingOffset: CGFloat = -15
+        static let widthOffset: CGFloat = -(leadingOffset + (-trailingOffset))
+        static let spacer: CGFloat = 8
+
+    }
+    
+    // MARK: properties
     
     var presenter: InspectorPresenterProtocol!
     private var model: InspectorModel!
     
     /// views
-    internal var datePickers: [InspectorDatePickerContainer] = []
+    private let scrollView = UIScrollView()
+    private let stack = UIStackView()
+    internal var datePicker = CombinedPicker()
     internal lazy var inputContainer = InputContainer(view: self, delegate: self)
     internal var tap: UITapGestureRecognizer!
-    internal lazy var segmentedControl: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl()
-        segmentedControl.bounds = CGRect(x: 0, y: 0, width: 180, height: 35)
-        return segmentedControl
-    }()
-    
-    private var currentSegment: Int = 0
     
     // MARK: life cycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -50,26 +60,11 @@ class InspectorViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         // TODO: if there is no title, then delete model
-        presenter.screenWillClose()
-        removeNotifications()
-        removeGestureRecognizers()
+//        presenter.screenWillClose()
+//        removeNotifications()
+//        removeGestureRecognizers()
     }
 
-    @IBAction private func segmentDidChange(_ sender: UISegmentedControl!) {
-        let selectedSegment = segmentedControl.selectedSegmentIndex
-        let currentSegment = self.currentSegment
-        self.currentSegment = selectedSegment
-        
-        UIView.animate(withDuration: 0.25) {
-            let offsetSign: CGFloat = currentSegment > selectedSegment ? 1 : -1
-            self.datePickers[selectedSegment].view.transform = CGAffineTransform.identity
-            self.datePickers[currentSegment].view.transform = CGAffineTransform(
-                translationX: offsetSign * (self.view.bounds.width),
-                y: 0
-            )
-        }
-    }
-    
 }
 
 // MARK: - Setup Navigation Bar
@@ -80,6 +75,7 @@ private extension InspectorViewController {
         let doneButton = UIBarButtonItem( barButtonSystemItem: .done,
                                           target: self, action: #selector(doneButtonAction)
         )
+        
         let removeButton = UIBarButtonItem(
             image: UIImage(systemName: "trash"), style: .plain,
             target: self, action: #selector(removeButtonAction)
@@ -118,41 +114,78 @@ private extension InspectorViewController {
 private extension InspectorViewController {
     
     func setupViews() {
+        setupSelf()
+        setupDatePickerContainerView(datePicker)
+        setupScrollView(scrollView)
+        setupStack(stack)
         setupInputContainer()
-        setupDatePickers()
-        setupSegmentedControl(segmentedControl)
+        
+        setupConstraints()
     }
     
+    func setupSelf() {
+        view.addSubview(scrollView)
+        view.backgroundColor = .white
+    }
+
     func setupInputContainer() {
         view.addSubview(inputContainer)
         inputContainer.setTitle(model.title)
         inputContainer.setImage(model.image)
     }
-    
-    func setupDatePickers() {
-        datePickers.append(AbsoluteDatePickerViewController())
-        datePickers.append(RelativeDatePickerViewController())
-        for picker in datePickers {
-            addContainer(picker)
-            picker.view.transform = CGAffineTransform(translationX: self.view.bounds.width, y: 0)
-            picker.delegate = self
-            picker.setDate(model.date)
-        }
-        datePickers.first?.view.transform = CGAffineTransform.identity
+    func setupScrollView(_ scrollView: UIScrollView) {
+//        scrollView.isScrollEnabled = true
+//        scrollView.isUserInteractionEnabled = false
+        scrollView.canCancelContentTouches = false
+        scrollView.addSubview(stack)
+        scrollView.backgroundColor = .white
     }
     
-    func setupSegmentedControl(_ segmentedControl: UISegmentedControl) {
-        if datePickers.count < 2 { return }
+    func setupStack(_ stack: UIStackView) {
+        stack.axis = .vertical
+        stack.spacing = 30
+        stack.alignment = .fill
+        stack.distribution = .fill
         
-        for index in datePickers.indices {
-            let title = datePickers[index].identifier
-            segmentedControl.insertSegment(withTitle: title, at: index, animated: false)
-        }
+        stack.addArrangedSubview(datePicker.view)
         
-        segmentedControl.addTarget(self, action: #selector(segmentDidChange(_:)), for: .valueChanged)
-        segmentedControl.selectedSegmentIndex = 0
     }
-
+    
+    func setupDatePickerContainerView(_ container: UIViewController) {
+        addChild(container)
+        container.didMove(toParent: self) // Notify Child View Controller
+    }
+    
+    func setupConstraints() {
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        stack.translatesAutoresizingMaskIntoConstraints = false
+//        datePicker.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        let mg = view.layoutMarginsGuide
+        let sa = view.safeAreaLayoutGuide
+        
+        let constaints = [
+            scrollView.leadingAnchor.constraint(equalTo: sa.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: sa.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: sa.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: sa.bottomAnchor),
+//
+            stack.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 15),
+            stack.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Sizes.leadingOffset),
+            stack.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: Sizes.trailingOffset),
+            stack.widthAnchor.constraint(equalTo: view.widthAnchor, constant: Sizes.widthOffset),
+//
+            
+//            stack.leadingAnchor.constraint(equalTo: sa.leadingAnchor),
+//            stack.trailingAnchor.constraint(equalTo: sa.trailingAnchor),
+//            stack.topAnchor.constraint(equalTo: sa.topAnchor),
+//            stack.bottomAnchor.constraint(equalTo: sa.bottomAnchor),
+            
+        ]
+        
+        NSLayoutConstraint.activate(constaints)
+    }
+    
 }
 
 // MARK: - InspectorView Protocol
@@ -161,30 +194,12 @@ extension InspectorViewController: InspectorViewProtocol {
     
     func configureView(withModel: InspectorModel) {
         self.model = withModel
-        if withModel.type != .mission {
-            navigationItem.titleView = segmentedControl
-        }
     }
     
     func configureView(withImage: UIImage?) {
         inputContainer.setImage(withImage)
     }
     
-}
-
-// MARK: - Container views handlers
-
-internal extension InspectorViewController {
-    
-    func addContainer(_ viewController: UIViewController) {
-        addChild(viewController)
-        view.addSubview(viewController.view)
-        view.sendSubviewToBack(viewController.view)
-        viewController.view.frame = view.bounds
-        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        viewController.didMove(toParent: self) // Notify Child View Controller
-    }
-
 }
 
 // MARK: - UIGestureRecognizer Delegate
