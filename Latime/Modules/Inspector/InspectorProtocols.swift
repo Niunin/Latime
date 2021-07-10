@@ -23,15 +23,11 @@ protocol InspectorRouterProtocol: AnyObject {
 // MARK: - View
 
 protocol InspectorViewProtocol: AnyObject {
-    
-    var presenter: InspectorPresenterProtocol! { get set}
+    var presenter: InspectorPresenterProtocol! { get set }
     
     func configureView(withModel: InspectorModel)
     func configureView(withImage: UIImage?)
-
 }
-
-
 
 // MARK: - Presenter
 

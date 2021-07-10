@@ -43,7 +43,7 @@ extension TimelineCellToday {
     
     func setupTitle(_ label: UILabel) {
         label.text = "Now you are here"
-        label.font = .fontNormal
+        label.font = .F4
         label.textColor = .mg2
     }
     

@@ -29,18 +29,20 @@ public class DateIntervalView: UIView {
     public func configure(_ date: Date) {
         //let result = getDateDescription(from: Date(), to: date)
         let str = "14:00, 11, may, 2021".uppercased()
-        
         let stringWithSeparators = insertSeparators(str)
         let info = finishString(stringWithSeparators)
-      
-        let title = "Anchor time point"  // TODO: remains : Passed. Localize
+              
+        initialInfoView.configure(
+            imageSystemName: "asterisk.circle.fill",
+            title: "Anchor time point",
+            info: info
+        )
         
-        let configuration = UIImage.SymbolConfiguration(font: UIFont.fontSmall)
-        let image = UIImage(systemName: "asterisk.circle.fill", withConfiguration: configuration)!
-        
-        initialInfoView.configure(image: image, title: title, info: info)
-        
-        resultInfoView.configure(image: image, title: title, info: info)
+        resultInfoView.configure(
+            imageSystemName: "flag.fill",
+            title: "Result",
+            info: info
+        )
         
     }
 }
@@ -108,7 +110,7 @@ extension DateIntervalView {
         attributedString.addAttribute(.paragraphStyle, value: style, range: fullRange)
         
         /// font
-        let font = UIFont.fontButtonText
+        let font = UIFont.F1
         attributedString.addAttribute(.font, value: font, range: fullRange)
 
         /// color

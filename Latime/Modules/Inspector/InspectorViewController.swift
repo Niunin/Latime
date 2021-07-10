@@ -36,6 +36,7 @@ class InspectorViewController: UIViewController {
     private let scrollView = UIScrollView()
     private let stack = UIStackView()
     internal var datePicker = CombinedPicker()
+    internal var reminder = ReminderView()
     internal lazy var inputContainer = InputContainer(view: self, delegate: self)
     internal var tap: UITapGestureRecognizer!
     
@@ -59,10 +60,9 @@ class InspectorViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // TODO: if there is no title, then delete model
-//        presenter.screenWillClose()
-//        removeNotifications()
-//        removeGestureRecognizers()
+        presenter.screenWillClose()
+        removeNotifications()
+        removeGestureRecognizers()
     }
 
 }
@@ -121,6 +121,8 @@ private extension InspectorViewController {
         setupInputContainer()
         
         setupConstraints()
+        
+        print(scrollView.contentSize)
     }
     
     func setupSelf() {
@@ -133,22 +135,22 @@ private extension InspectorViewController {
         inputContainer.setTitle(model.title)
         inputContainer.setImage(model.image)
     }
+    
     func setupScrollView(_ scrollView: UIScrollView) {
-//        scrollView.isScrollEnabled = true
+        scrollView.isScrollEnabled = true
 //        scrollView.isUserInteractionEnabled = false
         scrollView.canCancelContentTouches = false
         scrollView.addSubview(stack)
-        scrollView.backgroundColor = .white
     }
     
     func setupStack(_ stack: UIStackView) {
         stack.axis = .vertical
         stack.spacing = 30
         stack.alignment = .fill
-        stack.distribution = .fill
+        // stack.distribution = .equalSpacing
         
         stack.addArrangedSubview(datePicker.view)
-        
+        stack.addArrangedSubview(reminder)
     }
     
     func setupDatePickerContainerView(_ container: UIViewController) {
@@ -159,7 +161,6 @@ private extension InspectorViewController {
     func setupConstraints() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         stack.translatesAutoresizingMaskIntoConstraints = false
-//        datePicker.view.translatesAutoresizingMaskIntoConstraints = false
         
         let mg = view.layoutMarginsGuide
         let sa = view.safeAreaLayoutGuide
@@ -169,21 +170,29 @@ private extension InspectorViewController {
             scrollView.trailingAnchor.constraint(equalTo: sa.trailingAnchor),
             scrollView.topAnchor.constraint(equalTo: sa.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: sa.bottomAnchor),
-//
+            scrollView.heightAnchor.constraint(equalToConstant: 900),
+
+//            stack.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+//            stack.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+//            stack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+//            stack.topAnchor.constraint(equalTo: scrollView.topAnchor),
+//            stack.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            
+            
             stack.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 15),
             stack.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Sizes.leadingOffset),
             stack.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: Sizes.trailingOffset),
             stack.widthAnchor.constraint(equalTo: view.widthAnchor, constant: Sizes.widthOffset),
-//
-            
-//            stack.leadingAnchor.constraint(equalTo: sa.leadingAnchor),
-//            stack.trailingAnchor.constraint(equalTo: sa.trailingAnchor),
-//            stack.topAnchor.constraint(equalTo: sa.topAnchor),
-//            stack.bottomAnchor.constraint(equalTo: sa.bottomAnchor),
-            
+//            stack.heightAnchor.constraint(equalToConstant: 800),
+            stack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
         ]
         
+//        scrollView.contentSize = CGSize(width: 350, height: 800)
+        
         NSLayoutConstraint.activate(constaints)
+        
+//        stack.backgroundColor = .systemGreen
+//        scrollView.backgroundColor = .orange
     }
     
 }

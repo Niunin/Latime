@@ -114,7 +114,6 @@ private extension Indicator2 {
         shortMarksContainerLayer.bounds = self.bounds
         shortMarksContainerLayer.masksToBounds = false
         
-        Swift.debugPrint(self.layer.sublayers?.count)
         shortMarksContainerLayer.sublayers = []
         for index in 0..<numberOfShortMarks {
             let layer = makeShortMarkLayer(at: index)

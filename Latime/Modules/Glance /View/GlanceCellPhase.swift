@@ -74,13 +74,13 @@ private extension GlancePhaseTVCell {
     func setupConstraints() {
         let mg = contentView.layoutMarginsGuide
         let constraints = [
-            label.topAnchor.constraint(equalTo: mg.topAnchor),
+            label.topAnchor.constraint(equalTo: mg.topAnchor, constant: 12),
             label.leadingAnchor.constraint(equalTo: mg.leadingAnchor, constant: Sizes.leadingOffset),
             label.widthAnchor.constraint(equalTo: mg.widthAnchor, multiplier: 1, constant: Sizes.widthOffset),
-            mg.heightAnchor.constraint(greaterThanOrEqualToConstant: 30),
+            //mg.heightAnchor.constraint(greaterThanOrEqualToConstant: 30),
         ]
         NSLayoutConstraint.activate(constraints)
-        let h = mg.bottomAnchor.constraint(equalTo: label.bottomAnchor)
+        let h = mg.bottomAnchor.constraint(equalTo: label.bottomAnchor, constant: 12)
         h.isActive = true
         h.priority = UILayoutPriority(999)
     }
@@ -123,7 +123,7 @@ private extension GlancePhaseTVCell {
         style.lineBreakMode = .byTruncatingTail
         style.alignment = .left
         
-        let font = UIFont.fontNormal
+        let font = UIFont.F3
         let color = UIColor.black
         
         attributedString.addAttribute(.paragraphStyle, value: style, range: fullRange)
@@ -143,7 +143,7 @@ private extension GlancePhaseTVCell {
         style.lineBreakMode = .byTruncatingTail
         style.alignment = .left
         
-        let font = UIFont.fontNormal
+        let font = UIFont.F3
         let color = UIColor.gray
         
         attributedString.addAttribute(.paragraphStyle, value: style, range: fullRange)

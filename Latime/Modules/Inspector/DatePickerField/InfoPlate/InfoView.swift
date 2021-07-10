@@ -9,7 +9,7 @@ public class InfoView: UIView {
     
     private struct Sizes {
     
-        static let spacing: CGFloat = 4.0
+        static let spacing: CGFloat = 8.0
         static let corner: CGFloat = 10.0
         static let topOffset: CGFloat = 20
         static let btmOffset: CGFloat = 15
@@ -29,7 +29,11 @@ public class InfoView: UIView {
         setupViews()
     }
     
-    public func configure(image: UIImage, title: String, info: NSAttributedString) {
+    public func configure(imageSystemName: String, title: String, info: NSAttributedString) {
+        
+        let configuration = UIImage.SymbolConfiguration(font: UIFont.F5)
+        let image = UIImage(systemName: imageSystemName, withConfiguration: configuration)!
+        
         self.pic.image = image
         self.title.text = title.uppercased()
         self.info.attributedText = info
@@ -62,7 +66,7 @@ private extension InfoView {
         // titleText = titleText.uppercased()
         
         // label.text = titleText
-        label.font = UIFont.fontSmall
+        label.font = UIFont.F5
         label.textColor = UIColor.mg2
     }
     

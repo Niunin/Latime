@@ -128,6 +128,8 @@ private extension RelativeDatePickerViewController {
             link.trailingAnchor.constraint(equalTo: hourField.textField.trailingAnchor),
             link.topAnchor.constraint(equalTo: hourField.textField.centerYAnchor),
             link.bottomAnchor.constraint(equalTo: minutesField.textField.centerYAnchor),
+            
+            mg.bottomAnchor.constraint(equalTo: stack.bottomAnchor),
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -154,7 +156,6 @@ extension RelativeDatePickerViewController: UITextFieldDelegate {
     
     // TODO: refactor textFieldShouldChange
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        print(string)
         if let ptf = textField as? LimitedTextField, let max = ptf.maxValue {
             var currentText = textField.text ?? ""
             // TODO: rename these vars

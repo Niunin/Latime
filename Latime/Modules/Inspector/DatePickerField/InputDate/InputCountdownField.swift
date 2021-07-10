@@ -20,6 +20,7 @@ public class InputDateField: UIStackView {
     public let textField = PaddingTextField(withInsets: Sizes.textFieldInsets)
     private let descriptionLabel = UILabel()
     private var buttonDot = UIView()
+    let dotview = UIView()
     private var spacer = UIView()
     
     public var delegate: UITextFieldDelegate? {
@@ -60,7 +61,7 @@ public class InputDateField: UIStackView {
     func setupSelf() {
         axis = .horizontal
         alignment = .center
-        spacing = 2
+        spacing = 8
         
         addArrangedSubview(textField)
         addArrangedSubview(descriptionLabel)
@@ -86,17 +87,38 @@ public class InputDateField: UIStackView {
     }
     
     func setupButton(_ button: UIView) {
-        button.backgroundColor = UIColor.mg1
-        button.layer.cornerRadius = 5
-        button.layer.masksToBounds = true
+        button.bounds = CGRect(x: 0, y: 0, width: 40, height: 40)
+        
+        
+        
+        
+        dotview.backgroundColor = UIColor.mg1
+        dotview.layer.cornerRadius = 6
+        dotview.layer.masksToBounds = true
+
+        
+        
+        button.addSubview(dotview)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(actionX))
+        button.addGestureRecognizer(gesture)
+    }
+    
+    @IBAction func actionX() {
+        textField.becomeFirstResponder()
     }
     
     func setupConstraints() {
         buttonDot.translatesAutoresizingMaskIntoConstraints = false
+        dotview.translatesAutoresizingMaskIntoConstraints = false
+        spacer.translatesAutoresizingMaskIntoConstraints = false
 
         let constraints = [
-            buttonDot.widthAnchor.constraint(equalToConstant: 10),
-            buttonDot.heightAnchor.constraint(equalToConstant: 10),
+            buttonDot.widthAnchor.constraint(equalTo: textField.heightAnchor),
+            buttonDot.heightAnchor.constraint(equalTo: buttonDot.widthAnchor),
+            dotview.centerYAnchor.constraint(equalTo: buttonDot.centerYAnchor),
+            dotview.centerXAnchor.constraint(equalTo: buttonDot.centerXAnchor),
+            dotview.widthAnchor.constraint(equalToConstant: 12),
+            dotview.heightAnchor.constraint(equalTo: dotview.widthAnchor),
             spacer.heightAnchor.constraint(equalToConstant: 0),
             spacer.widthAnchor.constraint(equalToConstant: 0),
         ]

@@ -49,22 +49,23 @@ extension TimelineCell {
     func setupMark(_ view: UIView) {
         view.layer.cornerRadius = 5
         view.layer.masksToBounds = true
-        view.backgroundColor = .gray
+        view.backgroundColor = .mg1
     }
     
     func setupTitle(_ label: UILabel) {
         label.text = "Some phase"
-        label.font = .fontNormal
+        label.font = .F3
         
     }
     
     func setupDate(_ label: UILabel) {
         label.text = "14:00 • 27 JUNE • 2021"
-        label.font = .fontSmall
+        label.font = .F7
+        label.textColor = .mg2
     }
     
     func setupCountdown(_ label: UILabel) {
-        label.font = .fontNormal
+        label.font = .F3
         label.text = "4 days"
     }
     

@@ -85,7 +85,7 @@ private extension GlanceCountdownView {
         self.setContentHuggingPriority(UILayoutPriority(1000), for: .horizontal)
         
         
-        countdown1.font = UIFont.fontGiant
+        countdown1.font = UIFont.F0
         
         countdown1.text = "6"
         countdown2.text = "12"
@@ -119,13 +119,13 @@ private extension GlanceCountdownView {
     private func setupCountdown(_ label: UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
-        label.font = UIFont.fontNormal
+        label.font = UIFont.F3
     }
     
     private func setupCountdownUnits(_ label: UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
-        label.font = UIFont.fontNormal
+        label.font = UIFont.F3
     }
     
     private func setupConstraints() {

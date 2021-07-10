@@ -33,10 +33,7 @@ public class InfoCountdownView: UIView {
       
         var title = "remains"  // TODO: remains : Passed. Localize
         
-        let configuration = UIImage.SymbolConfiguration(font: UIFont.fontSmall)
-        let image = UIImage(systemName: "timer", withConfiguration: configuration)!
-        
-        picTitleInfoView.configure(image: image, title: title, info: info)
+        picTitleInfoView.configure(imageSystemName: "timer", title: title, info: info)
         
     }
 }
@@ -89,7 +86,6 @@ extension InfoCountdownView {
         /// indices
         let firstWordEndIndex = string.firstIndex(of: " ") ?? string.startIndex
         let firstWord = string[..<firstWordEndIndex]
-        print(firstWord)
         
         /// ranges
         let fullRange = NSRange(location: 0, length: string.count)
@@ -103,8 +99,8 @@ extension InfoCountdownView {
         attributedString.addAttribute(.paragraphStyle, value: style, range: fullRange)
         
         /// font
-        let font = UIFont.fontNormal
-        let firstWordFont = UIFont.fontGiant
+        let font = UIFont.F1
+        let firstWordFont = UIFont.F1
         attributedString.addAttribute(.font, value: font, range: fullRange)
         attributedString.addAttribute(.font, value: firstWordFont, range: firstWordRange)
 

@@ -212,7 +212,7 @@ private extension InputContainer {
     
     func setupTitleTF(_ textField: UITextField) {
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.font = UIFont.fontNoticable
+        textField.font = UIFont.F2
         textField.placeholder = "New time point"
         textField.textColor = UIColor.myAccent
         textField.adjustsFontForContentSizeCategory = true

@@ -63,6 +63,7 @@
 		C9EA16122696DFAB005105F0 /* TimelineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA16112696DFAB005105F0 /* TimelineCell.swift */; };
 		C9EA16142697045B005105F0 /* TimelineCellToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA16132697045B005105F0 /* TimelineCellToday.swift */; };
 		C9EA161826971F40005105F0 /* CombinedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA161726971F40005105F0 /* CombinedPicker.swift */; };
+		C9EA161E26984116005105F0 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA161D26984116005105F0 /* Reminder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,7 @@
 		C9EA16112696DFAB005105F0 /* TimelineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCell.swift; sourceTree = "<group>"; };
 		C9EA16132697045B005105F0 /* TimelineCellToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCellToday.swift; sourceTree = "<group>"; };
 		C9EA161726971F40005105F0 /* CombinedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedPicker.swift; sourceTree = "<group>"; };
+		C9EA161D26984116005105F0 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,8 +248,8 @@
 			isa = PBXGroup;
 			children = (
 				C9675517267A6671003A016A /* Glance  */,
-				C9EA16052696D59A005105F0 /* Timeline */,
 				C9675505267A6671003A016A /* Inspector */,
+				C9EA16052696D59A005105F0 /* Timeline */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -255,8 +257,9 @@
 		C9675505267A6671003A016A /* Inspector */ = {
 			isa = PBXGroup;
 			children = (
-				C977242F2694A5100050665A /* InputContainer */,
-				C9EA161526971E5C005105F0 /* DatePicker */,
+				C977242F2694A5100050665A /* InputContainerField */,
+				C9EA161B269840D8005105F0 /* ReminderField */,
+				C9EA161526971E5C005105F0 /* DatePickerField */,
 				C9675508267A6671003A016A /* InspectorProtocols.swift */,
 				C9675509267A6671003A016A /* InspectorPresenter.swift */,
 				C9675512267A6671003A016A /* InspectorViewController.swift */,
@@ -328,14 +331,14 @@
 			path = Interactor;
 			sourceTree = "<group>";
 		};
-		C977242F2694A5100050665A /* InputContainer */ = {
+		C977242F2694A5100050665A /* InputContainerField */ = {
 			isa = PBXGroup;
 			children = (
 				C967550C267A6671003A016A /* InputContainer.swift */,
 				C97724302694A5290050665A /* ICPaddingTextField.swift */,
 				C967550B267A6671003A016A /* UnsplashLogo.swift */,
 			);
-			path = InputContainer;
+			path = InputContainerField;
 			sourceTree = "<group>";
 		};
 		C9B062662695C01500009383 /* InfoPlate */ = {
@@ -379,7 +382,7 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		C9EA161526971E5C005105F0 /* DatePicker */ = {
+		C9EA161526971E5C005105F0 /* DatePickerField */ = {
 			isa = PBXGroup;
 			children = (
 				C9EA161726971F40005105F0 /* CombinedPicker.swift */,
@@ -388,7 +391,15 @@
 				C9B062662695C01500009383 /* InfoPlate */,
 				C9B062682695C05300009383 /* InputDate */,
 			);
-			path = DatePicker;
+			path = DatePickerField;
+			sourceTree = "<group>";
+		};
+		C9EA161B269840D8005105F0 /* ReminderField */ = {
+			isa = PBXGroup;
+			children = (
+				C9EA161D26984116005105F0 /* Reminder.swift */,
+			);
+			path = ReminderField;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -520,6 +531,7 @@
 				C979048A267E26F6008C8093 /* GlanceCellParent.swift in Sources */,
 				C9EA16142697045B005105F0 /* TimelineCellToday.swift in Sources */,
 				C967553F267A6671003A016A /* GlanceRouter.swift in Sources */,
+				C9EA161E26984116005105F0 /* Reminder.swift in Sources */,
 				C9675531267A6671003A016A /* InspectorModel.swift in Sources */,
 				C967553E267A6671003A016A /* InspectorInteractor.swift in Sources */,
 				C967552B267A6671003A016A /* Notification+Extensions.swift in Sources */,

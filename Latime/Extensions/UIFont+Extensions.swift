@@ -9,25 +9,29 @@ import Foundation
 import UIKit.UIFont
 
 extension UIFont {
-
-    static let fontGiant        = UIFont.preferredFont(forTextStyle: .title1)
-    static let fontNoticable    = UIFont.preferredFont(forTextStyle: .title3)
-    static let fontNormal       = UIFont.preferredFont(forTextStyle: .headline)
-    static let fontButtonTitle  = UIFont.preferredFont(forTextStyle: .subheadline)
-    static let fontButtonText   = UIFont.preferredFont(forTextStyle: .title3)
-    static let fontSmall        = UIFont.preferredFont(forTextStyle: .footnote)
+    
+    static let F0 = UIFont.systemFont(ofSize: 28, weight: .light)
+    static let F1 = UIFont.rounded(ofSize: 20, weight: .regular)
+    static let F12 = UIFont.systemFont(ofSize: 20, weight: .regular)
+    static let F2 = UIFont.systemFont(ofSize: 20, weight: .semibold)
+    static let F3 = UIFont.systemFont(ofSize: 17, weight: .regular)
+    static let F4 = UIFont.systemFont(ofSize: 17, weight: .bold)
+    static let F5 = UIFont.systemFont(ofSize: 14, weight: .semibold)
+    static let L6 = UIFont.systemFont(ofSize: 14, weight: .bold)
+    static let F7 = UIFont.systemFont(ofSize: 10, weight: .semibold)
     static let monospaceNumber  = UIFont.monospacedDigitSystemFont(ofSize: 20, weight: .regular)
-}
-
-// TODO: I need font management
-extension UIFont {
     
-    static let conuntdownNumber     = UIFont.init(name: "Futura-CondensedExtraBold", size: 32)!
-    static let conuntdown2Number    = UIFont.init(name: "Futura-CondensedMedium", size: 32)!
-    static let countdownSuffix      = UIFont.init(name: "GillSans", size: 16)!
-    static let inputContainerFont   = UIFont.init(name: "GillSans", size: 22)!
-    static let phaseLabelFont       = UIFont.init(name: "Futura", size: 14)
-    static let parentLabelFont      = UIFont.init(name: "AvenirNext-Medium", size: 18)
+    class func rounded(ofSize size: CGFloat, weight: UIFont.Weight) -> UIFont {
+        let systemFont = UIFont.systemFont(ofSize: size, weight: weight)
+        let font: UIFont
+        
+        // not available in iOS12
+        if let descriptor = systemFont.fontDescriptor.withDesign(.rounded) {
+            font = UIFont(descriptor: descriptor, size: size)
+        } else {
+            font = systemFont
+        }
+        return font
+    }
     
 }
-

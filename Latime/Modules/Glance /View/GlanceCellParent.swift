@@ -128,7 +128,7 @@ private extension GlanceMissionTVCell {
         label.text = "New point in time"
         label.setContentHuggingPriority(UILayoutPriority(000), for: .vertical)
 //         label.font = UIFont.systemFont(ofSize: 17)
-        label.font = UIFont.fontNoticable
+        label.font = UIFont.F2
         label.numberOfLines = 1
     }
     
@@ -156,11 +156,11 @@ private extension GlanceMissionTVCell {
         
         let constraints = [
             
-            countdownView.topAnchor.constraint(equalTo: mg.topAnchor),
+            countdownView.topAnchor.constraint(equalTo: mg.topAnchor, constant: 8),
             countdownView.leadingAnchor.constraint(equalTo: mg.leadingAnchor),
             countdownView.widthAnchor.constraint(lessThanOrEqualTo: mg.widthAnchor),
             
-            titleLabel.topAnchor.constraint(equalToSystemSpacingBelow: countdownView.lastBaselineAnchor, multiplier: 0.7),
+            titleLabel.topAnchor.constraint(equalTo: countdownView.lastBaselineAnchor, constant: 12),
             titleLabel.leadingAnchor.constraint(equalTo: countdownView.leadingAnchor),
             titleLabel.widthAnchor.constraint(lessThanOrEqualTo: mg.widthAnchor),
             
@@ -169,20 +169,15 @@ private extension GlanceMissionTVCell {
             customImageView.trailingAnchor.constraint(equalTo: mg.trailingAnchor),
             customImageView.topAnchor.constraint(equalTo: countdownView.topAnchor),
             
-            indicatorView.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 1),
+            indicatorView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
             indicatorView.leadingAnchor.constraint(equalTo: countdownView.leadingAnchor),
             indicatorView.widthAnchor.constraint(equalTo: mg.widthAnchor),
             indicatorView.heightAnchor.constraint(equalToConstant: 6),
-            
         ]
-        
-//        for c in constraints {
-//            c.priority = UILayoutPriority(rawValue: 999)
-//        }
         
         NSLayoutConstraint.activate(constraints)
         
-        mg.bottomAnchor.constraint(equalTo: indicatorView.bottomAnchor, constant: 5).isActive = true
+        mg.bottomAnchor.constraint(equalTo: indicatorView.bottomAnchor, constant: 8).isActive = true
         
         updateConstraints()
         invalidateIntrinsicContentSize()

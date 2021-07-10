@@ -19,6 +19,7 @@ class CombinedPicker: UIViewController {
     private var relativePicker: InspectorDatePickerContainer = RelativeDatePickerViewController()
     
     private var currentSegment: Int = 0
+    private var customBottomAnchor = NSLayoutConstraint()
     
     // MARK: life cycle
     
@@ -90,12 +91,12 @@ private extension CombinedPicker {
             av.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20),
             av.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             av.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            view.bottomAnchor.constraint(equalTo: av.bottomAnchor),
             
             rv.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20),
             rv.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             rv.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            view.bottomAnchor.constraint(equalTo: rv.bottomAnchor),
+            
+            view.bottomAnchor.constraint(greaterThanOrEqualTo: segmentedControl.bottomAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -104,13 +105,22 @@ private extension CombinedPicker {
     @IBAction private func segmentDidChange(_ sender: UISegmentedControl!) {
         let selectedSegment = segmentedControl.selectedSegmentIndex
         
+        guard let rv = relativePicker.view,
+              let av = absolutePicker.view else { return }
+        
+        customBottomAnchor.isActive = false
         if selectedSegment == 0 {
-            relativePicker.view.isHidden = true
-            absolutePicker.view.isHidden = false
+            rv.isHidden = true
+            av.isHidden = false
+            customBottomAnchor = view.bottomAnchor.constraint(equalTo: av.bottomAnchor)
+            
         } else {
-            relativePicker.view.isHidden = false
-            absolutePicker.view.isHidden = true
+            rv.isHidden = false
+            av.isHidden = true
+            customBottomAnchor = view.bottomAnchor.constraint(equalTo: rv.bottomAnchor)
+            
         }
+        customBottomAnchor.isActive = true
     }
     
 }
