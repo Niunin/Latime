@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 // MARK: - Extensions for Foundation
 
 extension String {
@@ -15,7 +14,7 @@ extension String {
     var localized: String {
         return NSLocalizedString(self, comment: "")
     }
-
+    
 }
 
 extension Decodable {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C92109ED2699CF4B00B2FEF8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92109EC2699CF4B00B2FEF8 /* ImagePicker.swift */; };
 		C93DEBA2267E3A9A000072E2 /* RelativePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEBA1267E3A9A000072E2 /* RelativePicker.swift */; };
 		C93DEBA5267E462D000072E2 /* AbsolutePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEBA4267E462D000072E2 /* AbsolutePicker.swift */; };
 		C96754BC267A5FC1003A016A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96754BB267A5FC1003A016A /* AppDelegate.swift */; };
@@ -77,6 +78,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C92109EC2699CF4B00B2FEF8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		C93DEBA1267E3A9A000072E2 /* RelativePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativePicker.swift; sourceTree = "<group>"; };
 		C93DEBA4267E462D000072E2 /* AbsolutePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsolutePicker.swift; sourceTree = "<group>"; };
 		C96754B8267A5FC1003A016A /* Latime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Latime.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +161,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C92109EA2699CE6700B2FEF8 /* aaa. ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				C92109EC2699CF4B00B2FEF8 /* ImagePicker.swift */,
+			);
+			path = "aaa. ImagePicker";
+			sourceTree = "<group>";
+		};
+		C92109EB2699CE6D00B2FEF8 /* aab. Camera */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "aab. Camera";
+			sourceTree = "<group>";
+		};
+		C92109EE2699D3D300B2FEF8 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				C9675527267A6671003A016A /* GlanceDataManager.swift */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
 		C96754AF267A5FC1003A016A = {
 			isa = PBXGroup;
 			children = (
@@ -247,19 +272,21 @@
 		C9675504267A6671003A016A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				C9675517267A6671003A016A /* Glance  */,
-				C9675505267A6671003A016A /* Inspector */,
-				C9EA16052696D59A005105F0 /* Timeline */,
+				C9675517267A6671003A016A /* a. Glance */,
+				C9675505267A6671003A016A /* aa. Inspector */,
+				C92109EA2699CE6700B2FEF8 /* aaa. ImagePicker */,
+				C92109EB2699CE6D00B2FEF8 /* aab. Camera */,
+				C9EA16052696D59A005105F0 /* b. Timeline */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
 		};
-		C9675505267A6671003A016A /* Inspector */ = {
+		C9675505267A6671003A016A /* aa. Inspector */ = {
 			isa = PBXGroup;
 			children = (
 				C977242F2694A5100050665A /* InputContainerField */,
 				C9EA161B269840D8005105F0 /* ReminderField */,
-				C9EA161526971E5C005105F0 /* DatePickerField */,
+				C9EA161526971E5C005105F0 /* DatePickerCell */,
 				C9675508267A6671003A016A /* InspectorProtocols.swift */,
 				C9675509267A6671003A016A /* InspectorPresenter.swift */,
 				C9675512267A6671003A016A /* InspectorViewController.swift */,
@@ -268,7 +295,7 @@
 				C9675514267A6671003A016A /* Interactor */,
 				C9675506267A6671003A016A /* Entity */,
 			);
-			path = Inspector;
+			path = "aa. Inspector";
 			sourceTree = "<group>";
 		};
 		C9675506267A6671003A016A /* Entity */ = {
@@ -288,47 +315,31 @@
 			path = Interactor;
 			sourceTree = "<group>";
 		};
-		C9675517267A6671003A016A /* Glance  */ = {
+		C9675517267A6671003A016A /* a. Glance */ = {
 			isa = PBXGroup;
 			children = (
-				C9675519267A6671003A016A /* Entity */,
-				C967551D267A6671003A016A /* View */,
-				C9675518267A6671003A016A /* GlanceRouter.swift */,
-				C967551B267A6671003A016A /* GlanceProtocols.swift */,
-				C967551C267A6671003A016A /* GlancePresenter.swift */,
-				C9675526267A6671003A016A /* Interactor */,
-			);
-			path = "Glance ";
-			sourceTree = "<group>";
-		};
-		C9675519267A6671003A016A /* Entity */ = {
-			isa = PBXGroup;
-			children = (
+				C9675528267A6671003A016A /* GlanceInteractor.swift */,
 				C967551A267A6671003A016A /* GlanceModel.swift */,
+				C967551C267A6671003A016A /* GlancePresenter.swift */,
+				C967551B267A6671003A016A /* GlanceProtocols.swift */,
+				C9675518267A6671003A016A /* GlanceRouter.swift */,
+				C9675521267A6671003A016A /* GlanceViewController.swift */,
+				C92109EE2699D3D300B2FEF8 /* DataManager */,
+				C967551D267A6671003A016A /* Views */,
 			);
-			path = Entity;
+			path = "a. Glance";
 			sourceTree = "<group>";
 		};
-		C967551D267A6671003A016A /* View */ = {
+		C967551D267A6671003A016A /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				C979048F267E29C0008C8093 /* GlanceCountdownView.swift */,
-				C9675521267A6671003A016A /* GlanceViewController.swift */,
 				C9790489267E26F6008C8093 /* GlanceCellParent.swift */,
 				C9675525267A6671003A016A /* GlanceCellPhase.swift */,
 				C967551F267A6671003A016A /* GlanceContextMenu.swift */,
 				C9B9AD302689C46C00A182DA /* Indicator.swift */,
 			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		C9675526267A6671003A016A /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-				C9675527267A6671003A016A /* GlanceDataManager.swift */,
-				C9675528267A6671003A016A /* GlanceInteractor.swift */,
-			);
-			path = Interactor;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		C977242F2694A5100050665A /* InputContainerField */ = {
@@ -360,7 +371,7 @@
 			path = InputDate;
 			sourceTree = "<group>";
 		};
-		C9EA16052696D59A005105F0 /* Timeline */ = {
+		C9EA16052696D59A005105F0 /* b. Timeline */ = {
 			isa = PBXGroup;
 			children = (
 				C9EA16102696DF6E005105F0 /* Cell */,
@@ -370,7 +381,7 @@
 				C9EA160A2696D657005105F0 /* TimelinePresenter.swift */,
 				C9EA160C2696D65E005105F0 /* TimelineInteractor.swift */,
 			);
-			path = Timeline;
+			path = "b. Timeline";
 			sourceTree = "<group>";
 		};
 		C9EA16102696DF6E005105F0 /* Cell */ = {
@@ -382,7 +393,7 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		C9EA161526971E5C005105F0 /* DatePickerField */ = {
+		C9EA161526971E5C005105F0 /* DatePickerCell */ = {
 			isa = PBXGroup;
 			children = (
 				C9EA161726971F40005105F0 /* CombinedPicker.swift */,
@@ -391,7 +402,7 @@
 				C9B062662695C01500009383 /* InfoPlate */,
 				C9B062682695C05300009383 /* InputDate */,
 			);
-			path = DatePickerField;
+			path = DatePickerCell;
 			sourceTree = "<group>";
 		};
 		C9EA161B269840D8005105F0 /* ReminderField */ = {
@@ -516,6 +527,7 @@
 				C967554A267A6671003A016A /* GlanceCellPhase.swift in Sources */,
 				C9EA161826971F40005105F0 /* CombinedPicker.swift in Sources */,
 				C93DEBA2267E3A9A000072E2 /* RelativePicker.swift in Sources */,
+				C92109ED2699CF4B00B2FEF8 /* ImagePicker.swift in Sources */,
 				C9675540267A6671003A016A /* GlanceModel.swift in Sources */,
 				C9790490267E29C0008C8093 /* GlanceCountdownView.swift in Sources */,
 				C9B0626C2695C12200009383 /* InfoCountdownView.swift in Sources */,

@@ -7,13 +7,12 @@
 
 import Foundation
 
-
 // MARK: - Notification extension
 
 extension Notification.Name {
     
     public static let pickerImageReady = Notification.Name(rawValue: "pickerImageReady")
     public static let inspectorFinished = Notification.Name(rawValue: "timePointUpdated")
-
+    
 }
 

@@ -9,7 +9,6 @@ import Foundation
 import UIKit.UIImage
 import CoreData
 
-
 // MARK: - Data Model Extension
 
 extension TimePoint {
@@ -40,22 +39,22 @@ extension TimePoint {
             fatalError("Failed to execute request: \(error)")
         }
     }
-
+    
 }
 
 // MARK: - NSPredicate extension
 
 extension NSPredicate {
-
+    
     static var all = NSPredicate(format: "TRUEPREDICATE")
     static var none = NSPredicate(format: "FALSEPREDICATE")
-
+    
 }
 
 // MARK: - Data extension
 
 extension Data {
-
+    
     init?(_ image: UIImage?) {
         self.init()
         if let safeImage = image {
@@ -68,7 +67,5 @@ extension Data {
             return nil
         }
     }
-
+    
 }
-
-

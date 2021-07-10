@@ -11,7 +11,7 @@ import UIKit.UIFont
 // MARK: - Date extension
 
 extension Date {
-
+    
     static func earliestOfTwo(_ date1: Date?, _ date2: Date?) -> Date {
         if date1 != nil, date2 == nil {
             return date1!
@@ -81,11 +81,11 @@ class DateModel {
         let description = prefix + formatter.string(from: start, to: end)!
         return description
     }
-
+    
     static func dateComponets(from start: Date, to end: Date) -> DateComponents {
         return Calendar.current.dateComponents([ .day, .hour, .minute], from: start, to: end)
     }
-
+    
     static func date(from start: Date, with components: DateComponents) -> Date {
         let timeOffset = seconds(in: components)
         return start + timeOffset
