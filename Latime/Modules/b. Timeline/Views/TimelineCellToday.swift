@@ -5,7 +5,6 @@
 //  Created by Andrei Niunin on 08.07.2021.
 //
 
-import Foundation
 import UIKit
 
 class TimelineCellToday: UICollectionViewCell {
