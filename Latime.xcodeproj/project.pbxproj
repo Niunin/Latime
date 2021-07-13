@@ -48,6 +48,9 @@
 		C97724312694A5290050665A /* ICPaddingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97724302694A5290050665A /* ICPaddingTextField.swift */; };
 		C979048A267E26F6008C8093 /* GlanceCellParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9790489267E26F6008C8093 /* GlanceCellParent.swift */; };
 		C9790490267E29C0008C8093 /* GlanceCountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C979048F267E29C0008C8093 /* GlanceCountdownView.swift */; };
+		C992AACB269D85260078B9A8 /* CellCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992AACA269D85260078B9A8 /* CellCalendar.swift */; };
+		C992AACD269D85320078B9A8 /* CellText.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992AACC269D85320078B9A8 /* CellText.swift */; };
+		C992AACF269D85440078B9A8 /* SupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992AACE269D85440078B9A8 /* SupplementaryView.swift */; };
 		C9A02AF0267A6D5A00F8E85F /* LatimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A02AEF267A6D5A00F8E85F /* LatimeTests.swift */; };
 		C9B0626C2695C12200009383 /* InfoCountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B062692695C12200009383 /* InfoCountdownView.swift */; };
 		C9B0626D2695C12200009383 /* InfoDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B0626A2695C12200009383 /* InfoDateView.swift */; };
@@ -56,6 +59,7 @@
 		C9B062742695C12C00009383 /* paddingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B062712695C12C00009383 /* paddingTextField.swift */; };
 		C9B9AD312689C46C00A182DA /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B9AD302689C46C00A182DA /* Indicator.swift */; };
 		C9DE3C412684A94900FE773D /* UIKit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DE3C402684A94900FE773D /* UIKit+Extension.swift */; };
+		C9E77DCF269CB2A500F8D582 /* TemporaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E77DCE269CB2A500F8D582 /* TemporaryVC.swift */; };
 		C9EA16072696D640005105F0 /* TimelineRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA16062696D640005105F0 /* TimelineRouter.swift */; };
 		C9EA16092696D64F005105F0 /* TimelineProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA16082696D64F005105F0 /* TimelineProtocols.swift */; };
 		C9EA160B2696D657005105F0 /* TimelinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA160A2696D657005105F0 /* TimelinePresenter.swift */; };
@@ -124,6 +128,9 @@
 		C97724302694A5290050665A /* ICPaddingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICPaddingTextField.swift; sourceTree = "<group>"; };
 		C9790489267E26F6008C8093 /* GlanceCellParent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceCellParent.swift; sourceTree = "<group>"; };
 		C979048F267E29C0008C8093 /* GlanceCountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceCountdownView.swift; sourceTree = "<group>"; };
+		C992AACA269D85260078B9A8 /* CellCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellCalendar.swift; sourceTree = "<group>"; };
+		C992AACC269D85320078B9A8 /* CellText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellText.swift; sourceTree = "<group>"; };
+		C992AACE269D85440078B9A8 /* SupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryView.swift; sourceTree = "<group>"; };
 		C9A02AEF267A6D5A00F8E85F /* LatimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatimeTests.swift; sourceTree = "<group>"; };
 		C9B062692695C12200009383 /* InfoCountdownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCountdownView.swift; sourceTree = "<group>"; };
 		C9B0626A2695C12200009383 /* InfoDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDateView.swift; sourceTree = "<group>"; };
@@ -132,6 +139,7 @@
 		C9B062712695C12C00009383 /* paddingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = paddingTextField.swift; sourceTree = "<group>"; };
 		C9B9AD302689C46C00A182DA /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		C9DE3C402684A94900FE773D /* UIKit+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Extension.swift"; sourceTree = "<group>"; };
+		C9E77DCE269CB2A500F8D582 /* TemporaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryVC.swift; sourceTree = "<group>"; };
 		C9EA16062696D640005105F0 /* TimelineRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineRouter.swift; sourceTree = "<group>"; };
 		C9EA16082696D64F005105F0 /* TimelineProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineProtocols.swift; sourceTree = "<group>"; };
 		C9EA160A2696D657005105F0 /* TimelinePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePresenter.swift; sourceTree = "<group>"; };
@@ -288,6 +296,7 @@
 				C92109EA2699CE6700B2FEF8 /* aaa. ImagePicker */,
 				C92109EB2699CE6D00B2FEF8 /* aab. Camera */,
 				C9EA16052696D59A005105F0 /* b. Timeline */,
+				C9E77DCD269CB29300F8D582 /* c. NewHellaScreen */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -369,6 +378,17 @@
 				C9B062712695C12C00009383 /* paddingTextField.swift */,
 			);
 			path = InputDate;
+			sourceTree = "<group>";
+		};
+		C9E77DCD269CB29300F8D582 /* c. NewHellaScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C9E77DCE269CB2A500F8D582 /* TemporaryVC.swift */,
+				C992AACC269D85320078B9A8 /* CellText.swift */,
+				C992AACA269D85260078B9A8 /* CellCalendar.swift */,
+				C992AACE269D85440078B9A8 /* SupplementaryView.swift */,
+			);
+			path = "c. NewHellaScreen";
 			sourceTree = "<group>";
 		};
 		C9EA16052696D59A005105F0 /* b. Timeline */ = {
@@ -520,6 +540,7 @@
 				C9675535267A6671003A016A /* InputContainer.swift in Sources */,
 				C9675533267A6671003A016A /* InspectorPresenter.swift in Sources */,
 				C9675530267A6671003A016A /* Date+Extensions.swift in Sources */,
+				C992AACB269D85260078B9A8 /* CellCalendar.swift in Sources */,
 				C96754BC267A5FC1003A016A /* AppDelegate.swift in Sources */,
 				C96754BE267A5FC1003A016A /* SceneDelegate.swift in Sources */,
 				C9B0626E2695C12200009383 /* InfoView.swift in Sources */,
@@ -549,6 +570,7 @@
 				C967552B267A6671003A016A /* Notification+Extensions.swift in Sources */,
 				C9EA16122696DFAB005105F0 /* TimelineCell.swift in Sources */,
 				C9B9AD312689C46C00A182DA /* Indicator.swift in Sources */,
+				C992AACF269D85440078B9A8 /* SupplementaryView.swift in Sources */,
 				C9675541267A6671003A016A /* Glance_Protocols.swift in Sources */,
 				C9EA16072696D640005105F0 /* TimelineRouter.swift in Sources */,
 				C967553D267A6671003A016A /* InspectorDataManager.swift in Sources */,
@@ -564,7 +586,9 @@
 				C967552E267A6671003A016A /* Foundation+Extensions.swift in Sources */,
 				C9B062742695C12C00009383 /* paddingTextField.swift in Sources */,
 				C9EA160B2696D657005105F0 /* TimelinePresenter.swift in Sources */,
+				C9E77DCF269CB2A500F8D582 /* TemporaryVC.swift in Sources */,
 				C93DEBA5267E462D000072E2 /* AbsolutePicker.swift in Sources */,
+				C992AACD269D85320078B9A8 /* CellText.swift in Sources */,
 				C9DE3C412684A94900FE773D /* UIKit+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
