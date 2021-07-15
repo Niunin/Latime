@@ -232,8 +232,14 @@ extension InspectViewController {
 //            cell.label.text = "Custom cell"
         }
         
-        let cellRegInfo = UICollectionView.CellRegistration<DateIntervalCell, Int> { (cell, indexPath, identifier) in
+        let cellRegInfo = UICollectionView.CellRegistration<DateIntervalCell, String> { (cell, indexPath, identifier) in
             cell.backgroundColor = .white
+            if identifier == Section.info.rawValue {
+                cell.setModeTo(.absolute)
+            } else {
+                cell.setModeTo(.relative)
+            }
+            
         }
         
         let cellRegCountdown = UICollectionView.CellRegistration<RelativeDateInput, Int> { (cell, indexPath, identifier) in
@@ -243,7 +249,7 @@ extension InspectViewController {
             (collectionView: UICollectionView, indexPath: IndexPath, item: Section) -> UICollectionViewCell? in
             switch item {
             case .info, .smallinfo:
-                return collectionView.dequeueConfiguredReusableCell(using: cellRegInfo, for: indexPath, item: 0)
+                return collectionView.dequeueConfiguredReusableCell(using: cellRegInfo, for: indexPath, item: item.rawValue)
             case .calendar:
                 return collectionView.dequeueConfiguredReusableCell(using: cellRegDate, for: indexPath, item: 1)
             case .countdown:
@@ -269,12 +275,6 @@ extension InspectViewController: TitleSegmentedDelegate {
             snapshot.appendItems([.smallinfo])
             snapshot.appendSections([1])
             snapshot.appendItems([.countdown, .reminder])
-        }
-        guard let xCell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? DateIntervalCell else { return }
-        if segment == 0 {
-            xCell.setModeTo(.absolute)
-        } else {
-            xCell.setModeTo(.relative)
         }
         dataSource.apply(snapshot, animatingDifferences: true )
     }

@@ -12,9 +12,10 @@
 		C9076E57269ECDCC00C299DD /* DateProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9076E56269ECDCC00C299DD /* DateProtocols.swift */; };
 		C9076E59269F2C0000C299DD /* CellInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9076E58269F2C0000C299DD /* CellInput.swift */; };
 		C92109ED2699CF4B00B2FEF8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92109EC2699CF4B00B2FEF8 /* ImagePicker.swift */; };
-		C93DEBA2267E3A9A000072E2 /* RelativePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEBA1267E3A9A000072E2 /* RelativePicker.swift */; };
-		C93DEBA5267E462D000072E2 /* AbsolutePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEBA4267E462D000072E2 /* AbsolutePicker.swift */; };
-		C952081726A084E800A35DCD /* INspectVC+keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952081626A084E800A35DCD /* INspectVC+keyboard.swift */; };
+		C952081726A084E800A35DCD /* InspectVC+keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952081626A084E800A35DCD /* InspectVC+keyboard.swift */; };
+		C952081926A0911300A35DCD /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952081826A0911300A35DCD /* InformationView.swift */; };
+		C952081B26A0916400A35DCD /* InputCountdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952081A26A0916400A35DCD /* InputCountdown.swift */; };
+		C952081D26A0919800A35DCD /* PaddingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952081C26A0919800A35DCD /* PaddingTextField.swift */; };
 		C96754BC267A5FC1003A016A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96754BB267A5FC1003A016A /* AppDelegate.swift */; };
 		C96754BE267A5FC1003A016A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96754BD267A5FC1003A016A /* SceneDelegate.swift */; };
 		C96754C6267A5FC2003A016A /* Latime.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C96754C4267A5FC2003A016A /* Latime.xcdatamodeld */; };
@@ -29,15 +30,13 @@
 		C967552E267A6671003A016A /* Foundation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675501267A6671003A016A /* Foundation+Extensions.swift */; };
 		C967552F267A6671003A016A /* CoreAnimation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675502267A6671003A016A /* CoreAnimation+Extensions.swift */; };
 		C9675530267A6671003A016A /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675503267A6671003A016A /* Date+Extensions.swift */; };
-		C9675531267A6671003A016A /* InspectorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675507267A6671003A016A /* InspectorModel.swift */; };
-		C9675532267A6671003A016A /* Inspector_Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675508267A6671003A016A /* Inspector_Protocols.swift */; };
-		C9675533267A6671003A016A /* InspectorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675509267A6671003A016A /* InspectorPresenter.swift */; };
+		C9675531267A6671003A016A /* InspectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675507267A6671003A016A /* InspectModel.swift */; };
+		C9675532267A6671003A016A /* Inspect_Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675508267A6671003A016A /* Inspect_Protocols.swift */; };
+		C9675533267A6671003A016A /* InspectPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675509267A6671003A016A /* InspectPresenter.swift */; };
 		C9675535267A6671003A016A /* InputContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967550C267A6671003A016A /* InputContainer.swift */; };
-		C9675536267A6671003A016A /* InspectorViewController+InputContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967550D267A6671003A016A /* InspectorViewController+InputContainer.swift */; };
-		C967553B267A6671003A016A /* InspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675512267A6671003A016A /* InspectorViewController.swift */; };
-		C967553C267A6671003A016A /* InspectorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675513267A6671003A016A /* InspectorRouter.swift */; };
+		C967553C267A6671003A016A /* InspectRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675513267A6671003A016A /* InspectRouter.swift */; };
 		C967553D267A6671003A016A /* InspectorDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675515267A6671003A016A /* InspectorDataManager.swift */; };
-		C967553E267A6671003A016A /* InspectorInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675516267A6671003A016A /* InspectorInteractor.swift */; };
+		C967553E267A6671003A016A /* InspectInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675516267A6671003A016A /* InspectInteractor.swift */; };
 		C967553F267A6671003A016A /* GlanceRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675518267A6671003A016A /* GlanceRouter.swift */; };
 		C9675540267A6671003A016A /* GlanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967551A267A6671003A016A /* GlanceModel.swift */; };
 		C9675541267A6671003A016A /* Glance_Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967551B267A6671003A016A /* Glance_Protocols.swift */; };
@@ -56,15 +55,10 @@
 		C992AACD269D85320078B9A8 /* CellReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992AACC269D85320078B9A8 /* CellReminder.swift */; };
 		C992AACF269D85440078B9A8 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992AACE269D85440078B9A8 /* HeaderView.swift */; };
 		C9A02AF0267A6D5A00F8E85F /* LatimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A02AEF267A6D5A00F8E85F /* LatimeTests.swift */; };
-		C9B0626C2695C12200009383 /* InfoViewCountdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B062692695C12200009383 /* InfoViewCountdown.swift */; };
-		C9B0626D2695C12200009383 /* InfoViewDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B0626A2695C12200009383 /* InfoViewDate.swift */; };
-		C9B0626E2695C12200009383 /* InfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B0626B2695C12200009383 /* InfoField.swift */; };
-		C9B062722695C12C00009383 /* InputCountdownField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B0626F2695C12C00009383 /* InputCountdownField.swift */; };
-		C9B062742695C12C00009383 /* paddingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B062712695C12C00009383 /* paddingTextField.swift */; };
 		C9B9AD312689C46C00A182DA /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B9AD302689C46C00A182DA /* Indicator.swift */; };
 		C9C4A599269F55B4005224A2 /* ICContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C4A598269F55B4005224A2 /* ICContextMenu.swift */; };
 		C9DE3C412684A94900FE773D /* UIKit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DE3C402684A94900FE773D /* UIKit+Extension.swift */; };
-		C9E77DCF269CB2A500F8D582 /* InspectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E77DCE269CB2A500F8D582 /* InspectViewController.swift */; };
+		C9E77DCF269CB2A500F8D582 /* InspectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E77DCE269CB2A500F8D582 /* InspectVC.swift */; };
 		C9EA16072696D640005105F0 /* TimelineRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA16062696D640005105F0 /* TimelineRouter.swift */; };
 		C9EA16092696D64F005105F0 /* TimelineProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA16082696D64F005105F0 /* TimelineProtocols.swift */; };
 		C9EA160B2696D657005105F0 /* TimelinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA160A2696D657005105F0 /* TimelinePresenter.swift */; };
@@ -72,8 +66,6 @@
 		C9EA160F2696D67A005105F0 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA160E2696D67A005105F0 /* TimelineViewController.swift */; };
 		C9EA16122696DFAB005105F0 /* TimelineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA16112696DFAB005105F0 /* TimelineCell.swift */; };
 		C9EA16142697045B005105F0 /* TimelineCellToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA16132697045B005105F0 /* TimelineCellToday.swift */; };
-		C9EA161826971F40005105F0 /* CombinedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA161726971F40005105F0 /* CombinedPicker.swift */; };
-		C9EA161E26984116005105F0 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA161D26984116005105F0 /* Reminder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,9 +84,10 @@
 		C9076E56269ECDCC00C299DD /* DateProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProtocols.swift; sourceTree = "<group>"; };
 		C9076E58269F2C0000C299DD /* CellInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellInput.swift; sourceTree = "<group>"; };
 		C92109EC2699CF4B00B2FEF8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		C93DEBA1267E3A9A000072E2 /* RelativePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativePicker.swift; sourceTree = "<group>"; };
-		C93DEBA4267E462D000072E2 /* AbsolutePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsolutePicker.swift; sourceTree = "<group>"; };
-		C952081626A084E800A35DCD /* INspectVC+keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "INspectVC+keyboard.swift"; sourceTree = "<group>"; };
+		C952081626A084E800A35DCD /* InspectVC+keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InspectVC+keyboard.swift"; sourceTree = "<group>"; };
+		C952081826A0911300A35DCD /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
+		C952081A26A0916400A35DCD /* InputCountdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCountdown.swift; sourceTree = "<group>"; };
+		C952081C26A0919800A35DCD /* PaddingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextField.swift; sourceTree = "<group>"; };
 		C96754B8267A5FC1003A016A /* Latime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Latime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C96754BB267A5FC1003A016A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C96754BD267A5FC1003A016A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,15 +107,13 @@
 		C9675501267A6671003A016A /* Foundation+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Foundation+Extensions.swift"; sourceTree = "<group>"; };
 		C9675502267A6671003A016A /* CoreAnimation+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreAnimation+Extensions.swift"; sourceTree = "<group>"; };
 		C9675503267A6671003A016A /* Date+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
-		C9675507267A6671003A016A /* InspectorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorModel.swift; sourceTree = "<group>"; };
-		C9675508267A6671003A016A /* Inspector_Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inspector_Protocols.swift; sourceTree = "<group>"; };
-		C9675509267A6671003A016A /* InspectorPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorPresenter.swift; sourceTree = "<group>"; };
+		C9675507267A6671003A016A /* InspectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectModel.swift; sourceTree = "<group>"; };
+		C9675508267A6671003A016A /* Inspect_Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inspect_Protocols.swift; sourceTree = "<group>"; };
+		C9675509267A6671003A016A /* InspectPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectPresenter.swift; sourceTree = "<group>"; };
 		C967550C267A6671003A016A /* InputContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputContainer.swift; sourceTree = "<group>"; };
-		C967550D267A6671003A016A /* InspectorViewController+InputContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InspectorViewController+InputContainer.swift"; sourceTree = "<group>"; };
-		C9675512267A6671003A016A /* InspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorViewController.swift; sourceTree = "<group>"; };
-		C9675513267A6671003A016A /* InspectorRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorRouter.swift; sourceTree = "<group>"; };
+		C9675513267A6671003A016A /* InspectRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectRouter.swift; sourceTree = "<group>"; };
 		C9675515267A6671003A016A /* InspectorDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorDataManager.swift; sourceTree = "<group>"; };
-		C9675516267A6671003A016A /* InspectorInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorInteractor.swift; sourceTree = "<group>"; };
+		C9675516267A6671003A016A /* InspectInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectInteractor.swift; sourceTree = "<group>"; };
 		C9675518267A6671003A016A /* GlanceRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceRouter.swift; sourceTree = "<group>"; };
 		C967551A267A6671003A016A /* GlanceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceModel.swift; sourceTree = "<group>"; };
 		C967551B267A6671003A016A /* Glance_Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Glance_Protocols.swift; sourceTree = "<group>"; };
@@ -141,15 +132,10 @@
 		C992AACC269D85320078B9A8 /* CellReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellReminder.swift; sourceTree = "<group>"; };
 		C992AACE269D85440078B9A8 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C9A02AEF267A6D5A00F8E85F /* LatimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatimeTests.swift; sourceTree = "<group>"; };
-		C9B062692695C12200009383 /* InfoViewCountdown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewCountdown.swift; sourceTree = "<group>"; };
-		C9B0626A2695C12200009383 /* InfoViewDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewDate.swift; sourceTree = "<group>"; };
-		C9B0626B2695C12200009383 /* InfoField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoField.swift; sourceTree = "<group>"; };
-		C9B0626F2695C12C00009383 /* InputCountdownField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputCountdownField.swift; sourceTree = "<group>"; };
-		C9B062712695C12C00009383 /* paddingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = paddingTextField.swift; sourceTree = "<group>"; };
 		C9B9AD302689C46C00A182DA /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		C9C4A598269F55B4005224A2 /* ICContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICContextMenu.swift; sourceTree = "<group>"; };
 		C9DE3C402684A94900FE773D /* UIKit+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Extension.swift"; sourceTree = "<group>"; };
-		C9E77DCE269CB2A500F8D582 /* InspectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectViewController.swift; sourceTree = "<group>"; };
+		C9E77DCE269CB2A500F8D582 /* InspectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectVC.swift; sourceTree = "<group>"; };
 		C9EA16062696D640005105F0 /* TimelineRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineRouter.swift; sourceTree = "<group>"; };
 		C9EA16082696D64F005105F0 /* TimelineProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineProtocols.swift; sourceTree = "<group>"; };
 		C9EA160A2696D657005105F0 /* TimelinePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePresenter.swift; sourceTree = "<group>"; };
@@ -157,8 +143,6 @@
 		C9EA160E2696D67A005105F0 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		C9EA16112696DFAB005105F0 /* TimelineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCell.swift; sourceTree = "<group>"; };
 		C9EA16132697045B005105F0 /* TimelineCellToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCellToday.swift; sourceTree = "<group>"; };
-		C9EA161726971F40005105F0 /* CombinedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedPicker.swift; sourceTree = "<group>"; };
-		C9EA161D26984116005105F0 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,16 +163,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C9076E53269ECC5600C299DD /* Cell */ = {
+		C9076E53269ECC5600C299DD /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				C992AACA269D85260078B9A8 /* CellCalendar.swift */,
-				C9076E58269F2C0000C299DD /* CellInput.swift */,
-				C992AACC269D85320078B9A8 /* CellReminder.swift */,
 				C9076E54269ECCC400C299DD /* CellInfo.swift */,
-				C9076E56269ECDCC00C299DD /* DateProtocols.swift */,
+				C9076E58269F2C0000C299DD /* CellInput.swift */,
+				C992AACA269D85260078B9A8 /* CellCalendar.swift */,
+				C992AACC269D85320078B9A8 /* CellReminder.swift */,
 			);
-			path = Cell;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		C92109EA2699CE6700B2FEF8 /* aaa. ImagePicker */ = {
@@ -217,10 +200,13 @@
 		C92109EF2699D55300B2FEF8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C9EA161526971E5C005105F0 /* DatePickerCell */,
+				C992AACE269D85440078B9A8 /* HeaderView.swift */,
+				C952081826A0911300A35DCD /* InformationView.swift */,
+				C9076E51269ECA6700C299DD /* InfoView.swift */,
+				C952081A26A0916400A35DCD /* InputCountdown.swift */,
+				C952081C26A0919800A35DCD /* PaddingTextField.swift */,
+				C9076E53269ECC5600C299DD /* Cells */,
 				C977242F2694A5100050665A /* InputContainerField */,
-				C9675514267A6671003A016A /* Interactor */,
-				C9EA161B269840D8005105F0 /* ReminderField */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -325,7 +311,6 @@
 				C92109EA2699CE6700B2FEF8 /* aaa. ImagePicker */,
 				C92109EB2699CE6D00B2FEF8 /* aab. Camera */,
 				C952081526A07EEF00A35DCD /* aac. Unsplash */,
-				C9E77DCD269CB29300F8D582 /* ab. Inspector II */,
 				C9EA16052696D59A005105F0 /* b. Timeline */,
 			);
 			path = Modules;
@@ -334,26 +319,26 @@
 		C9675505267A6671003A016A /* aa. Inspect */ = {
 			isa = PBXGroup;
 			children = (
-				C9675508267A6671003A016A /* Inspector_Protocols.swift */,
-				C9675509267A6671003A016A /* InspectorPresenter.swift */,
-				C9675513267A6671003A016A /* InspectorRouter.swift */,
-				C9675512267A6671003A016A /* InspectorViewController.swift */,
-				C967550D267A6671003A016A /* InspectorViewController+InputContainer.swift */,
-				C9E77DCE269CB2A500F8D582 /* InspectViewController.swift */,
-				C952081626A084E800A35DCD /* INspectVC+keyboard.swift */,
-				C9675507267A6671003A016A /* InspectorModel.swift */,
+				C9675508267A6671003A016A /* Inspect_Protocols.swift */,
+				C9675509267A6671003A016A /* InspectPresenter.swift */,
+				C9675513267A6671003A016A /* InspectRouter.swift */,
+				C9E77DCE269CB2A500F8D582 /* InspectVC.swift */,
+				C952081626A084E800A35DCD /* InspectVC+keyboard.swift */,
+				C9675516267A6671003A016A /* InspectInteractor.swift */,
+				C9675507267A6671003A016A /* InspectModel.swift */,
+				C9675514267A6671003A016A /* DataManager */,
 				C92109EF2699D55300B2FEF8 /* Views */,
 			);
 			path = "aa. Inspect";
 			sourceTree = "<group>";
 		};
-		C9675514267A6671003A016A /* Interactor */ = {
+		C9675514267A6671003A016A /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
+				C9076E56269ECDCC00C299DD /* DateProtocols.swift */,
 				C9675515267A6671003A016A /* InspectorDataManager.swift */,
-				C9675516267A6671003A016A /* InspectorInteractor.swift */,
 			);
-			path = Interactor;
+			path = DataManager;
 			sourceTree = "<group>";
 		};
 		C9675517267A6671003A016A /* a. Glance */ = {
@@ -393,43 +378,6 @@
 			path = InputContainerField;
 			sourceTree = "<group>";
 		};
-		C9B062662695C01500009383 /* InfoPlate */ = {
-			isa = PBXGroup;
-			children = (
-				C9B062692695C12200009383 /* InfoViewCountdown.swift */,
-				C9B0626A2695C12200009383 /* InfoViewDate.swift */,
-				C9B0626B2695C12200009383 /* InfoField.swift */,
-			);
-			path = InfoPlate;
-			sourceTree = "<group>";
-		};
-		C9B062682695C05300009383 /* InputDate */ = {
-			isa = PBXGroup;
-			children = (
-				C9B0626F2695C12C00009383 /* InputCountdownField.swift */,
-				C9B062712695C12C00009383 /* paddingTextField.swift */,
-			);
-			path = InputDate;
-			sourceTree = "<group>";
-		};
-		C9C4A59A26A01F21005224A2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				C9076E51269ECA6700C299DD /* InfoView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		C9E77DCD269CB29300F8D582 /* ab. Inspector II */ = {
-			isa = PBXGroup;
-			children = (
-				C992AACE269D85440078B9A8 /* HeaderView.swift */,
-				C9076E53269ECC5600C299DD /* Cell */,
-				C9C4A59A26A01F21005224A2 /* View */,
-			);
-			path = "ab. Inspector II";
-			sourceTree = "<group>";
-		};
 		C9EA16052696D59A005105F0 /* b. Timeline */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,26 +398,6 @@
 				C9EA16132697045B005105F0 /* TimelineCellToday.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		C9EA161526971E5C005105F0 /* DatePickerCell */ = {
-			isa = PBXGroup;
-			children = (
-				C9EA161726971F40005105F0 /* CombinedPicker.swift */,
-				C93DEBA4267E462D000072E2 /* AbsolutePicker.swift */,
-				C93DEBA1267E3A9A000072E2 /* RelativePicker.swift */,
-				C9B062662695C01500009383 /* InfoPlate */,
-				C9B062682695C05300009383 /* InputDate */,
-			);
-			path = DatePickerCell;
-			sourceTree = "<group>";
-		};
-		C9EA161B269840D8005105F0 /* ReminderField */ = {
-			isa = PBXGroup;
-			children = (
-				C9EA161D26984116005105F0 /* Reminder.swift */,
-			);
-			path = ReminderField;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -573,43 +501,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C967553C267A6671003A016A /* InspectorRouter.swift in Sources */,
+				C967553C267A6671003A016A /* InspectRouter.swift in Sources */,
 				C96754F1267A6242003A016A /* CoreDataStack.swift in Sources */,
-				C9675532267A6671003A016A /* Inspector_Protocols.swift in Sources */,
+				C9675532267A6671003A016A /* Inspect_Protocols.swift in Sources */,
 				C9675535267A6671003A016A /* InputContainer.swift in Sources */,
-				C9675533267A6671003A016A /* InspectorPresenter.swift in Sources */,
+				C9675533267A6671003A016A /* InspectPresenter.swift in Sources */,
 				C9675530267A6671003A016A /* Date+Extensions.swift in Sources */,
 				C992AACB269D85260078B9A8 /* CellCalendar.swift in Sources */,
+				C952081D26A0919800A35DCD /* PaddingTextField.swift in Sources */,
 				C96754BC267A5FC1003A016A /* AppDelegate.swift in Sources */,
 				C96754BE267A5FC1003A016A /* SceneDelegate.swift in Sources */,
-				C9B0626E2695C12200009383 /* InfoField.swift in Sources */,
+				C952081B26A0916400A35DCD /* InputCountdown.swift in Sources */,
 				C9076E57269ECDCC00C299DD /* DateProtocols.swift in Sources */,
 				C9EA160D2696D65E005105F0 /* TimelineInteractor.swift in Sources */,
 				C9C4A599269F55B4005224A2 /* ICContextMenu.swift in Sources */,
 				C967554A267A6671003A016A /* GlanceCellPhase.swift in Sources */,
-				C9EA161826971F40005105F0 /* CombinedPicker.swift in Sources */,
-				C93DEBA2267E3A9A000072E2 /* RelativePicker.swift in Sources */,
 				C92109ED2699CF4B00B2FEF8 /* ImagePicker.swift in Sources */,
 				C9675540267A6671003A016A /* GlanceModel.swift in Sources */,
 				C9790490267E29C0008C8093 /* GlanceCountdownView.swift in Sources */,
-				C9B0626C2695C12200009383 /* InfoViewCountdown.swift in Sources */,
 				C9EA16092696D64F005105F0 /* TimelineProtocols.swift in Sources */,
 				C967554B267A6671003A016A /* GlanceDataManager.swift in Sources */,
 				C9675544267A6671003A016A /* GlanceContextMenu.swift in Sources */,
 				C967552F267A6671003A016A /* CoreAnimation+Extensions.swift in Sources */,
 				C9076E55269ECCC400C299DD /* CellInfo.swift in Sources */,
-				C9B062722695C12C00009383 /* InputCountdownField.swift in Sources */,
 				C967552D267A6671003A016A /* UIColor+Extensions.swift in Sources */,
 				C9076E59269F2C0000C299DD /* CellInput.swift in Sources */,
 				C9675542267A6671003A016A /* GlancePresenter.swift in Sources */,
-				C967553B267A6671003A016A /* InspectorViewController.swift in Sources */,
 				C9675529267A6671003A016A /* CoreData+Extensions.swift in Sources */,
 				C979048A267E26F6008C8093 /* GlanceCellParent.swift in Sources */,
 				C9EA16142697045B005105F0 /* TimelineCellToday.swift in Sources */,
 				C967553F267A6671003A016A /* GlanceRouter.swift in Sources */,
-				C9EA161E26984116005105F0 /* Reminder.swift in Sources */,
-				C9675531267A6671003A016A /* InspectorModel.swift in Sources */,
-				C967553E267A6671003A016A /* InspectorInteractor.swift in Sources */,
+				C9675531267A6671003A016A /* InspectModel.swift in Sources */,
+				C967553E267A6671003A016A /* InspectInteractor.swift in Sources */,
 				C967552B267A6671003A016A /* Notification+Extensions.swift in Sources */,
 				C9EA16122696DFAB005105F0 /* TimelineCell.swift in Sources */,
 				C9B9AD312689C46C00A182DA /* Indicator.swift in Sources */,
@@ -620,18 +543,15 @@
 				C967554C267A6671003A016A /* GlanceInteractor.swift in Sources */,
 				C9675546267A6671003A016A /* GlanceViewController.swift in Sources */,
 				C96754C6267A5FC2003A016A /* Latime.xcdatamodeld in Sources */,
-				C9675536267A6671003A016A /* InspectorViewController+InputContainer.swift in Sources */,
-				C9B0626D2695C12200009383 /* InfoViewDate.swift in Sources */,
 				C967552C267A6671003A016A /* UIFont+Extensions.swift in Sources */,
 				C97724312694A5290050665A /* ICPaddingTextField.swift in Sources */,
 				C9EA160F2696D67A005105F0 /* TimelineViewController.swift in Sources */,
 				C967552E267A6671003A016A /* Foundation+Extensions.swift in Sources */,
-				C9B062742695C12C00009383 /* paddingTextField.swift in Sources */,
 				C9076E52269ECA6700C299DD /* InfoView.swift in Sources */,
 				C9EA160B2696D657005105F0 /* TimelinePresenter.swift in Sources */,
-				C9E77DCF269CB2A500F8D582 /* InspectViewController.swift in Sources */,
-				C952081726A084E800A35DCD /* INspectVC+keyboard.swift in Sources */,
-				C93DEBA5267E462D000072E2 /* AbsolutePicker.swift in Sources */,
+				C9E77DCF269CB2A500F8D582 /* InspectVC.swift in Sources */,
+				C952081726A084E800A35DCD /* InspectVC+keyboard.swift in Sources */,
+				C952081926A0911300A35DCD /* InformationView.swift in Sources */,
 				C992AACD269D85320078B9A8 /* CellReminder.swift in Sources */,
 				C9DE3C412684A94900FE773D /* UIKit+Extension.swift in Sources */,
 			);
