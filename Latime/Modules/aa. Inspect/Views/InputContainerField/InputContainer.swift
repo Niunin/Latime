@@ -66,7 +66,6 @@ class InputContainer: UIView {
         viewController = view
         self.delegate = delegate
         setupVeiws()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -97,13 +96,12 @@ class InputContainer: UIView {
     
     func configureConstraints() {
         setupConstraints()
-        //                setupBlur()
+        setupBlur()
     }
     
     // MARK: helpers
     
     private func configureContainerHeight(_ height: CGFloat) {
-        bottomConstraint.isActive = false
         if height <= 0 {
             setContainerDown()
         } else if titleTextField.isFirstResponder {
@@ -112,6 +110,7 @@ class InputContainer: UIView {
     }
     
     private func setContainerDown() {
+        bottomConstraint.isActive = false
         bottomConstraint = callImagePickerButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -8)
         bottomConstraint.isActive = true
         imagePreview.layer.cornerRadius = 10
@@ -120,6 +119,7 @@ class InputContainer: UIView {
     }
     
     private func setContainerUp(_ height: CGFloat) {
+        bottomConstraint.isActive = false
         bottomConstraint = callImagePickerButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
         bottomConstraint.constant -= height
         bottomConstraint.isActive = true
@@ -262,6 +262,8 @@ private extension InputContainer {
     
 }
 
+// MARK: ImagePicker ContextMenu protocol
+
 extension InputContainer: ImagePickerContextMenu {
     func photoPicker() {
         delegate.callCamera()
@@ -284,10 +286,7 @@ extension InputContainer: ImagePickerContextMenu {
 // MARK: - UIContextMenu Delegate
 
 extension InputContainer: UIContextMenuInteractionDelegate {
-    
-    
-    
-    
+
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
                                 configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(  identifier: nil,

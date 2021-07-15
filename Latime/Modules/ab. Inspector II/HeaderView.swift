@@ -17,8 +17,6 @@ public class TitleSegmentedView: UICollectionReusableView {
         setupSelf()
         setupSegmentedControl(segmentedControl)
         setupConstraints()
-        
-        print("SC")
     }
     
     public required init?(coder: NSCoder) {

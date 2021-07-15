@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - Object
 
-class OrthogonalScrollBehaviorViewController: UIViewController {
+class InspectViewController: UIViewController {
     
     enum Section: String, CaseIterable, Hashable {
         
@@ -24,48 +24,109 @@ class OrthogonalScrollBehaviorViewController: UIViewController {
     
     // MARK: properties
     
-    var currentSegment: Int? {
-        didSet {
-            guard  let n =  currentSegment else { return }
-            scrollTo(n)
-        }
-    }
+    /// Hierarchu
+    var presenter: InspectorPresenterProtocol!
+    private var model: InspectorModel!
     
+    /// Views and controls
     var dataSource: UICollectionViewDiffableDataSource<Int, Section>! = nil
     var collectionView: UICollectionView! = nil
-    @IBOutlet var pageControl: UIPageControl!
+    internal lazy var inputContainer = InputContainer(view: self, delegate: self)
+    internal var tap: UITapGestureRecognizer!
+    
+    // MARK: life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Orthogonal Section Behaviors"
         configureHierarchy()
         configureDataSource()
-        view.frame = CGRect(x: 0, y: 0, width: 400, height: 700)
-        let ip = IndexPath(row: 1, section: 0)
     }
     
-    func scrollTo(_ segment: Int) {
-        self.collectionView.layoutIfNeeded()
-        
-        self.collectionView.isPagingEnabled = false
-        
-        if segment == 0 {
-            let ip = IndexPath(row: 0, section: 1)
-            self.collectionView.scrollToItem(at: ip, at: .centeredHorizontally, animated: true)
-            
-        } else {
-            let ip = IndexPath(row: 1, section: 1)
-            self.collectionView.scrollToItem(at: ip, at: .centeredHorizontally, animated: true)
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigationBar()
     }
     
-    var x: CGFloat = 100
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupObservers()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presenter.screenWillClose()
+        removeNotifications()
+        removeGestureRecognizers()
+    }
+    
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        // FIXME: Bad layout
+        inputContainer.configureConstraints()
+    }
+    
+}
+
+// MARK: - InspectorView Protocol
+
+extension InspectViewController: InspectorViewProtocol {
+    
+    func configureView(withModel: InspectorModel) {
+        self.model = withModel
+    }
+    
+    func configureView(withImage: UIImage?) {
+        inputContainer.setImage(withImage)
+    }
+    
+}
+
+// MARK: Navigation Controller
+
+extension InspectViewController {
+    
+    func setupNavigationBar() {
+        navigationItem.title = "Point in time"
+        let doneButton = UIBarButtonItem( barButtonSystemItem: .done,
+                                          target: self, action: #selector(doneButtonAction)
+        )
+        
+        let removeButton = UIBarButtonItem(
+            image: UIImage(systemName: "trash"), style: .plain,
+            target: self, action: #selector(removeButtonAction)
+        )
+        removeButton.tintColor = .systemRed
+        navigationItem.leftBarButtonItems = [removeButton]
+        navigationItem.rightBarButtonItems = [doneButton]
+        navigationController?.navigationBar.tintColor = UIColor.myAccent
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        navigationController?.navigationBar.tintColor = UIColor.myAccent
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.topItem?.title = "Point in time"
+        
+        navigationController?.view.backgroundColor = .clear
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) //UIImage.init(named: "transparent.png")
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    @IBAction func doneButtonAction() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func removeButtonAction() {
+        presenter.buttonPressedRemove()
+        dismiss(animated: true, completion: nil)
+    }
     
 }
 
 // MARK: - Layout
 
-extension OrthogonalScrollBehaviorViewController {
+extension InspectViewController {
     
     func createLayout() -> UICollectionViewLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
@@ -95,7 +156,6 @@ extension OrthogonalScrollBehaviorViewController {
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: 1)
             let section = NSCollectionLayoutSection(group: group)
             section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 20)
-
             return section
         }()
         
@@ -106,7 +166,6 @@ extension OrthogonalScrollBehaviorViewController {
                 return section1
             }
         }
-        
         let layout = UICollectionViewCompositionalLayout(
             sectionProvider: sectionProvider,
             configuration: config)
@@ -115,10 +174,9 @@ extension OrthogonalScrollBehaviorViewController {
     
 }
 
-
 // MARK: - DataSource
 
-extension OrthogonalScrollBehaviorViewController {
+extension InspectViewController {
     
     func configureHierarchy() {
         let layout = createLayout()
@@ -126,7 +184,18 @@ extension OrthogonalScrollBehaviorViewController {
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
         collectionView.delegate = self
+
         view.addSubview(collectionView)
+        view.addSubview(inputContainer)
+        
+        setupInputContainer()
+    }
+    
+    func setupInputContainer() {
+//        inputContainer.setTitle(model.title)
+//        inputContainer.setImage(model.image)
+        inputContainer.setTitle("title")
+        inputContainer.setImage(nil)
     }
     
     func configureDataSource() {
@@ -187,81 +256,35 @@ extension OrthogonalScrollBehaviorViewController {
     
 }
 
-extension OrthogonalScrollBehaviorViewController: TitleSegmentedDelegate {
+extension InspectViewController: TitleSegmentedDelegate {
+    
     func currentSegment(_ segment: Int) {
-        let ip = IndexPath(row: segment, section: 0)
-        
-
         var snapshot = NSDiffableDataSourceSnapshot<Int, Section>()
         snapshot.appendSections([0])
-//        snapshot.appendItems([.info])
         if segment == 0 {
             snapshot.appendItems([.info])
             snapshot.appendSections([1])
-            snapshot.appendItems([.calendar])
-            snapshot.appendItems([.reminder])
-            
+            snapshot.appendItems([.calendar, .reminder])
         } else {
             snapshot.appendItems([.smallinfo])
             snapshot.appendSections([1])
-            snapshot.appendItems([.countdown])
-            snapshot.appendItems([.reminder])
-            
+            snapshot.appendItems([.countdown, .reminder])
         }
-        
-        guard let xCell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? DateIntervalCell else {
-            print("goddamn")
-            return
-        }
+        guard let xCell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? DateIntervalCell else { return }
         if segment == 0 {
             xCell.setModeTo(.absolute)
         } else {
             xCell.setModeTo(.relative)
         }
-        
-//        let context = UICollectionViewLayoutInvalidationContext()
-//        context.invalidateItems(at: [IndexPath(item: 0, section: 0)])
-//        collectionView.collectionViewLayout.invalidateLayout(with: context)
-        
         dataSource.apply(snapshot, animatingDifferences: true )
-        
-        
-        
-        
-
-        return
-        
-        //        collectionView.collectionViewLayout.invalidateLayout()
-        //        collectionView.setCollectionViewLayout(createLayout(), animated: true)
-        
-        
-        
-        //collectionView.scrollToItem(at: ip, at: .top, animated: true)
-        
-        
-        
-        
-        //        // ------------------
-        guard let cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? DateCell else {
-            print("goddamn")
-            return
-        }
-        //        if segment == 0 {
-        //            cell.setAsMain(true)
-        //        } else {
-        //            cell.setAsMain(false)
-        //        }
-        //        collectionView.collectionViewLayout.invalidateLayout()
-        
     }
 }
 
 // MARK: - UICollectionView Delegate
 
-extension OrthogonalScrollBehaviorViewController: UICollectionViewDelegate {
+extension InspectViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(" • ")
         collectionView.deselectItem(at: indexPath, animated: true)
     }
     

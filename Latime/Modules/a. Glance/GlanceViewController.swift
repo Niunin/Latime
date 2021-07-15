@@ -14,7 +14,7 @@ class GlanceViewController: UITableViewController {
     
     // MARK: properties
     
-    /// VIPER
+    /// 
     var presenter: GlancePresenterProtocol!
     
     private var model: [GlanceModel] = []

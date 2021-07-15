@@ -14,6 +14,7 @@
 		C92109ED2699CF4B00B2FEF8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92109EC2699CF4B00B2FEF8 /* ImagePicker.swift */; };
 		C93DEBA2267E3A9A000072E2 /* RelativePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEBA1267E3A9A000072E2 /* RelativePicker.swift */; };
 		C93DEBA5267E462D000072E2 /* AbsolutePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DEBA4267E462D000072E2 /* AbsolutePicker.swift */; };
+		C952081726A084E800A35DCD /* INspectVC+keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952081626A084E800A35DCD /* INspectVC+keyboard.swift */; };
 		C96754BC267A5FC1003A016A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96754BB267A5FC1003A016A /* AppDelegate.swift */; };
 		C96754BE267A5FC1003A016A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96754BD267A5FC1003A016A /* SceneDelegate.swift */; };
 		C96754C6267A5FC2003A016A /* Latime.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C96754C4267A5FC2003A016A /* Latime.xcdatamodeld */; };
@@ -31,7 +32,6 @@
 		C9675531267A6671003A016A /* InspectorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675507267A6671003A016A /* InspectorModel.swift */; };
 		C9675532267A6671003A016A /* Inspector_Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675508267A6671003A016A /* Inspector_Protocols.swift */; };
 		C9675533267A6671003A016A /* InspectorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675509267A6671003A016A /* InspectorPresenter.swift */; };
-		C9675534267A6671003A016A /* UnsplashLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967550B267A6671003A016A /* UnsplashLogo.swift */; };
 		C9675535267A6671003A016A /* InputContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967550C267A6671003A016A /* InputContainer.swift */; };
 		C9675536267A6671003A016A /* InspectorViewController+InputContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967550D267A6671003A016A /* InspectorViewController+InputContainer.swift */; };
 		C967553B267A6671003A016A /* InspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675512267A6671003A016A /* InspectorViewController.swift */; };
@@ -64,7 +64,7 @@
 		C9B9AD312689C46C00A182DA /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B9AD302689C46C00A182DA /* Indicator.swift */; };
 		C9C4A599269F55B4005224A2 /* ICContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C4A598269F55B4005224A2 /* ICContextMenu.swift */; };
 		C9DE3C412684A94900FE773D /* UIKit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DE3C402684A94900FE773D /* UIKit+Extension.swift */; };
-		C9E77DCF269CB2A500F8D582 /* ModernVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E77DCE269CB2A500F8D582 /* ModernVC.swift */; };
+		C9E77DCF269CB2A500F8D582 /* InspectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E77DCE269CB2A500F8D582 /* InspectViewController.swift */; };
 		C9EA16072696D640005105F0 /* TimelineRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA16062696D640005105F0 /* TimelineRouter.swift */; };
 		C9EA16092696D64F005105F0 /* TimelineProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA16082696D64F005105F0 /* TimelineProtocols.swift */; };
 		C9EA160B2696D657005105F0 /* TimelinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA160A2696D657005105F0 /* TimelinePresenter.swift */; };
@@ -94,6 +94,7 @@
 		C92109EC2699CF4B00B2FEF8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		C93DEBA1267E3A9A000072E2 /* RelativePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativePicker.swift; sourceTree = "<group>"; };
 		C93DEBA4267E462D000072E2 /* AbsolutePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsolutePicker.swift; sourceTree = "<group>"; };
+		C952081626A084E800A35DCD /* INspectVC+keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "INspectVC+keyboard.swift"; sourceTree = "<group>"; };
 		C96754B8267A5FC1003A016A /* Latime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Latime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C96754BB267A5FC1003A016A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C96754BD267A5FC1003A016A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,7 +117,6 @@
 		C9675507267A6671003A016A /* InspectorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorModel.swift; sourceTree = "<group>"; };
 		C9675508267A6671003A016A /* Inspector_Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inspector_Protocols.swift; sourceTree = "<group>"; };
 		C9675509267A6671003A016A /* InspectorPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorPresenter.swift; sourceTree = "<group>"; };
-		C967550B267A6671003A016A /* UnsplashLogo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashLogo.swift; sourceTree = "<group>"; };
 		C967550C267A6671003A016A /* InputContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputContainer.swift; sourceTree = "<group>"; };
 		C967550D267A6671003A016A /* InspectorViewController+InputContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InspectorViewController+InputContainer.swift"; sourceTree = "<group>"; };
 		C9675512267A6671003A016A /* InspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorViewController.swift; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 		C9B9AD302689C46C00A182DA /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		C9C4A598269F55B4005224A2 /* ICContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICContextMenu.swift; sourceTree = "<group>"; };
 		C9DE3C402684A94900FE773D /* UIKit+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Extension.swift"; sourceTree = "<group>"; };
-		C9E77DCE269CB2A500F8D582 /* ModernVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernVC.swift; sourceTree = "<group>"; };
+		C9E77DCE269CB2A500F8D582 /* InspectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectViewController.swift; sourceTree = "<group>"; };
 		C9EA16062696D640005105F0 /* TimelineRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineRouter.swift; sourceTree = "<group>"; };
 		C9EA16082696D64F005105F0 /* TimelineProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineProtocols.swift; sourceTree = "<group>"; };
 		C9EA160A2696D657005105F0 /* TimelinePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePresenter.swift; sourceTree = "<group>"; };
@@ -223,6 +223,13 @@
 				C9EA161B269840D8005105F0 /* ReminderField */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C952081526A07EEF00A35DCD /* aac. Unsplash */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "aac. Unsplash";
 			sourceTree = "<group>";
 		};
 		C96754AF267A5FC1003A016A = {
@@ -314,16 +321,17 @@
 			isa = PBXGroup;
 			children = (
 				C9675517267A6671003A016A /* a. Glance */,
-				C9675505267A6671003A016A /* aa. Inspector */,
+				C9675505267A6671003A016A /* aa. Inspect */,
 				C92109EA2699CE6700B2FEF8 /* aaa. ImagePicker */,
 				C92109EB2699CE6D00B2FEF8 /* aab. Camera */,
+				C952081526A07EEF00A35DCD /* aac. Unsplash */,
+				C9E77DCD269CB29300F8D582 /* ab. Inspector II */,
 				C9EA16052696D59A005105F0 /* b. Timeline */,
-				C9E77DCD269CB29300F8D582 /* c. NewHellaScreen */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
 		};
-		C9675505267A6671003A016A /* aa. Inspector */ = {
+		C9675505267A6671003A016A /* aa. Inspect */ = {
 			isa = PBXGroup;
 			children = (
 				C9675508267A6671003A016A /* Inspector_Protocols.swift */,
@@ -331,10 +339,12 @@
 				C9675513267A6671003A016A /* InspectorRouter.swift */,
 				C9675512267A6671003A016A /* InspectorViewController.swift */,
 				C967550D267A6671003A016A /* InspectorViewController+InputContainer.swift */,
+				C9E77DCE269CB2A500F8D582 /* InspectViewController.swift */,
+				C952081626A084E800A35DCD /* INspectVC+keyboard.swift */,
 				C9675507267A6671003A016A /* InspectorModel.swift */,
 				C92109EF2699D55300B2FEF8 /* Views */,
 			);
-			path = "aa. Inspector";
+			path = "aa. Inspect";
 			sourceTree = "<group>";
 		};
 		C9675514267A6671003A016A /* Interactor */ = {
@@ -379,7 +389,6 @@
 				C967550C267A6671003A016A /* InputContainer.swift */,
 				C97724302694A5290050665A /* ICPaddingTextField.swift */,
 				C9C4A598269F55B4005224A2 /* ICContextMenu.swift */,
-				C967550B267A6671003A016A /* UnsplashLogo.swift */,
 			);
 			path = InputContainerField;
 			sourceTree = "<group>";
@@ -411,15 +420,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		C9E77DCD269CB29300F8D582 /* c. NewHellaScreen */ = {
+		C9E77DCD269CB29300F8D582 /* ab. Inspector II */ = {
 			isa = PBXGroup;
 			children = (
-				C9C4A59A26A01F21005224A2 /* View */,
-				C9076E53269ECC5600C299DD /* Cell */,
-				C9E77DCE269CB2A500F8D582 /* ModernVC.swift */,
 				C992AACE269D85440078B9A8 /* HeaderView.swift */,
+				C9076E53269ECC5600C299DD /* Cell */,
+				C9C4A59A26A01F21005224A2 /* View */,
 			);
-			path = "c. NewHellaScreen";
+			path = "ab. Inspector II";
 			sourceTree = "<group>";
 		};
 		C9EA16052696D59A005105F0 /* b. Timeline */ = {
@@ -611,7 +619,6 @@
 				C967553D267A6671003A016A /* InspectorDataManager.swift in Sources */,
 				C967554C267A6671003A016A /* GlanceInteractor.swift in Sources */,
 				C9675546267A6671003A016A /* GlanceViewController.swift in Sources */,
-				C9675534267A6671003A016A /* UnsplashLogo.swift in Sources */,
 				C96754C6267A5FC2003A016A /* Latime.xcdatamodeld in Sources */,
 				C9675536267A6671003A016A /* InspectorViewController+InputContainer.swift in Sources */,
 				C9B0626D2695C12200009383 /* InfoViewDate.swift in Sources */,
@@ -622,7 +629,8 @@
 				C9B062742695C12C00009383 /* paddingTextField.swift in Sources */,
 				C9076E52269ECA6700C299DD /* InfoView.swift in Sources */,
 				C9EA160B2696D657005105F0 /* TimelinePresenter.swift in Sources */,
-				C9E77DCF269CB2A500F8D582 /* ModernVC.swift in Sources */,
+				C9E77DCF269CB2A500F8D582 /* InspectViewController.swift in Sources */,
+				C952081726A084E800A35DCD /* INspectVC+keyboard.swift in Sources */,
 				C93DEBA5267E462D000072E2 /* AbsolutePicker.swift in Sources */,
 				C992AACD269D85320078B9A8 /* CellReminder.swift in Sources */,
 				C9DE3C412684A94900FE773D /* UIKit+Extension.swift in Sources */,

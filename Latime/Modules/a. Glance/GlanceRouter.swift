@@ -50,8 +50,11 @@ extension GlanceRouter: GlanceRouterProtocol {
     func showPreferences() {
         //let vc = PreferencesViewController()
         //entry.navigationController?.pushViewController(vc, animated: true)
-        let vc = OrthogonalScrollBehaviorViewController()
-        entry.navigationController?.pushViewController(vc, animated: true)
+        let vc = InspectViewController()
+        vc.modalPresentationStyle = .formSheet // .formSheet
+        vc.modalTransitionStyle = .coverVertical
+        entry.present(vc, animated: true, completion: nil)
+
     }
     
     func showInspector(model: TimePoint) {

@@ -22,7 +22,7 @@ class InspectorRouter {
                       model: TimePoint
     ) -> inspectorEntryPoint {
         let router = InspectorRouter()
-        let view = InspectorViewController()
+        let view = InspectViewController()
         let presenter = InspectorPresenter()
         let interactor = InspectorInteractor()
         let dataManager = InspectorDataManager(context: context, model: model)
@@ -59,15 +59,10 @@ extension InspectorRouter: InspectorRouterProtocol {
     }
     
     func showImagePicker() {
-        print("IMgae Picker")
         let viewController = ImagePicker()
         viewController.modalPresentationStyle = .formSheet // .formSheet
         viewController.modalTransitionStyle = .coverVertical
         entry.present(viewController, animated: true, completion: nil)
-        
-//        let navigationController =  UINavigationController(rootViewController: viewController)
-//        navigationController.navigationBar.topItem?.title  = "Image picker"
-//        entry.present(navigationController, animated: true)
     }
     
 }
