@@ -180,7 +180,7 @@ extension GlanceViewController {
 
 // MARK: - GlanceContextMenu protocol
 
-extension GlanceViewController: GlanceContextMenuProtocol {
+extension GlanceViewController: GlanceContextMenu {
     
     func performInspect(_ indexPath: IndexPath) {
         presenter.showInspector(for: indexPath.row)

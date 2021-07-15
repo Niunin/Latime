@@ -12,6 +12,8 @@ import UIKit
 protocol InputContainerDelegate: UITextFieldDelegate {
     
     func callImagePicker()
+    func callCamera()
+    func callUnsplash()
     func removeImage()
     
 }
@@ -175,27 +177,6 @@ private extension InputContainer {
         button.showsMenuAsPrimaryAction = true
     }
     
-    func imageAction() -> UIAction {
-        return UIAction(title: NSLocalizedString("Photo", comment: ""),
-                        image: UIImage(systemName: "camera.fill")) { action in
-            print("v")
-        }
-    }
-    
-    func photoAction() -> UIAction {
-        return UIAction(title: NSLocalizedString("Image", comment: ""),
-                        image: UIImage(systemName: "photo.fill")) { action in
-            print("v")
-        }
-    }
-    
-    func unsplashAction() -> UIAction {
-        return UIAction(title: NSLocalizedString("Unsplash", comment: ""),
-                        image: UIImage(systemName: "camera.aperture")) { action in
-            print("v")
-        }
-    }
-    
     @IBAction func pickImage() {
         delegate.callImagePicker()
     }
@@ -281,16 +262,31 @@ private extension InputContainer {
     
 }
 
+extension InputContainer: ImagePickerContextMenu {
+    func photoPicker() {
+        delegate.callCamera()
+    }
+    
+    func imagePicker() {
+        delegate.callImagePicker()
+    }
+    
+    func unsplashPicker() {
+        delegate.callUnsplash()
+    }
+    
+    func removeImage() {
+        delegate.removeImage()
+    }
+    
+}
+
 // MARK: - UIContextMenu Delegate
 
 extension InputContainer: UIContextMenuInteractionDelegate {
-    private var performRemoveImage: UIAction {
-        UIAction(title: "Delete".localized,
-                 image: UIImage(systemName: "trash"),
-                 attributes: .destructive) { [self] _ in
-            delegate.removeImage()
-        }
-    }
+    
+    
+    
     
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
                                 configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {

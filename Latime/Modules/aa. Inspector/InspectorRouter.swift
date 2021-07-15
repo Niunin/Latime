@@ -46,11 +46,27 @@ class InspectorRouter {
 // MARK: - InspectorRouter Protocol
 
 extension InspectorRouter: InspectorRouterProtocol {
+    func showCamera() {
+        print("camera")
+    }
     
-    func showImagePicker() {
+    func showUnsplash() {
+        print("Unsplash")
 //        let viewController = UnsplashRouter.build()
 //        let navigationController =  UINavigationController(rootViewController: viewController)
 //        navigationController.navigationBar.topItem?.title  = "Unsplash picker"
+//        entry.present(navigationController, animated: true)
+    }
+    
+    func showImagePicker() {
+        print("IMgae Picker")
+        let viewController = ImagePicker()
+        viewController.modalPresentationStyle = .formSheet // .formSheet
+        viewController.modalTransitionStyle = .coverVertical
+        entry.present(viewController, animated: true, completion: nil)
+        
+//        let navigationController =  UINavigationController(rootViewController: viewController)
+//        navigationController.navigationBar.topItem?.title  = "Image picker"
 //        entry.present(navigationController, animated: true)
     }
     

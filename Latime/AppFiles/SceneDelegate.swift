@@ -26,18 +26,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         phases.image = UIImage(named: "TBPhases")
         
         // ViewController
-        let viewController = GlanceRouter.build(context: context!)
-        let nestedVC =  UINavigationController(rootViewController: viewController)
-        nestedVC.navigationBar.topItem?.title = "Latime"
-        nestedVC.navigationBar.prefersLargeTitles = true
-        nestedVC.tabBarItem = timepoints
+        let timepointsVC = GlanceRouter.build(context: context!)
+        let timepointsNC =  UINavigationController(rootViewController: timepointsVC)
+        timepointsNC.navigationBar.topItem?.title = "Latime"
+        timepointsNC.navigationBar.prefersLargeTitles = true
+        timepointsNC.tabBarItem = timepoints
         
-        let flatVC = TimelineRouter.build(context: context!)
-        //        flatVC.view.backgroundColor = .systemGray5
-        flatVC.tabBarItem = phases
+        let phasesVC = TimelineRouter.build(context: context!)
+        let phasesNC =  UINavigationController(rootViewController: phasesVC)
+        phasesNC.navigationBar.topItem?.title = "Latime"
+        phasesNC.navigationBar.prefersLargeTitles = true
+        phasesNC.tabBarItem = phases
         
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [nestedVC, flatVC]
+        tabBarController.viewControllers = [timepointsNC, phasesNC]
         tabBarController.tabBar.barTintColor = UIColor.white
         tabBarController.selectedIndex = 0
         

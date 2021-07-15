@@ -11,12 +11,20 @@ import UIKit
 
 extension InspectorViewController: InputContainerDelegate {
     
-    func removeImage() {
-        presenter.buttonPressedImageRemove()
-    }
-    
     @IBAction func callImagePicker() {
         presenter.buttonPressedImagePicker()
+    }
+    
+    func callCamera() {
+        presenter.buttonPressedCamera()
+    }
+    
+    func callUnsplash() {
+        presenter.buttonPressedUnsplash()
+    }
+    
+    func removeImage() {
+        presenter.buttonPressedImageRemove()
     }
     
 }

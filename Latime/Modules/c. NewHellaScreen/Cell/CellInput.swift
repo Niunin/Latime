@@ -1,15 +1,14 @@
 //
-//  RelativePicker2.swift
+//  CellInput.swift
 //  Latime
 //
-//  Created by Andrei Niunin on 19.06.2021.
+//  Created by Andrei Niunin on 14.07.2021.
 //
 
 import UIKit
-
 // MARK: - Object
 
-class RelativeDatePickerViewController: UIViewController {
+class RelativeDateInput: UICollectionViewCell {
     
     struct Sizes {
         
@@ -23,10 +22,8 @@ class RelativeDatePickerViewController: UIViewController {
         
         static let titleSpacingBefore: CGFloat = 40
         static let titleSpacingAfter: CGFloat = 5
-        
     }
     
-    let reuseIdentifier: String = "RelativePickerTitle".localized
     weak var delegate: InspectorDatePickerDelegate!
     
     // TODO: rename
@@ -34,7 +31,6 @@ class RelativeDatePickerViewController: UIViewController {
     
     /// views
     private let stack = UIStackView()
-    private let infoDate = DateIntervalView()
     private let dayField = InputDateField()
     private let hourField = InputDateField()
     private let minutesField = InputDateField()
@@ -43,8 +39,7 @@ class RelativeDatePickerViewController: UIViewController {
     
     // MARK: life cycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func didMoveToSuperview() {
         setupViews()
     }
     
@@ -58,10 +53,11 @@ class RelativeDatePickerViewController: UIViewController {
 
 // MARK: - Setup Views
 
-private extension RelativeDatePickerViewController {
+private extension RelativeDateInput {
     
     func setupViews() {
         setupSelf()
+        
         setupDayField()
         setupHourField()
         setupMinuteField()
@@ -72,9 +68,9 @@ private extension RelativeDatePickerViewController {
     }
     
     func setupSelf() {
-        view.backgroundColor = UIColor.white
-        view.addSubview(link)
-        view.addSubview(stack)
+        contentView.backgroundColor = UIColor.white
+        contentView.addSubview(link)
+        contentView.addSubview(stack)
     }
     
     func setupDayField() {
@@ -99,12 +95,9 @@ private extension RelativeDatePickerViewController {
         stack.spacing = 16
         stack.alignment = .fill
         
-        stack.addArrangedSubview(infoDate)
         stack.addArrangedSubview(dayField)
         stack.addArrangedSubview(hourField)
         stack.addArrangedSubview(minutesField)
-        
-        stack.setCustomSpacing(30, after: infoDate)
     }
     
     func setupLink() {
@@ -115,8 +108,8 @@ private extension RelativeDatePickerViewController {
         stack.translatesAutoresizingMaskIntoConstraints = false
         link.translatesAutoresizingMaskIntoConstraints = false
         
-        let sa = view.safeAreaLayoutGuide
-        let mg = view.layoutMarginsGuide
+        let sa = contentView.safeAreaLayoutGuide
+        let mg = contentView.layoutMarginsGuide
         
         let constraints = [
             stack.topAnchor.constraint(equalTo: sa.topAnchor),
@@ -137,7 +130,7 @@ private extension RelativeDatePickerViewController {
 
 // MARK: - InspectorDatePicker Protocol
 
-extension RelativeDatePickerViewController: InspectorDatePickerProtocol {
+extension RelativeDateInput: InspectorDatePickerProtocol {
     
     func setDate(_ date: Date) {
         
@@ -147,7 +140,7 @@ extension RelativeDatePickerViewController: InspectorDatePickerProtocol {
 
 // MARK: UITextField Delegate
 
-extension RelativeDatePickerViewController: UITextFieldDelegate {
+extension RelativeDateInput: UITextFieldDelegate {
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         // TODO: fix this color
         textField.layer.borderColor = UIColor.black.cgColor
@@ -209,6 +202,7 @@ extension RelativeDatePickerViewController: UITextFieldDelegate {
     }
     
 }
+
 
 
 

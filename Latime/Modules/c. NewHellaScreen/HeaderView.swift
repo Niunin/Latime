@@ -35,7 +35,7 @@ public extension TitleSegmentedView {
     func setupSegmentedControl(_ segmentedControl: UISegmentedControl) {
         segmentedControl.insertSegment(withTitle: "Absolute", at: 0, animated: false)
         segmentedControl.insertSegment(withTitle: "Relative", at: 1, animated: false)
-//        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(segmentDidChange(_:)), for: .valueChanged)
     }
     

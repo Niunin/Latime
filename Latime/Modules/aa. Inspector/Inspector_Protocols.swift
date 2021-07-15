@@ -16,7 +16,10 @@ protocol InspectorRouterProtocol: AnyObject {
     var entry: inspectorEntryPoint! { get set }
     
     static func build(context: NSManagedObjectContext,model: TimePoint) -> inspectorEntryPoint
+    
     func showImagePicker()
+    func showCamera()
+    func showUnsplash()
     
 }
 
@@ -42,9 +45,11 @@ protocol InspectorPresenterProtocol: AnyObject {
     func update(date : Date)
     func configureView(withImage: UIImage?)
     
-    func buttonPressedImagePicker()
-    func buttonPressedImageRemove()
     func buttonPressedRemove()
+    func buttonPressedImagePicker()
+    func buttonPressedCamera()
+    func buttonPressedUnsplash()
+    func buttonPressedImageRemove()
     func screenWillClose()
     
 }
@@ -88,7 +93,7 @@ protocol InspectorDatePickerDelegate: AnyObject {
 
 protocol InspectorDatePickerProtocol: AnyObject {
     
-    var reuseIdentifier: String { get }
+//    var reuseIdentifier: String { get }
     var delegate: InspectorDatePickerDelegate! { get set }
     func setDate(_ date : Date)
     

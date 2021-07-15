@@ -33,7 +33,7 @@ class InspectorPresenter {
 // MARK: - InspectorPresenter Protocol
 
 extension InspectorPresenter: InspectorPresenterProtocol {
-    
+  
     func buttonPressedRemove() {
         interactor.delete()
     }
@@ -44,6 +44,14 @@ extension InspectorPresenter: InspectorPresenterProtocol {
     
     func buttonPressedImagePicker() {
         router.showImagePicker()
+    }
+    
+    func buttonPressedCamera() {
+        router.showCamera()
+    }
+    
+    func buttonPressedUnsplash() {
+        router.showUnsplash()
     }
     
     func buttonPressedImageRemove() {

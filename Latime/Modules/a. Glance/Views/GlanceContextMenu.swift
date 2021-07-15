@@ -10,7 +10,7 @@ import UIKit.UIAction
 
 // MARK: - Protocol
 
-protocol GlanceContextMenuProtocol {
+protocol GlanceContextMenu {
     
     func performInspect(_ indexPath: IndexPath)
     func performAddSubRow(_ indexPath: IndexPath)
@@ -20,7 +20,7 @@ protocol GlanceContextMenuProtocol {
 
 // MARK: - Protocol Extension
 
-extension GlanceContextMenuProtocol {
+extension GlanceContextMenu {
     
     func inspectAction(_ indexPath: IndexPath) -> UIAction {
         return UIAction(title: "EditTitle".localized,

@@ -12,6 +12,7 @@ class DateCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        contentView.backgroundColor = UIColor.white
         configure()
     }
     
@@ -19,16 +20,16 @@ class DateCell: UICollectionViewCell {
         fatalError("not implemnted")
     }
 
-    let inset = CGFloat(10)
+    let inset = CGFloat(0)
     lazy var bottomConstrant = picker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset)
     
-    func setAsMain(_ b: Bool) {
-        if b {
-            bottomConstrant.isActive = true
-        } else {
-            bottomConstrant.isActive = false
-        }
-    }
+//    func setAsMain(_ b: Bool) {
+//        if b {
+//            bottomConstrant.isActive = true
+//        } else {
+//            bottomConstrant.isActive = false
+//        }
+//    }
     
 }
 
@@ -36,6 +37,7 @@ class DateCell: UICollectionViewCell {
 
 extension DateCell {
     func configure() {
+        backgroundColor = .systemBackground
         picker.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(picker)
         NSLayoutConstraint.activate([
