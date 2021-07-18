@@ -2,7 +2,7 @@ import UIKit
 
 public protocol TitleSegmentedDelegate: AnyObject {
     //var currentSegment: Int? { get set }
-    func currentSegment(_:Int)
+    func setCurrentSegment(_:Int)
 }
 
 public class TitleSegmentedView: UICollectionReusableView {
@@ -38,7 +38,7 @@ public extension TitleSegmentedView {
     }
     
     @IBAction func segmentDidChange(_ sender: UISegmentedControl) {
-        delegate?.currentSegment(sender.selectedSegmentIndex)
+        delegate?.setCurrentSegment(sender.selectedSegmentIndex)
     }
     
     func setupConstraints() {

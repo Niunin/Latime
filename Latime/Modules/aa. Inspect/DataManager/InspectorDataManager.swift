@@ -58,7 +58,7 @@ class InspectorDataManager: NSObject {
 
 // MARK: - CRUD
 
-extension InspectorDataManager: InspectorDataManagerProtocol {
+extension InspectorDataManager: InspectDataManagerProtocol {
     
     // MARK: retreive
     

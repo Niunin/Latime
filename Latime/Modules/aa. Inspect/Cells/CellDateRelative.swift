@@ -24,7 +24,7 @@ class RelativeDateInput: UICollectionViewCell {
         static let titleSpacingAfter: CGFloat = 5
     }
     
-    weak var delegate: InspectorDatePickerDelegate!
+    weak var delegate: InspectDatePickerDelegate!
     
     // TODO: rename
     private var changeNumber = 0
@@ -141,10 +141,11 @@ extension RelativeDateInput: InspectorDatePickerProtocol {
 // MARK: UITextField Delegate
 
 extension RelativeDateInput: UITextFieldDelegate {
+    
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         // TODO: fix this color
         textField.layer.borderColor = UIColor.black.cgColor
-    }
+   }
     
     // TODO: refactor textFieldShouldChange
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

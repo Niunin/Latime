@@ -19,7 +19,6 @@ class DateIntervalCell: UICollectionViewCell {
     }
     
     // MARK: properties
-    private let stack2 = UIView()
     private let stack = UIStackView()
     private let field1 = InfoView()
     private let field2 = InfoView()
@@ -36,7 +35,7 @@ class DateIntervalCell: UICollectionViewCell {
 
 }
 
-extension DateIntervalCell: DateInfoPlate {
+extension DateIntervalCell: DateRepresentable {
     
     func setModeTo(_ mode: ReversableDateMode) {
         switch mode {

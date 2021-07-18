@@ -61,7 +61,6 @@ class GlanceMissionTVCell: UITableViewCell {
         //        imageWidthConstraint.constant = timePoint.image != nil ? 40 : 0
         countdownView.configure(timePoint.date)
         
-        
         // FIXME: sdf-f-------
         indicatorView.removeFromSuperview()
         indicatorView = Indicator(numberOfShortMarks: timePoint.numberOfPhases ?? 0,

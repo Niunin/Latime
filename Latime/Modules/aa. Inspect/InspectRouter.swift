@@ -8,19 +8,19 @@
 import UIKit
 import CoreData
 
-typealias inspectorEntryPoint = InspectorViewProtocol & UIViewController
+typealias InspectEntryPoint = InspectViewProtocol & UIViewController
 
 // MARK: - Object
 
 class InspectorRouter {
     
-    weak var entry: inspectorEntryPoint!
+    weak var entry: InspectEntryPoint!
     
     // MARK: build
     
     static func build(context: NSManagedObjectContext,
                       model: TimePoint
-    ) -> inspectorEntryPoint {
+    ) -> InspectEntryPoint {
         let router = InspectorRouter()
         let view = InspectViewController()
         let presenter = InspectorPresenter()
@@ -29,7 +29,7 @@ class InspectorRouter {
         
         view.presenter = presenter
         
-        router.entry = view as inspectorEntryPoint
+        router.entry = view as InspectEntryPoint
         
         interactor.presenter = presenter
         interactor.dataManager = dataManager
@@ -45,7 +45,7 @@ class InspectorRouter {
 
 // MARK: - InspectorRouter Protocol
 
-extension InspectorRouter: InspectorRouterProtocol {
+extension InspectorRouter: InspectRouterProtocol {
     func showCamera() {
         print("camera")
     }

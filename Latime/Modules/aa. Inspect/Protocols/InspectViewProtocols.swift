@@ -7,9 +7,11 @@
 
 import UIKit
 
+
 public enum ReversableDateMode {
     
     case absolute, relative
+    
 }
 
 // MARK: - TwoModeSwitchable protocol
@@ -20,9 +22,9 @@ public protocol TwoModeSwitchable {
     
 }
 
-// MARK: - DateInfoPlate Protocol
+// MARK: - InfoPlate Protocol
 
-public protocol DateInfoPlate: TwoModeSwitchable {
+public protocol DateRepresentable: TwoModeSwitchable {
     
     var date: Date { get set }
     var interval: DateInterval { get set }
@@ -31,7 +33,7 @@ public protocol DateInfoPlate: TwoModeSwitchable {
     func configure(_ date: Date)
 }
 
-extension DateInfoPlate {
+extension DateRepresentable {
     
     func dateIntervalDescription(date: Date) -> String {
         return ""
@@ -76,14 +78,14 @@ extension DateInfoPlate {
 
 // MARK: - DatePicker Protocol
 
-public protocol DatePicker: TwoModeSwitchable {
+public protocol DatePickable: TwoModeSwitchable {
     
     func setDate(_ date: Date)
     func setInterval(_ interval: DateInterval)
     
 }
 
-extension DatePicker {
+extension DatePickable {
     func dateToInterval(_ date: Date) -> DateInterval? {
         return nil
     }
@@ -92,11 +94,6 @@ extension DatePicker {
         return nil
     }
 }
-
-
-
-
-
 
 
 

@@ -12,8 +12,8 @@ import UIKit.UIImage
 
 class InspectorInteractor {
     
-    weak var presenter: InspectorPresenterProtocol!
-    var dataManager: InspectorDataManagerProtocol!
+    weak var presenter: InspectPresenterProtocol!
+    var dataManager: InspectDataManagerProtocol!
     
     var titleIsEmpty: Bool {
         if dataManager.model.infoName == "" {
@@ -56,7 +56,7 @@ class InspectorInteractor {
 
 // MARK: - InspectorInteractor Protocol
 
-extension  InspectorInteractor: InspectorInteractorProtocol {
+extension  InspectorInteractor: InspectInteractorProtocol {
     
     var model: TimePoint {
         return dataManager.model

@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 // MARK: - Object
 
 class InspectViewController: UIViewController {
@@ -24,8 +23,8 @@ class InspectViewController: UIViewController {
     
     // MARK: properties
     
-    /// Hierarchu
-    var presenter: InspectorPresenterProtocol!
+    /// Hierarchy
+    var presenter: InspectPresenterProtocol!
     private var model: InspectorModel!
     
     /// Views and controls
@@ -38,18 +37,19 @@ class InspectViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureHierarchy()
-        configureDataSource()
+        setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
+        setCurrentSegment(0)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupObservers()
+        addKeybordHideTapRecognizer()
+        addKeyboardNotificationsObservers()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -61,27 +61,12 @@ class InspectViewController: UIViewController {
     
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
-        // FIXME: Bad layout
-        inputContainer.configureConstraints()
+        setupInputContainerConstraints()
     }
     
 }
 
-// MARK: - InspectorView Protocol
-
-extension InspectViewController: InspectorViewProtocol {
-    
-    func configureView(withModel: InspectorModel) {
-        self.model = withModel
-    }
-    
-    func configureView(withImage: UIImage?) {
-        inputContainer.setImage(withImage)
-    }
-    
-}
-
-// MARK: Navigation Controller
+// MARK: - Setup Navigation Controller
 
 extension InspectViewController {
     
@@ -95,6 +80,7 @@ extension InspectViewController {
             image: UIImage(systemName: "trash"), style: .plain,
             target: self, action: #selector(removeButtonAction)
         )
+        
         removeButton.tintColor = .systemRed
         navigationItem.leftBarButtonItems = [removeButton]
         navigationItem.rightBarButtonItems = [doneButton]
@@ -105,9 +91,8 @@ extension InspectViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.topItem?.title = "Point in time"
         
-        navigationController?.view.backgroundColor = .clear
-        
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) //UIImage.init(named: "transparent.png")
+        navigationController?.view.backgroundColor = .white
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -124,7 +109,112 @@ extension InspectViewController {
     
 }
 
-// MARK: - Layout
+// MARK: - Setup Views
+
+private extension InspectViewController {
+    
+    func setupViews() {
+        setupCollectionView()   // Creates CollectionView
+        setupSelf()             // Adds CollectionView and InputContainer
+        setupInputContainer()   // Configures CollectionView
+    }
+    
+    func setupCollectionView() {
+        let layout = createLayout()
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.backgroundColor = .systemBackground
+        collectionView.delegate = self
+        
+        registerCells()
+        registerHeaders()
+    }
+    
+    func setupSelf() {
+        view.addSubview(collectionView)
+        view.addSubview(inputContainer)
+    }
+    
+    func setupInputContainer() {
+        inputContainer.setTitle(model.title)
+        inputContainer.setImage(model.image)
+    }
+    
+    func setupInputContainerConstraints() {
+        // FIXME: Bad layout
+        inputContainer.configureConstraints()
+    }
+    
+}
+
+// MARK: - Setup Gesture Recognizers
+
+extension InspectViewController {
+    
+    func addKeybordHideTapRecognizer() {
+        tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        tap.delegate = self
+        view.addGestureRecognizer(tap)
+    }
+    
+    @IBAction func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    func removeGestureRecognizers() {
+        view.removeGestureRecognizer(tap)
+    }
+    
+}
+
+// MARK: - Setup Notifications
+
+extension InspectViewController {
+    
+    func addKeyboardNotificationsObservers() {
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(lowerInputContainer(notification:)),
+            name: UIResponder.keyboardWillHideNotification, object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(raiseInputContaier(notification:)),
+            name: UIResponder.keyboardWillShowNotification, object: nil
+        )
+    }
+    
+    func removeNotifications() {
+        NotificationCenter.default.removeObserver(
+            self, name: UIResponder.keyboardWillShowNotification, object: nil
+        )
+        NotificationCenter.default.removeObserver(
+            self, name: UIResponder.keyboardWillHideNotification, object: nil
+        )
+    }
+    
+    @IBAction func lowerInputContainer(notification: NSNotification) {
+        changeInputContainerHeight(notification, to: 0)
+    }
+    
+    @IBAction func raiseInputContaier(notification: NSNotification) {
+        let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
+        let keyboardHeight = keyboardFrame?.height ?? 0
+        changeInputContainerHeight(notification, to: keyboardHeight)
+    }
+    
+    func changeInputContainerHeight(_ notification: NSNotification, to height: CGFloat) {
+        let keyboardAnimationDuration = getKeyboardAnimationDuration(notification)
+        inputContainer.setHeight(to: height, with: keyboardAnimationDuration)
+    }
+    
+    func getKeyboardAnimationDuration(_ notification: NSNotification) -> Double? {
+        let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
+        return duration
+    }
+    
+}
+
+// MARK: - Setup CollectionView Layout
 
 extension InspectViewController {
     
@@ -140,8 +230,7 @@ extension InspectViewController {
         let section0: NSCollectionLayoutSection = {
             let estimatedHeight = CGFloat(50)
             let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                   heightDimension: .estimated(estimatedHeight))
-            
+                                                    heightDimension: .estimated(estimatedHeight))
             let item = NSCollectionLayoutItem(layoutSize: layoutSize)
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: layoutSize, subitem: item, count: 1)
             let section = NSCollectionLayoutSection(group: group)
@@ -174,62 +263,16 @@ extension InspectViewController {
     
 }
 
-// MARK: - DataSource
+// MARK: - Setup CollectionView DataSource
 
 extension InspectViewController {
-    
-    func configureHierarchy() {
-        let layout = createLayout()
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
-        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = .systemBackground
-        collectionView.delegate = self
-
-        view.addSubview(collectionView)
-        view.addSubview(inputContainer)
-        
-        setupInputContainer()
-    }
-    
-    func setupInputContainer() {
-//        inputContainer.setTitle(model.title)
-//        inputContainer.setImage(model.image)
-        inputContainer.setTitle("title")
-        inputContainer.setImage(nil)
-    }
-    
-    func configureDataSource() {
-        
-        let headerReg = UICollectionView.SupplementaryRegistration<TitleSegmentedView>(elementKind: "header-element-kind") {
-            (supplementaryView, string, indexPath) in
-            
-            supplementaryView.delegate = self
-        }
-        
-        registerCells()
-        
-        dataSource.supplementaryViewProvider = { (view, kind, index) in
-            
-            return self.collectionView.dequeueConfiguredReusableSupplementary(
-                using: headerReg, for: index)
-        }
-        
-        var snapshot = NSDiffableDataSourceSnapshot<Int, Section>()
-        snapshot.appendSections([0])
-        snapshot.appendItems([.info])
-        
-        snapshot.appendSections([1])
-        snapshot.appendItems([.calendar, .reminder])
-        dataSource.apply(snapshot, animatingDifferences: false)
-        
-    }
     
     func registerCells() {
         let cellRegDate = UICollectionView.CellRegistration<DateCell, Int> { (cell, indexPath, identifier) in
         }
         
         let cellRegText = UICollectionView.CellRegistration<TextCell, Int> { (cell, indexPath, identifier) in
-//            cell.label.text = "Custom cell"
+            //            cell.label.text = "Custom cell"
         }
         
         let cellRegInfo = UICollectionView.CellRegistration<DateIntervalCell, String> { (cell, indexPath, identifier) in
@@ -239,7 +282,6 @@ extension InspectViewController {
             } else {
                 cell.setModeTo(.relative)
             }
-            
         }
         
         let cellRegCountdown = UICollectionView.CellRegistration<RelativeDateInput, Int> { (cell, indexPath, identifier) in
@@ -260,34 +302,109 @@ extension InspectViewController {
         }
     }
     
-}
-
-extension InspectViewController: TitleSegmentedDelegate {
-    
-    func currentSegment(_ segment: Int) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, Section>()
-        snapshot.appendSections([0])
-        if segment == 0 {
-            snapshot.appendItems([.info])
-            snapshot.appendSections([1])
-            snapshot.appendItems([.calendar, .reminder])
-        } else {
-            snapshot.appendItems([.smallinfo])
-            snapshot.appendSections([1])
-            snapshot.appendItems([.countdown, .reminder])
+    func registerHeaders() {
+        let headerReg = UICollectionView.SupplementaryRegistration<TitleSegmentedView>(elementKind: "header-element-kind") {
+            (supplementaryView, string, indexPath) in
+            supplementaryView.delegate = self
         }
-        dataSource.apply(snapshot, animatingDifferences: true )
+        
+        dataSource.supplementaryViewProvider = { (view, kind, index) in
+            
+            return self.collectionView.dequeueConfiguredReusableSupplementary(
+                using: headerReg, for: index)
+        }
     }
+    
 }
 
-// MARK: - UICollectionView Delegate
+// MARK: - VIPER Protocol Conformance
+
+extension InspectViewController: InspectViewProtocol {
+    
+    func configureView(withModel: InspectorModel) {
+        self.model = withModel
+    }
+    
+    func configureView(withImage: UIImage?) {
+        inputContainer.setImage(withImage)
+    }
+    
+}
+
+// MARK: - UI Delegate CollectionView
 
 extension InspectViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
     }
+
+}
+
+// MARK: - UI Delegate GestureRecognizer
+
+extension InspectViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return touch.view?.isDescendant(of: inputContainer) == true ? false : true
+    }
+
+}
+
+// MARK: - View Delegate Scrollable
+
+extension InspectViewController: Scrollable {
+    
+    func scrollRectToVisible(_ rect: CGRect) {
+        collectionView.scrollRectToVisible(rect, animated: true)
+    }
     
 }
 
+// MARK: - View Delegate Segmented Control
 
+extension InspectViewController: TitleSegmentedDelegate {
+    
+    func setCurrentSegment(_ segment: Int) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Section>()
+        if segment == 0 {
+            snapshot.appendSections([0])
+            snapshot.appendItems([.info])
+            snapshot.appendSections([1])
+            snapshot.appendItems([.calendar, .reminder])
+        } else {
+            snapshot.appendSections([0])
+            snapshot.appendItems([.smallinfo])
+            snapshot.appendSections([1])
+            snapshot.appendItems([.countdown, .reminder])
+        }
+        dataSource.apply(snapshot, animatingDifferences: true )
+    }
+    
+}
+
+// MARK: - View Delegate InputContainer
+
+extension InspectViewController: InputContainerDelegate {
+    
+    @IBAction func callImagePicker() {
+        presenter.buttonPressedImagePicker()
+    }
+    
+    func callCamera() {
+        presenter.buttonPressedCamera()
+    }
+    
+    func callUnsplash() {
+        presenter.buttonPressedUnsplash()
+    }
+    
+    func removeImage() {
+        presenter.buttonPressedImageRemove()
+    }
+    
+    func titleUpdated(_ title: String) {
+        presenter.update(title: title)
+    }
+    
+}

@@ -12,9 +12,9 @@ import UIKit.UIImage
 
 class InspectorPresenter {
     
-    weak var view: InspectorViewProtocol!
-    var router: InspectorRouterProtocol!
-    var interactor: InspectorInteractorProtocol! {
+    weak var view: InspectViewProtocol!
+    var router: InspectRouterProtocol!
+    var interactor: InspectInteractorProtocol! {
         didSet {
             configureView()
         }
@@ -32,7 +32,7 @@ class InspectorPresenter {
 
 // MARK: - InspectorPresenter Protocol
 
-extension InspectorPresenter: InspectorPresenterProtocol {
+extension InspectorPresenter: InspectPresenterProtocol {
   
     func buttonPressedRemove() {
         interactor.delete()

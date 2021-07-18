@@ -11,11 +11,11 @@ import UIKit.UIImage
 
 // MARK: - Router
 
-protocol InspectorRouterProtocol: AnyObject {
+protocol InspectRouterProtocol: AnyObject {
     
-    var entry: inspectorEntryPoint! { get set }
+    var entry: InspectEntryPoint! { get set }
     
-    static func build(context: NSManagedObjectContext,model: TimePoint) -> inspectorEntryPoint
+    static func build(context: NSManagedObjectContext,model: TimePoint) -> InspectEntryPoint
     
     func showImagePicker()
     func showCamera()
@@ -25,9 +25,9 @@ protocol InspectorRouterProtocol: AnyObject {
 
 // MARK: - View
 
-protocol InspectorViewProtocol: AnyObject {
+protocol InspectViewProtocol: AnyObject {
     
-    var presenter: InspectorPresenterProtocol! { get set }
+    var presenter: InspectPresenterProtocol! { get set }
     
     func configureView(withModel: InspectorModel)
     func configureView(withImage: UIImage?)
@@ -35,11 +35,11 @@ protocol InspectorViewProtocol: AnyObject {
 
 // MARK: - Presenter
 
-protocol InspectorPresenterProtocol: AnyObject {
+protocol InspectPresenterProtocol: AnyObject {
     
-    var view: InspectorViewProtocol! { get set }
-    var router: InspectorRouterProtocol! { get set }
-    var interactor: InspectorInteractorProtocol! { get set }
+    var view: InspectViewProtocol! { get set }
+    var router: InspectRouterProtocol! { get set }
+    var interactor: InspectInteractorProtocol! { get set }
     
     func update(title: String?)
     func update(date : Date)
@@ -56,7 +56,7 @@ protocol InspectorPresenterProtocol: AnyObject {
 
 // MARK: - Interactor
 
-protocol InspectorInteractorProtocol: AnyObject {
+protocol InspectInteractorProtocol: AnyObject {
     
     var model: TimePoint { get }
     
@@ -70,7 +70,7 @@ protocol InspectorInteractorProtocol: AnyObject {
 
 // MARK: DataManager
 
-protocol InspectorDataManagerProtocol: AnyObject {
+protocol InspectDataManagerProtocol: AnyObject {
     
     var model: TimePoint { get }
     func update(title: String)
@@ -83,7 +83,7 @@ protocol InspectorDataManagerProtocol: AnyObject {
 
 // MARK: DatePicker Delegate
 
-protocol InspectorDatePickerDelegate: AnyObject {
+protocol InspectDatePickerDelegate: AnyObject {
     
     func dateChanged(_ date : Date)
     
@@ -94,7 +94,7 @@ protocol InspectorDatePickerDelegate: AnyObject {
 protocol InspectorDatePickerProtocol: AnyObject {
     
 //    var reuseIdentifier: String { get }
-    var delegate: InspectorDatePickerDelegate! { get set }
+    var delegate: InspectDatePickerDelegate! { get set }
     func setDate(_ date : Date)
     
 }

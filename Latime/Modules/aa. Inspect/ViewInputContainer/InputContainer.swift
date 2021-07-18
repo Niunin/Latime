@@ -7,16 +7,7 @@
 
 import UIKit
 
-// MARK: - Delegate
 
-protocol InputContainerDelegate: UITextFieldDelegate {
-    
-    func callImagePicker()
-    func callCamera()
-    func callUnsplash()
-    func removeImage()
-    
-}
 
 // MARK: - Object
 
@@ -194,7 +185,7 @@ private extension InputContainer {
         textField.placeholder = "New time point"
         textField.textColor = UIColor.myAccent
         textField.adjustsFontForContentSizeCategory = true
-        textField.delegate = delegate
+        textField.delegate = self
         
         textField.backgroundColor = .white
         textField.layer.cornerRadius = Sizes.textFieldCorner
@@ -286,7 +277,7 @@ extension InputContainer: ImagePickerContextMenu {
 // MARK: - UIContextMenu Delegate
 
 extension InputContainer: UIContextMenuInteractionDelegate {
-
+    
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
                                 configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(  identifier: nil,
@@ -315,6 +306,21 @@ extension InputContainer: UIContextMenuInteractionDelegate {
         let visiblePath = UIBezierPath(roundedRect: visibleRect, cornerRadius: 10.0)
         parameters.visiblePath = visiblePath
         return UITargetedPreview(view: imagePreview, parameters: parameters)
+    }
+    
+}
+
+// MARK: - UITextField Delegate
+
+extension InputContainer: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        delegate.titleUpdated(textField.text ?? "")
     }
     
 }
