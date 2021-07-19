@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		C9076E55269ECCC400C299DD /* CellInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9076E54269ECCC400C299DD /* CellInfo.swift */; };
 		C9076E57269ECDCC00C299DD /* InspectViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9076E56269ECDCC00C299DD /* InspectViewProtocols.swift */; };
-		C9076E59269F2C0000C299DD /* CellDateRelative.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9076E58269F2C0000C299DD /* CellDateRelative.swift */; };
+		C9076E59269F2C0000C299DD /* CellDateInputRelative.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9076E58269F2C0000C299DD /* CellDateInputRelative.swift */; };
 		C92109ED2699CF4B00B2FEF8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92109EC2699CF4B00B2FEF8 /* ImagePicker.swift */; };
 		C952081926A0911300A35DCD /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952081826A0911300A35DCD /* InfoView.swift */; };
 		C952081B26A0916400A35DCD /* InputCountdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952081A26A0916400A35DCD /* InputCountdown.swift */; };
@@ -28,7 +28,7 @@
 		C967552E267A6671003A016A /* Foundation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675501267A6671003A016A /* Foundation+Extensions.swift */; };
 		C967552F267A6671003A016A /* CoreAnimation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675502267A6671003A016A /* CoreAnimation+Extensions.swift */; };
 		C9675530267A6671003A016A /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675503267A6671003A016A /* Date+Extensions.swift */; };
-		C9675531267A6671003A016A /* InspectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675507267A6671003A016A /* InspectModel.swift */; };
+		C9675531267A6671003A016A /* InspectEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675507267A6671003A016A /* InspectEntity.swift */; };
 		C9675532267A6671003A016A /* InspectViperProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675508267A6671003A016A /* InspectViperProtocols.swift */; };
 		C9675533267A6671003A016A /* InspectPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675509267A6671003A016A /* InspectPresenter.swift */; };
 		C9675535267A6671003A016A /* InputContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967550C267A6671003A016A /* InputContainer.swift */; };
@@ -36,10 +36,10 @@
 		C967553D267A6671003A016A /* InspectorDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675515267A6671003A016A /* InspectorDataManager.swift */; };
 		C967553E267A6671003A016A /* InspectInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675516267A6671003A016A /* InspectInteractor.swift */; };
 		C967553F267A6671003A016A /* GlanceRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675518267A6671003A016A /* GlanceRouter.swift */; };
-		C9675540267A6671003A016A /* GlanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967551A267A6671003A016A /* GlanceModel.swift */; };
-		C9675541267A6671003A016A /* Glance_Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967551B267A6671003A016A /* Glance_Protocols.swift */; };
+		C9675540267A6671003A016A /* GlanceEntiti.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967551A267A6671003A016A /* GlanceEntiti.swift */; };
+		C9675541267A6671003A016A /* GlanceViperProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967551B267A6671003A016A /* GlanceViperProtocols.swift */; };
 		C9675542267A6671003A016A /* GlancePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967551C267A6671003A016A /* GlancePresenter.swift */; };
-		C9675544267A6671003A016A /* GlanceContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967551F267A6671003A016A /* GlanceContextMenu.swift */; };
+		C9675544267A6671003A016A /* GlanceContextMenuProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967551F267A6671003A016A /* GlanceContextMenuProtocols.swift */; };
 		C9675546267A6671003A016A /* GlanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675521267A6671003A016A /* GlanceVC.swift */; };
 		C967554A267A6671003A016A /* GlanceCellPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675525267A6671003A016A /* GlanceCellPhase.swift */; };
 		C967554B267A6671003A016A /* GlanceDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675527267A6671003A016A /* GlanceDataManager.swift */; };
@@ -49,22 +49,23 @@
 		C97724312694A5290050665A /* InputContainerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97724302694A5290050665A /* InputContainerTextField.swift */; };
 		C979048A267E26F6008C8093 /* GlanceCellParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9790489267E26F6008C8093 /* GlanceCellParent.swift */; };
 		C9790490267E29C0008C8093 /* GlanceCountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C979048F267E29C0008C8093 /* GlanceCountdownView.swift */; };
-		C992AACB269D85260078B9A8 /* CellDateAbsolute.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992AACA269D85260078B9A8 /* CellDateAbsolute.swift */; };
+		C992AACB269D85260078B9A8 /* CellDateInputAbsolute.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992AACA269D85260078B9A8 /* CellDateInputAbsolute.swift */; };
 		C992AACD269D85320078B9A8 /* CellReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992AACC269D85320078B9A8 /* CellReminder.swift */; };
 		C992AACF269D85440078B9A8 /* HeaderSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992AACE269D85440078B9A8 /* HeaderSegmentedControl.swift */; };
 		C9A02AF0267A6D5A00F8E85F /* LatimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A02AEF267A6D5A00F8E85F /* LatimeTests.swift */; };
 		C9B9AD312689C46C00A182DA /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B9AD302689C46C00A182DA /* Indicator.swift */; };
-		C9C4A599269F55B4005224A2 /* InputContainerContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C4A598269F55B4005224A2 /* InputContainerContextMenu.swift */; };
+		C9C4A599269F55B4005224A2 /* InspectContextMenuProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C4A598269F55B4005224A2 /* InspectContextMenuProtocols.swift */; };
 		C9DE3C412684A94900FE773D /* UIKit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DE3C402684A94900FE773D /* UIKit+Extension.swift */; };
 		C9E77DCF269CB2A500F8D582 /* InspectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E77DCE269CB2A500F8D582 /* InspectVC.swift */; };
 		C9EA16072696D640005105F0 /* TimelineRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA16062696D640005105F0 /* TimelineRouter.swift */; };
-		C9EA16092696D64F005105F0 /* TimelineProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA16082696D64F005105F0 /* TimelineProtocols.swift */; };
+		C9EA16092696D64F005105F0 /* TimelineViperProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA16082696D64F005105F0 /* TimelineViperProtocols.swift */; };
 		C9EA160B2696D657005105F0 /* TimelinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA160A2696D657005105F0 /* TimelinePresenter.swift */; };
 		C9EA160D2696D65E005105F0 /* TimelineInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA160C2696D65E005105F0 /* TimelineInteractor.swift */; };
 		C9EA160F2696D67A005105F0 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA160E2696D67A005105F0 /* TimelineViewController.swift */; };
 		C9EA16122696DFAB005105F0 /* TimelineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA16112696DFAB005105F0 /* TimelineCell.swift */; };
 		C9EA16142697045B005105F0 /* TimelineCellToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA16132697045B005105F0 /* TimelineCellToday.swift */; };
 		C9ECAD6626A419B400CA39D2 /* InspectViewDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ECAD6526A419B400CA39D2 /* InspectViewDelegates.swift */; };
+		C9ECAD6B26A432DC00CA39D2 /* GlanceViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ECAD6A26A432DC00CA39D2 /* GlanceViewProtocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +81,7 @@
 /* Begin PBXFileReference section */
 		C9076E54269ECCC400C299DD /* CellInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellInfo.swift; sourceTree = "<group>"; };
 		C9076E56269ECDCC00C299DD /* InspectViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectViewProtocols.swift; sourceTree = "<group>"; };
-		C9076E58269F2C0000C299DD /* CellDateRelative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDateRelative.swift; sourceTree = "<group>"; };
+		C9076E58269F2C0000C299DD /* CellDateInputRelative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDateInputRelative.swift; sourceTree = "<group>"; };
 		C92109EC2699CF4B00B2FEF8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		C952081826A0911300A35DCD /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		C952081A26A0916400A35DCD /* InputCountdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCountdown.swift; sourceTree = "<group>"; };
@@ -104,7 +105,7 @@
 		C9675501267A6671003A016A /* Foundation+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Foundation+Extensions.swift"; sourceTree = "<group>"; };
 		C9675502267A6671003A016A /* CoreAnimation+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreAnimation+Extensions.swift"; sourceTree = "<group>"; };
 		C9675503267A6671003A016A /* Date+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
-		C9675507267A6671003A016A /* InspectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectModel.swift; sourceTree = "<group>"; };
+		C9675507267A6671003A016A /* InspectEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectEntity.swift; sourceTree = "<group>"; };
 		C9675508267A6671003A016A /* InspectViperProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectViperProtocols.swift; sourceTree = "<group>"; };
 		C9675509267A6671003A016A /* InspectPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectPresenter.swift; sourceTree = "<group>"; };
 		C967550C267A6671003A016A /* InputContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputContainer.swift; sourceTree = "<group>"; };
@@ -112,10 +113,10 @@
 		C9675515267A6671003A016A /* InspectorDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorDataManager.swift; sourceTree = "<group>"; };
 		C9675516267A6671003A016A /* InspectInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectInteractor.swift; sourceTree = "<group>"; };
 		C9675518267A6671003A016A /* GlanceRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceRouter.swift; sourceTree = "<group>"; };
-		C967551A267A6671003A016A /* GlanceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceModel.swift; sourceTree = "<group>"; };
-		C967551B267A6671003A016A /* Glance_Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Glance_Protocols.swift; sourceTree = "<group>"; };
+		C967551A267A6671003A016A /* GlanceEntiti.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceEntiti.swift; sourceTree = "<group>"; };
+		C967551B267A6671003A016A /* GlanceViperProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceViperProtocols.swift; sourceTree = "<group>"; };
 		C967551C267A6671003A016A /* GlancePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlancePresenter.swift; sourceTree = "<group>"; };
-		C967551F267A6671003A016A /* GlanceContextMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceContextMenu.swift; sourceTree = "<group>"; };
+		C967551F267A6671003A016A /* GlanceContextMenuProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceContextMenuProtocols.swift; sourceTree = "<group>"; };
 		C9675521267A6671003A016A /* GlanceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceVC.swift; sourceTree = "<group>"; };
 		C9675525267A6671003A016A /* GlanceCellPhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceCellPhase.swift; sourceTree = "<group>"; };
 		C9675527267A6671003A016A /* GlanceDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceDataManager.swift; sourceTree = "<group>"; };
@@ -125,22 +126,23 @@
 		C97724302694A5290050665A /* InputContainerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContainerTextField.swift; sourceTree = "<group>"; };
 		C9790489267E26F6008C8093 /* GlanceCellParent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceCellParent.swift; sourceTree = "<group>"; };
 		C979048F267E29C0008C8093 /* GlanceCountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceCountdownView.swift; sourceTree = "<group>"; };
-		C992AACA269D85260078B9A8 /* CellDateAbsolute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDateAbsolute.swift; sourceTree = "<group>"; };
+		C992AACA269D85260078B9A8 /* CellDateInputAbsolute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDateInputAbsolute.swift; sourceTree = "<group>"; };
 		C992AACC269D85320078B9A8 /* CellReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellReminder.swift; sourceTree = "<group>"; };
 		C992AACE269D85440078B9A8 /* HeaderSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSegmentedControl.swift; sourceTree = "<group>"; };
 		C9A02AEF267A6D5A00F8E85F /* LatimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatimeTests.swift; sourceTree = "<group>"; };
 		C9B9AD302689C46C00A182DA /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
-		C9C4A598269F55B4005224A2 /* InputContainerContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContainerContextMenu.swift; sourceTree = "<group>"; };
+		C9C4A598269F55B4005224A2 /* InspectContextMenuProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectContextMenuProtocols.swift; sourceTree = "<group>"; };
 		C9DE3C402684A94900FE773D /* UIKit+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Extension.swift"; sourceTree = "<group>"; };
 		C9E77DCE269CB2A500F8D582 /* InspectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectVC.swift; sourceTree = "<group>"; };
 		C9EA16062696D640005105F0 /* TimelineRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineRouter.swift; sourceTree = "<group>"; };
-		C9EA16082696D64F005105F0 /* TimelineProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineProtocols.swift; sourceTree = "<group>"; };
+		C9EA16082696D64F005105F0 /* TimelineViperProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViperProtocols.swift; sourceTree = "<group>"; };
 		C9EA160A2696D657005105F0 /* TimelinePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePresenter.swift; sourceTree = "<group>"; };
 		C9EA160C2696D65E005105F0 /* TimelineInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineInteractor.swift; sourceTree = "<group>"; };
 		C9EA160E2696D67A005105F0 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		C9EA16112696DFAB005105F0 /* TimelineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCell.swift; sourceTree = "<group>"; };
 		C9EA16132697045B005105F0 /* TimelineCellToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCellToday.swift; sourceTree = "<group>"; };
 		C9ECAD6526A419B400CA39D2 /* InspectViewDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectViewDelegates.swift; sourceTree = "<group>"; };
+		C9ECAD6A26A432DC00CA39D2 /* GlanceViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceViewProtocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,17 +163,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C9076E53269ECC5600C299DD /* Cells */ = {
+		C9076E53269ECC5600C299DD /* 2. Cells */ = {
 			isa = PBXGroup;
 			children = (
-				C992AACA269D85260078B9A8 /* CellDateAbsolute.swift */,
-				C9076E58269F2C0000C299DD /* CellDateRelative.swift */,
+				C992AACA269D85260078B9A8 /* CellDateInputAbsolute.swift */,
+				C9076E58269F2C0000C299DD /* CellDateInputRelative.swift */,
 				C9076E54269ECCC400C299DD /* CellInfo.swift */,
 				C992AACC269D85320078B9A8 /* CellReminder.swift */,
 				C992AACE269D85440078B9A8 /* HeaderSegmentedControl.swift */,
 				C92109EF2699D55300B2FEF8 /* Views */,
 			);
-			path = Cells;
+			path = "2. Cells";
 			sourceTree = "<group>";
 		};
 		C92109EA2699CE6700B2FEF8 /* aaa. ImagePicker */ = {
@@ -189,12 +191,12 @@
 			path = "aab. Camera";
 			sourceTree = "<group>";
 		};
-		C92109EE2699D3D300B2FEF8 /* DataManager */ = {
+		C92109EE2699D3D300B2FEF8 /* 3. DataManager */ = {
 			isa = PBXGroup;
 			children = (
 				C9675527267A6671003A016A /* GlanceDataManager.swift */,
 			);
-			path = DataManager;
+			path = "3. DataManager";
 			sourceTree = "<group>";
 		};
 		C92109EF2699D55300B2FEF8 /* Views */ = {
@@ -315,102 +317,127 @@
 		C9675505267A6671003A016A /* aa. Inspect */ = {
 			isa = PBXGroup;
 			children = (
+				C9ECAD6726A419BA00CA39D2 /* 0. Protocols */,
+				C977242F2694A5100050665A /* 1. Views */,
+				C9076E53269ECC5600C299DD /* 2. Cells */,
+				C9675514267A6671003A016A /* 3. DataManager */,
 				C9675516267A6671003A016A /* InspectInteractor.swift */,
-				C9675507267A6671003A016A /* InspectModel.swift */,
+				C9675507267A6671003A016A /* InspectEntity.swift */,
 				C9675509267A6671003A016A /* InspectPresenter.swift */,
 				C9675513267A6671003A016A /* InspectRouter.swift */,
 				C9E77DCE269CB2A500F8D582 /* InspectVC.swift */,
-				C9076E53269ECC5600C299DD /* Cells */,
-				C9675514267A6671003A016A /* DataManager */,
-				C9ECAD6726A419BA00CA39D2 /* Protocols */,
-				C977242F2694A5100050665A /* ViewInputContainer */,
 			);
 			path = "aa. Inspect";
 			sourceTree = "<group>";
 		};
-		C9675514267A6671003A016A /* DataManager */ = {
+		C9675514267A6671003A016A /* 3. DataManager */ = {
 			isa = PBXGroup;
 			children = (
 				C9675515267A6671003A016A /* InspectorDataManager.swift */,
 			);
-			path = DataManager;
+			path = "3. DataManager";
 			sourceTree = "<group>";
 		};
 		C9675517267A6671003A016A /* a. Glance */ = {
 			isa = PBXGroup;
 			children = (
-				C967551B267A6671003A016A /* Glance_Protocols.swift */,
+				C9ECAD6926A4321D00CA39D2 /* 0. Protocols */,
+				C9ECAD6C26A43C2100CA39D2 /* 1. Views */,
+				C967551D267A6671003A016A /* 2. Cells */,
+				C92109EE2699D3D300B2FEF8 /* 3. DataManager */,
 				C9675528267A6671003A016A /* GlanceInteractor.swift */,
-				C967551A267A6671003A016A /* GlanceModel.swift */,
+				C967551A267A6671003A016A /* GlanceEntiti.swift */,
 				C967551C267A6671003A016A /* GlancePresenter.swift */,
 				C9675518267A6671003A016A /* GlanceRouter.swift */,
 				C9675521267A6671003A016A /* GlanceVC.swift */,
-				C967551D267A6671003A016A /* Cells */,
-				C92109EE2699D3D300B2FEF8 /* DataManager */,
 			);
 			path = "a. Glance";
 			sourceTree = "<group>";
 		};
-		C967551D267A6671003A016A /* Cells */ = {
+		C967551D267A6671003A016A /* 2. Cells */ = {
 			isa = PBXGroup;
 			children = (
 				C9ECAD6426A1EA9900CA39D2 /* Views */,
 				C9790489267E26F6008C8093 /* GlanceCellParent.swift */,
 				C9675525267A6671003A016A /* GlanceCellPhase.swift */,
 			);
-			path = Cells;
+			path = "2. Cells";
 			sourceTree = "<group>";
 		};
-		C977242F2694A5100050665A /* ViewInputContainer */ = {
+		C977242F2694A5100050665A /* 1. Views */ = {
 			isa = PBXGroup;
 			children = (
 				C967550C267A6671003A016A /* InputContainer.swift */,
 				C97724302694A5290050665A /* InputContainerTextField.swift */,
 			);
-			path = ViewInputContainer;
+			path = "1. Views";
 			sourceTree = "<group>";
 		};
 		C9EA16052696D59A005105F0 /* b. Timeline */ = {
 			isa = PBXGroup;
 			children = (
+				C9ECAD6D26A451BF00CA39D2 /* 0. Protocols */,
 				C9EA160C2696D65E005105F0 /* TimelineInteractor.swift */,
 				C9EA160A2696D657005105F0 /* TimelinePresenter.swift */,
-				C9EA16082696D64F005105F0 /* TimelineProtocols.swift */,
 				C9EA16062696D640005105F0 /* TimelineRouter.swift */,
 				C9EA160E2696D67A005105F0 /* TimelineViewController.swift */,
-				C9EA16102696DF6E005105F0 /* Views */,
+				C9EA16102696DF6E005105F0 /* 1. Views */,
 			);
 			path = "b. Timeline";
 			sourceTree = "<group>";
 		};
-		C9EA16102696DF6E005105F0 /* Views */ = {
+		C9EA16102696DF6E005105F0 /* 1. Views */ = {
 			isa = PBXGroup;
 			children = (
 				C9EA16112696DFAB005105F0 /* TimelineCell.swift */,
 				C9EA16132697045B005105F0 /* TimelineCellToday.swift */,
 			);
-			path = Views;
+			path = "1. Views";
 			sourceTree = "<group>";
 		};
 		C9ECAD6426A1EA9900CA39D2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				C9B9AD302689C46C00A182DA /* Indicator.swift */,
-				C967551F267A6671003A016A /* GlanceContextMenu.swift */,
 				C979048F267E29C0008C8093 /* GlanceCountdownView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		C9ECAD6726A419BA00CA39D2 /* Protocols */ = {
+		C9ECAD6726A419BA00CA39D2 /* 0. Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				C9C4A598269F55B4005224A2 /* InspectContextMenuProtocols.swift */,
 				C9ECAD6526A419B400CA39D2 /* InspectViewDelegates.swift */,
 				C9076E56269ECDCC00C299DD /* InspectViewProtocols.swift */,
 				C9675508267A6671003A016A /* InspectViperProtocols.swift */,
-				C9C4A598269F55B4005224A2 /* InputContainerContextMenu.swift */,
 			);
-			path = Protocols;
+			path = "0. Protocols";
+			sourceTree = "<group>";
+		};
+		C9ECAD6926A4321D00CA39D2 /* 0. Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C967551F267A6671003A016A /* GlanceContextMenuProtocols.swift */,
+				C9ECAD6A26A432DC00CA39D2 /* GlanceViewProtocols.swift */,
+				C967551B267A6671003A016A /* GlanceViperProtocols.swift */,
+			);
+			path = "0. Protocols";
+			sourceTree = "<group>";
+		};
+		C9ECAD6C26A43C2100CA39D2 /* 1. Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "1. Views";
+			sourceTree = "<group>";
+		};
+		C9ECAD6D26A451BF00CA39D2 /* 0. Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C9EA16082696D64F005105F0 /* TimelineViperProtocols.swift */,
+			);
+			path = "0. Protocols";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -520,37 +547,38 @@
 				C9675535267A6671003A016A /* InputContainer.swift in Sources */,
 				C9675533267A6671003A016A /* InspectPresenter.swift in Sources */,
 				C9675530267A6671003A016A /* Date+Extensions.swift in Sources */,
-				C992AACB269D85260078B9A8 /* CellDateAbsolute.swift in Sources */,
+				C992AACB269D85260078B9A8 /* CellDateInputAbsolute.swift in Sources */,
 				C952081D26A0919800A35DCD /* PaddingTextField.swift in Sources */,
 				C96754BC267A5FC1003A016A /* AppDelegate.swift in Sources */,
 				C96754BE267A5FC1003A016A /* SceneDelegate.swift in Sources */,
 				C952081B26A0916400A35DCD /* InputCountdown.swift in Sources */,
 				C9076E57269ECDCC00C299DD /* InspectViewProtocols.swift in Sources */,
 				C9EA160D2696D65E005105F0 /* TimelineInteractor.swift in Sources */,
-				C9C4A599269F55B4005224A2 /* InputContainerContextMenu.swift in Sources */,
+				C9C4A599269F55B4005224A2 /* InspectContextMenuProtocols.swift in Sources */,
 				C967554A267A6671003A016A /* GlanceCellPhase.swift in Sources */,
 				C92109ED2699CF4B00B2FEF8 /* ImagePicker.swift in Sources */,
-				C9675540267A6671003A016A /* GlanceModel.swift in Sources */,
+				C9675540267A6671003A016A /* GlanceEntiti.swift in Sources */,
 				C9790490267E29C0008C8093 /* GlanceCountdownView.swift in Sources */,
-				C9EA16092696D64F005105F0 /* TimelineProtocols.swift in Sources */,
+				C9EA16092696D64F005105F0 /* TimelineViperProtocols.swift in Sources */,
 				C967554B267A6671003A016A /* GlanceDataManager.swift in Sources */,
-				C9675544267A6671003A016A /* GlanceContextMenu.swift in Sources */,
+				C9675544267A6671003A016A /* GlanceContextMenuProtocols.swift in Sources */,
 				C967552F267A6671003A016A /* CoreAnimation+Extensions.swift in Sources */,
 				C9076E55269ECCC400C299DD /* CellInfo.swift in Sources */,
 				C967552D267A6671003A016A /* UIColor+Extensions.swift in Sources */,
-				C9076E59269F2C0000C299DD /* CellDateRelative.swift in Sources */,
+				C9076E59269F2C0000C299DD /* CellDateInputRelative.swift in Sources */,
+				C9ECAD6B26A432DC00CA39D2 /* GlanceViewProtocols.swift in Sources */,
 				C9675542267A6671003A016A /* GlancePresenter.swift in Sources */,
 				C9675529267A6671003A016A /* CoreData+Extensions.swift in Sources */,
 				C979048A267E26F6008C8093 /* GlanceCellParent.swift in Sources */,
 				C9EA16142697045B005105F0 /* TimelineCellToday.swift in Sources */,
 				C967553F267A6671003A016A /* GlanceRouter.swift in Sources */,
-				C9675531267A6671003A016A /* InspectModel.swift in Sources */,
+				C9675531267A6671003A016A /* InspectEntity.swift in Sources */,
 				C967553E267A6671003A016A /* InspectInteractor.swift in Sources */,
 				C967552B267A6671003A016A /* Notification+Extensions.swift in Sources */,
 				C9EA16122696DFAB005105F0 /* TimelineCell.swift in Sources */,
 				C9B9AD312689C46C00A182DA /* Indicator.swift in Sources */,
 				C992AACF269D85440078B9A8 /* HeaderSegmentedControl.swift in Sources */,
-				C9675541267A6671003A016A /* Glance_Protocols.swift in Sources */,
+				C9675541267A6671003A016A /* GlanceViperProtocols.swift in Sources */,
 				C9EA16072696D640005105F0 /* TimelineRouter.swift in Sources */,
 				C967553D267A6671003A016A /* InspectorDataManager.swift in Sources */,
 				C967554C267A6671003A016A /* GlanceInteractor.swift in Sources */,

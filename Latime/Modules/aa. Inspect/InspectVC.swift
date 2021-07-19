@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  InspectVC.swift
 //  Latime
 //
 //  Created by Andrei Niunin on 12.07.2021.
@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - Object
 
-class InspectViewController: UIViewController {
+class InspectViewController: UIViewController, InspectViewProtocol {
     
     enum Section: String, CaseIterable, Hashable {
         
@@ -25,7 +25,7 @@ class InspectViewController: UIViewController {
     
     /// Hierarchy
     var presenter: InspectPresenterProtocol!
-    private var model: InspectorModel!
+    private var model: InspectModel!
     
     /// Views and controls
     var dataSource: UICollectionViewDiffableDataSource<Int, Section>! = nil
@@ -63,12 +63,22 @@ class InspectViewController: UIViewController {
         super.viewSafeAreaInsetsDidChange()
         setupInputContainerConstraints()
     }
+        
+    // MARK: viper view protocol conformance
     
+    func configureView(withModel: InspectModel) {
+        self.model = withModel
+    }
+    
+    func configureView(withImage: UIImage?) {
+        inputContainer.setImage(withImage)
+    }
+
 }
 
 // MARK: - Setup Navigation Controller
 
-extension InspectViewController {
+private extension InspectViewController {
     
     func setupNavigationBar() {
         navigationItem.title = "Point in time"
@@ -88,14 +98,8 @@ extension InspectViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
         
         navigationController?.navigationBar.tintColor = UIColor.myAccent
-        navigationController?.navigationBar.prefersLargeTitles = false
-        navigationController?.navigationBar.topItem?.title = "Point in time"
-        
-        navigationController?.view.backgroundColor = .white
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.topItem?.title = "Point in time"
     }
     
     @IBAction func doneButtonAction() {
@@ -149,7 +153,7 @@ private extension InspectViewController {
 
 // MARK: - Setup Gesture Recognizers
 
-extension InspectViewController {
+private extension InspectViewController {
     
     func addKeybordHideTapRecognizer() {
         tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -170,7 +174,7 @@ extension InspectViewController {
 
 // MARK: - Setup Notifications
 
-extension InspectViewController {
+private extension InspectViewController {
     
     func addKeyboardNotificationsObservers() {
         NotificationCenter.default.addObserver(
@@ -216,7 +220,7 @@ extension InspectViewController {
 
 // MARK: - Setup CollectionView Layout
 
-extension InspectViewController {
+private extension InspectViewController {
     
     func createLayout() -> UICollectionViewLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
@@ -265,7 +269,7 @@ extension InspectViewController {
 
 // MARK: - Setup CollectionView DataSource
 
-extension InspectViewController {
+private extension InspectViewController {
     
     func registerCells() {
         let cellRegDate = UICollectionView.CellRegistration<DateCell, Int> { (cell, indexPath, identifier) in
@@ -285,6 +289,7 @@ extension InspectViewController {
         }
         
         let cellRegCountdown = UICollectionView.CellRegistration<RelativeDateInput, Int> { (cell, indexPath, identifier) in
+            cell.delegate = self
         }
         
         dataSource = UICollectionViewDiffableDataSource<Int, Section>(collectionView: collectionView) {
@@ -317,20 +322,6 @@ extension InspectViewController {
     
 }
 
-// MARK: - VIPER Protocol Conformance
-
-extension InspectViewController: InspectViewProtocol {
-    
-    func configureView(withModel: InspectorModel) {
-        self.model = withModel
-    }
-    
-    func configureView(withImage: UIImage?) {
-        inputContainer.setImage(withImage)
-    }
-    
-}
-
 // MARK: - UI Delegate CollectionView
 
 extension InspectViewController: UICollectionViewDelegate {
@@ -338,7 +329,7 @@ extension InspectViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
     }
-
+    
 }
 
 // MARK: - UI Delegate GestureRecognizer
@@ -347,16 +338,6 @@ extension InspectViewController: UIGestureRecognizerDelegate {
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return touch.view?.isDescendant(of: inputContainer) == true ? false : true
-    }
-
-}
-
-// MARK: - View Delegate Scrollable
-
-extension InspectViewController: Scrollable {
-    
-    func scrollRectToVisible(_ rect: CGRect) {
-        collectionView.scrollRectToVisible(rect, animated: true)
     }
     
 }
@@ -379,6 +360,24 @@ extension InspectViewController: TitleSegmentedDelegate {
             snapshot.appendItems([.countdown, .reminder])
         }
         dataSource.apply(snapshot, animatingDifferences: true )
+    }
+    
+}
+
+// MARK: View DateInput Delegate
+
+extension InspectViewController: InspectDateInputDelegate {
+    func rectToVisible(_ rect: CGRect) {
+//        collectionView.scrollRectToVisible(rect, animated: true)
+        print("˚˚˚˚˚˚˚")
+//        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 500, right: 0)
+//        collectionView.scrollToItem(at: IndexPath(item: 0, section: 1), at: .top, animated: true)
+
+    }
+    
+    
+    func dateChanged(_ date: Date) {
+    
     }
     
 }

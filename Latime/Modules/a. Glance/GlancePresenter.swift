@@ -9,8 +9,11 @@ import Foundation
 
 // MARK: - Object
 
-class GlancePresenter{
+class GlancePresenter: GlancePresenterProtocol {
     
+    // MARK: properties
+    
+    /// Hierarchy
     var view: GlanceViewProtocol!
     var router: GlanceRouterProtocol!
     var interactor: GlanceInteractorProtocol! {
@@ -19,12 +22,8 @@ class GlancePresenter{
         }
     }
     
-}
+    // MARK: viper presenter protocol conformance
 
-// MARK: - GlancePresenter Protocol
-
-extension GlancePresenter: GlancePresenterProtocol {
-    
     func add(subRowToRowAt indexPath: IndexPath) {
         let index = indexPath.row
         increaseIndicator(forParentPointAt: index)

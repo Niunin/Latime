@@ -10,11 +10,11 @@ import CoreData
 
 // MARK: - Object
 
-class GlanceViewController: UITableViewController {
+class GlanceViewController: UITableViewController, GlanceViewProtocol {
     
     // MARK: properties
     
-    /// 
+    /// Hierarchy
     var presenter: GlancePresenterProtocol!
     
     private var model: [GlanceModel] = []
@@ -32,11 +32,51 @@ class GlanceViewController: UITableViewController {
         setupNavigationView()
     }
     
+    // MARK: viper view protocol conformance
+
+    func update(models: [GlanceModel]) {
+        self.model = models
+    }
+    
+    func reloadData() {
+        tableView.reloadData()
+    }
+    
+    func add(rowsTo indices: [IndexPath]) {
+        tableView.insertRows(at: indices, with: .fade)
+    }
+    
+    func remove(rowsAt indices: [IndexPath]) {
+        tableView.deleteRows(at: indices, with: .fade)
+    }
+    
+    func increaseIndicator(ofRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? GlanceParentTVCell {
+            cell.insertIndicatorMark()
+        }
+    }
+    
+    func decreaseIndicator(ofRowAt indexPath: IndexPath, mark: Int) {
+        if let cell = tableView.cellForRow(at: indexPath) as? GlanceParentTVCell {
+            cell.removeIndicatorMark(at: mark)
+        }
+    }
+    
+    func minimizeIndicator(ofRowAt indexPath: IndexPath) {
+        guard  let cell = tableView.cellForRow(at: indexPath) as? GlanceParentTVCell else { return }
+        cell.minimizeIndicator()
+    }
+    
+    func maximizeIndicator(ofRowAt indexPath: IndexPath) {
+        guard  let cell = tableView.cellForRow(at: indexPath) as? GlanceParentTVCell else { return }
+        cell.maximizeIndicator()
+    }
+    
 }
 
 // MARK: - Setup Navigation Controller
 
-extension GlanceViewController {
+private extension GlanceViewController {
     
     private func setupNavigationView() {
         self.navigationController?.navigationBar.tintColor = UIColor.myAccent
@@ -57,69 +97,42 @@ extension GlanceViewController {
     @IBAction private func showPreferences(){
         presenter.showPreferences()
     }
-    
+
 }
 
 // MARK: - Setup Views
 
-extension GlanceViewController {
+private extension GlanceViewController {
     
     private func setupSelf() {
-        tableView.register(GlanceMissionTVCell.self, forCellReuseIdentifier: GlanceMissionTVCell.reuseIdentifier)
+        tableView.register(GlanceParentTVCell.self, forCellReuseIdentifier: GlanceParentTVCell.reuseIdentifier)
         tableView.register(GlancePhaseTVCell.self, forCellReuseIdentifier: GlancePhaseTVCell.reuseIdentifier)
         tableView.backgroundColor = UIColor.myViewBackground
         tableView.separatorStyle = .singleLine
-        // For hiding unwanted separators
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = UIView() // Hides unwanted separators
+    }
+
+}
+
+// MARK: - ContextMenu Protocol Conformance
+
+extension GlanceViewController: GlanceContextMenu {
+    
+    func performInspect(_ indexPath: IndexPath) {
+        presenter.showInspector(for: indexPath.row)
+    }
+    
+    func performAddSubRow(_ indexPath: IndexPath) {
+        presenter.add(subRowToRowAt: indexPath)
+    }
+    
+    func performDelete(_ indexPath: IndexPath) {
+        presenter.delete(rowAt: indexPath)
     }
     
 }
 
-// MARK: - GlanceView Protocol
-
-extension GlanceViewController: GlanceViewProtocol {
-    
-    func update(models: [GlanceModel]) {
-        self.model = models
-    }
-    
-    func reloadData() {
-        tableView.reloadData()
-    }
-    
-    func add(rowsTo indices: [IndexPath]) {
-        tableView.insertRows(at: indices, with: .fade)
-    }
-    
-    func remove(rowsAt indices: [IndexPath]) {
-        tableView.deleteRows(at: indices, with: .fade)
-    }
-    
-    func increaseIndicator(ofRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? GlanceMissionTVCell {
-            cell.insertIndicatorMark()
-        }
-    }
-    
-    func decreaseIndicator(ofRowAt indexPath: IndexPath, mark: Int) {
-        if let cell = tableView.cellForRow(at: indexPath) as? GlanceMissionTVCell {
-            cell.removeIndicatorMark(at: mark)
-        }
-    }
-    
-    func minimizeIndicator(ofRowAt indexPath: IndexPath) {
-        guard  let cell = tableView.cellForRow(at: indexPath) as? GlanceMissionTVCell else { return }
-        cell.minimizeIndicator()
-    }
-    
-    func maximizeIndicator(ofRowAt indexPath: IndexPath) {
-        guard  let cell = tableView.cellForRow(at: indexPath) as? GlanceMissionTVCell else { return }
-        cell.maximizeIndicator()
-    }
-    
-}
-
-// MARK: - UITableView DataSource
+// MARK: - UI DataSource TableView
 
 extension GlanceViewController {
     
@@ -132,7 +145,7 @@ extension GlanceViewController {
         let cellData = model[indexPath.row]
         
         if cellData.type == .mission {
-            typealias cellType = GlanceMissionTVCell
+            typealias cellType = GlanceParentTVCell
             let cell = tableView.dequeueReusableCell(withIdentifier: cellType.reuseIdentifier, for: indexPath) as! cellType
             cell.configure(timePoint: cellData)
             return cell
@@ -146,7 +159,7 @@ extension GlanceViewController {
     
 }
 
-// MARK: - UITableView Delegate
+// MARK: - UI Delegate TableView 
 
 extension GlanceViewController {
     
@@ -169,7 +182,7 @@ extension GlanceViewController {
     }
     
     private func makeActionProviderMenu(_ indexPath: IndexPath) -> UIMenu {
-        if tableView.cellForRow(at: indexPath) is GlanceMissionTVCell {
+        if tableView.cellForRow(at: indexPath) is GlanceParentTVCell {
             return makeParentPointMenu(indexPath)
         } else {
             return makePhaseMenu(indexPath)
@@ -178,21 +191,4 @@ extension GlanceViewController {
     
 }
 
-// MARK: - GlanceContextMenu protocol
-
-extension GlanceViewController: GlanceContextMenu {
-    
-    func performInspect(_ indexPath: IndexPath) {
-        presenter.showInspector(for: indexPath.row)
-    }
-    
-    func performAddSubRow(_ indexPath: IndexPath) {
-        presenter.add(subRowToRowAt: indexPath)
-    }
-    
-    func performDelete(_ indexPath: IndexPath) {
-        presenter.delete(rowAt: indexPath)
-    }
-    
-}
 

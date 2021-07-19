@@ -10,8 +10,11 @@ import UIKit.UIImage
 
 // MARK: - Object
 
-class InspectorInteractor {
+class InspectInteractor: InspectInteractorProtocol {
     
+    // MARK: properties
+    
+    /// Hierarchy
     weak var presenter: InspectPresenterProtocol!
     var dataManager: InspectDataManagerProtocol!
     
@@ -33,30 +36,7 @@ class InspectorInteractor {
         removeNotificationsObservers()
     }
     
-    // MARK: Notifications
-    
-    private func addNotificationsObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(imageReceived(_:)), name: .pickerImageReady, object: nil)
-    }
-    
-    @IBAction private func imageReceived(_ notification: Notification) {
-        guard let image = notification.userInfo?["image"] as? UIImage else { return }
-        update(image: image)
-    }
-    
-    private func removeNotificationsObservers() {
-        NotificationCenter.default.removeObserver(self, name: .pickerImageReady, object: nil)
-    }
-    
-    private func postNotificationInspectorFinished() {
-        NotificationCenter.default.post(name: .inspectorFinished, object: nil, userInfo: nil)
-    }
-    
-}
-
-// MARK: - InspectorInteractor Protocol
-
-extension  InspectorInteractor: InspectInteractorProtocol {
+    // MARK: viper interactor protocol conformance
     
     var model: TimePoint {
         return dataManager.model
@@ -89,3 +69,28 @@ extension  InspectorInteractor: InspectInteractorProtocol {
     }
     
 }
+
+// MARK: - Setup Notifications
+
+private extension InspectInteractor {
+
+    func addNotificationsObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(imageReceived(_:)), name: .pickerImageReady, object: nil)
+    }
+    
+    @IBAction func imageReceived(_ notification: Notification) {
+        guard let image = notification.userInfo?["image"] as? UIImage else { return }
+        update(image: image)
+    }
+    
+    func removeNotificationsObservers() {
+        NotificationCenter.default.removeObserver(self, name: .pickerImageReady, object: nil)
+    }
+    
+    func postNotificationInspectorFinished() {
+        NotificationCenter.default.post(name: .inspectorFinished, object: nil, userInfo: nil)
+    }
+
+}
+
+

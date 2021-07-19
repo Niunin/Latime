@@ -12,9 +12,14 @@ typealias GlanceEntryPoint = GlanceViewProtocol & UIViewController
 
 // MARK: - Object
 
-class GlanceRouter {
+class GlanceRouter: GlanceRouterProtocol {
     
+    // MARK: properties
+    
+    /// Hierarchy
     weak var entry: GlanceEntryPoint!
+    
+    /// Core data
     weak var context: NSManagedObjectContext!
     
     // MARK: build
@@ -41,11 +46,7 @@ class GlanceRouter {
         return view
     }
     
-}
-
-// MARK: - GlanceRouter Protocol
-
-extension GlanceRouter: GlanceRouterProtocol {
+    // MARK: viper router protocol conformance
     
     func showPreferences() {
         //let vc = PreferencesViewController()
@@ -58,7 +59,7 @@ extension GlanceRouter: GlanceRouterProtocol {
     }
     
     func showInspector(model: TimePoint) {
-        let viewController  = InspectorRouter.build(context: context, model: model)
+        let viewController  = InspectRouter.build(context: context, model: model)
         let navModalVC =  UINavigationController(rootViewController: viewController)
         navModalVC.modalPresentationStyle = .fullScreen // .formSheet
         navModalVC.modalTransitionStyle = .coverVertical

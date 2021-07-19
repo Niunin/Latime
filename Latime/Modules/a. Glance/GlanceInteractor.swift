@@ -5,34 +5,25 @@
 //  Created by Andrei Niunin on 24.05.2021.
 //
 
-
 import Foundation
 
 // MARK: - Object
 
-class GlanceInteractor {
+class GlanceInteractor: GlanceInteractorProtocol {
     
+    // MARK: properties
+    
+    /// Hierarchy
     var dataManager: GlanceDataManagerProtocol!
     var presenter: GlancePresenterProtocol!
+    
+    // MARK: init - deinit
     
     init() {
         addCommnutcationNotificationsObservers()
     }
     
-    private func addCommnutcationNotificationsObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(inspectorDidFinish(_:)), name: .inspectorFinished , object: nil)
-    }
-    
-    @IBAction private func inspectorDidFinish(_ notification: Notification) {
-        self.updateModels()
-        presenter.reloadData()
-    }
-    
-}
-
-// MARK: - GlanceInteractor Protocol
-
-extension GlanceInteractor: GlanceInteractorProtocol {
+    // MARK: viper interactor protocol conformance
     
     func addParentPoint() -> TimePoint {
         let model = dataManager.addParentPoint()
@@ -71,3 +62,19 @@ extension GlanceInteractor: GlanceInteractorProtocol {
     }
     
 }
+
+// MARK: - Setup Notifications
+
+private extension GlanceInteractor {
+    
+    func addCommnutcationNotificationsObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(inspectorDidFinish(_:)), name: .inspectorFinished , object: nil)
+    }
+    
+    @IBAction func inspectorDidFinish(_ notification: Notification) {
+        self.updateModels()
+        presenter.reloadData()
+    }
+    
+}
+

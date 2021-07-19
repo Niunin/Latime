@@ -12,8 +12,11 @@ typealias InspectEntryPoint = InspectViewProtocol & UIViewController
 
 // MARK: - Object
 
-class InspectorRouter {
+class InspectRouter: InspectRouterProtocol {
     
+    // MARK: properties
+    
+    /// Hierarchy
     weak var entry: InspectEntryPoint!
     
     // MARK: build
@@ -21,10 +24,10 @@ class InspectorRouter {
     static func build(context: NSManagedObjectContext,
                       model: TimePoint
     ) -> InspectEntryPoint {
-        let router = InspectorRouter()
+        let router = InspectRouter()
         let view = InspectViewController()
-        let presenter = InspectorPresenter()
-        let interactor = InspectorInteractor()
+        let presenter = InspectPresenter()
+        let interactor = InspectInteractor()
         let dataManager = InspectorDataManager(context: context, model: model)
         
         view.presenter = presenter
@@ -41,11 +44,8 @@ class InspectorRouter {
         return view
     }
     
-}
-
-// MARK: - InspectorRouter Protocol
-
-extension InspectorRouter: InspectRouterProtocol {
+    // MARK: viper router protocol conformance
+    
     func showCamera() {
         print("camera")
     }
@@ -66,3 +66,5 @@ extension InspectorRouter: InspectRouterProtocol {
     }
     
 }
+
+

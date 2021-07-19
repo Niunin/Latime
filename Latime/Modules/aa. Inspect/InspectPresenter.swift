@@ -10,8 +10,11 @@ import UIKit.UIImage
 
 // MARK: - Object
 
-class InspectorPresenter {
+class InspectPresenter: InspectPresenterProtocol {
     
+    // MARK: properties
+    
+    /// Hierarchy
     weak var view: InspectViewProtocol!
     var router: InspectRouterProtocol!
     var interactor: InspectInteractorProtocol! {
@@ -20,20 +23,16 @@ class InspectorPresenter {
         }
     }
     
-    // MARK: functions
+    // MARK: configure
     
     func configureView() {
         let model = interactor.model
-        let inspectorModel = InspectorModel(model)
+        let inspectorModel = InspectModel(model)
         view.configureView(withModel: inspectorModel)
     }
     
-}
-
-// MARK: - InspectorPresenter Protocol
-
-extension InspectorPresenter: InspectPresenterProtocol {
-  
+    // MARK: viper presenter protocol conformance
+    
     func buttonPressedRemove() {
         interactor.delete()
     }
@@ -71,3 +70,5 @@ extension InspectorPresenter: InspectPresenterProtocol {
     }
     
 }
+
+
