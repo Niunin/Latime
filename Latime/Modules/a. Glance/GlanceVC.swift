@@ -17,7 +17,7 @@ class GlanceViewController: UITableViewController, GlanceViewProtocol {
     /// Hierarchy
     var presenter: GlancePresenterProtocol!
     
-    private var model: [GlanceModel] = []
+    private var model: [GlanceEntity] = []
     private var numberOfRows: Int {
         get {
             model.count
@@ -34,7 +34,7 @@ class GlanceViewController: UITableViewController, GlanceViewProtocol {
     
     // MARK: viper view protocol conformance
 
-    func update(models: [GlanceModel]) {
+    func update(models: [GlanceEntity]) {
         self.model = models
     }
     

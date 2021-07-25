@@ -1,30 +1,25 @@
 import UIKit
 
-public protocol TitleSegmentedDelegate: AnyObject {
-    //var currentSegment: Int? { get set }
-    func setCurrentSegment(_:Int)
-}
-
-public class TitleSegmentedView: UICollectionReusableView {
+class TitleSegmentedView: UICollectionReusableView {
     
     static let reuseIdentifier = "segmented-control-title-identifier"
-    public weak var delegate: TitleSegmentedDelegate?
+    weak var delegate: TitleSegmentedDelegate?
     
-    public let segmentedControl = UISegmentedControl()
-
-    public override init(frame: CGRect) {
+    let segmentedControl = UISegmentedControl()
+    
+    override init(frame: CGRect) {
         super.init(frame: frame)
         setupSelf()
         setupSegmentedControl(segmentedControl)
         setupConstraints()
     }
     
-    public required init?(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         fatalError()
     }
 }
 
-public extension TitleSegmentedView {
+extension TitleSegmentedView {
     
     func setupSelf() {
         addSubview(segmentedControl)

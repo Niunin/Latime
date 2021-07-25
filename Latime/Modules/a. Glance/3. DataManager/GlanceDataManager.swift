@@ -37,6 +37,8 @@ class GlanceCoreDataManager: NSObject {
         }
     }
     
+    // MARK: methods
+    
     internal func fetchTimePoints(with predicate: NSPredicate, first: Bool = false) -> [TimePoint] {
         let request = NSFetchRequest<TimePoint>(entityName: TimePoint.entityName)
         request.predicate = predicate

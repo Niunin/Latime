@@ -48,11 +48,17 @@ class InspectInteractor: InspectInteractorProtocol {
     
     func update(date: Date) {
         dataManager.update(date: date)
+        presenter.interactorUpdated(date: date)
+    }
+    
+    func update(interval: Int64) {
+        dataManager.update(interval: interval)
+        presenter.interactorUpdated(interval: interval)
     }
     
     func update(image: UIImage?) {
         dataManager.update(image: image)
-        presenter.configureView(withImage: image)
+        presenter.interactorUpdated(image: image)
     }
     
     func delete() {

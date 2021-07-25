@@ -44,7 +44,7 @@ class GlancePresenter: GlancePresenterProtocol {
     
     func interactorUpdatedData(with result: [TimePoint]) {
         // FIXME: This .map should be the slowest thing ever. And its called really often
-        let resultForView: [GlanceModel] = result.map{ GlanceModel($0) }
+        let resultForView: [GlanceEntity] = result.map{ GlanceEntity($0) }
         view.update(models: resultForView)
     }
     

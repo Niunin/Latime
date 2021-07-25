@@ -57,10 +57,15 @@ class InputContainer: UIView {
         viewController = view
         self.delegate = delegate
         setupVeiws()
+        addKeyboardNotificationsObservers()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        
     }
     
     // MARK: configure
@@ -147,6 +152,14 @@ private extension InputContainer {
         addSubview(imagePreview)
     }
     
+    func setupSelf() {
+        translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = UIColor.myViewBackground
+        layer.borderColor = UIColor.white.cgColor
+        layer.borderWidth = 0
+        layer.zPosition = CGFloat(Float.greatestFiniteMagnitude)
+    }
+    
     func setupButton(_ button: UIButton) {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(pickImage), for: .touchUpInside)
@@ -205,16 +218,6 @@ private extension InputContainer {
         imageView.addInteraction(interaction)
     }
     
-    func setupSelf() {
-        translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = UIColor.myViewBackground
-        layer.borderColor = UIColor.white.cgColor
-        layer.borderWidth = 0
-        layer.zPosition = CGFloat(Float.greatestFiniteMagnitude)
-    }
-    
-    // MARK: setup constraints
-    
     func setupConstraints() {
         
         let mg = layoutMarginsGuide
@@ -251,6 +254,53 @@ private extension InputContainer {
     }
     
 }
+
+// MARK: - Setup Notifications
+
+extension InputContainer {
+    
+    func addKeyboardNotificationsObservers() {
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(lowerInputContainer(notification:)),
+            name: UIResponder.keyboardWillHideNotification, object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(raiseInputContaier(notification:)),
+            name: UIResponder.keyboardWillShowNotification, object: nil
+        )
+    }
+    //
+    func removeNotifications() {
+        NotificationCenter.default.removeObserver(
+            self, name: UIResponder.keyboardWillShowNotification, object: nil
+        )
+        NotificationCenter.default.removeObserver(
+            self, name: UIResponder.keyboardWillHideNotification, object: nil
+        )
+    }
+    
+    @IBAction func lowerInputContainer(notification: NSNotification) {
+        changeInputContainerHeight(notification, to: 0)
+    }
+    
+    @IBAction func raiseInputContaier(notification: NSNotification) {
+        let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
+        let keyboardHeight = keyboardFrame?.height ?? 0
+        changeInputContainerHeight(notification, to: keyboardHeight)
+    }
+    
+    func changeInputContainerHeight(_ notification: NSNotification, to height: CGFloat) {
+        let keyboardAnimationDuration = getKeyboardAnimationDuration(notification)
+        setHeight(to: height, with: keyboardAnimationDuration)
+    }
+    
+    func getKeyboardAnimationDuration(_ notification: NSNotification) -> Double? {
+        let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
+        return duration
+    }
+    
+}
+
 
 // MARK: ContextMenu Protocol Conformance
 
@@ -319,6 +369,7 @@ extension InputContainer: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        setHeight(to: 0, with: 0.5)
         delegate.titleUpdated(textField.text ?? "")
     }
     

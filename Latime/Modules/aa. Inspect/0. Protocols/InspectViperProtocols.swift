@@ -29,8 +29,10 @@ protocol InspectViewProtocol: AnyObject {
     
     var presenter: InspectPresenterProtocol! { get set }
     
-    func configureView(withModel: InspectModel)
-    func configureView(withImage: UIImage?)
+    func configure(model: InspectModel)
+    func configure(image: UIImage?)
+    func configure(date: Date)
+    func configure(interval: TimeInterval)
 }
 
 // MARK: - Presenter Protocol
@@ -41,17 +43,19 @@ protocol InspectPresenterProtocol: AnyObject {
     var router: InspectRouterProtocol! { get set }
     var interactor: InspectInteractorProtocol! { get set }
     
-    func update(title: String?)
-    func update(date : Date)
-    func configureView(withImage: UIImage?)
-    
     func buttonPressedRemove()
     func buttonPressedImagePicker()
     func buttonPressedCamera()
     func buttonPressedUnsplash()
     func buttonPressedImageRemove()
+    func viewUpdated(title: String?)
+    func viewUpdated(date : Date)
+    func viewUpdated(timeInterval: TimeInterval)
     func screenWillClose()
-    
+
+    func interactorUpdated(date: Date)
+    func interactorUpdated(interval: Int64)
+    func interactorUpdated(image: UIImage?)
 }
 
 // MARK: - Interactor Protocol
@@ -62,6 +66,7 @@ protocol InspectInteractorProtocol: AnyObject {
     
     func update(title: String?)
     func update(date: Date)
+    func update(interval: Int64)
     func update(image: UIImage?)
     func delete()
     func prepareForClosing()
@@ -75,6 +80,7 @@ protocol InspectDataManagerProtocol: AnyObject {
     var model: TimePoint { get }
     func update(title: String)
     func update(date: Date)
+    func update(interval: Int64)
     func update(image: UIImage?)
     func delete()
     func saveContext()

@@ -10,7 +10,7 @@ import UIKit.UIImage
 
 // MARK: - Data Structure
 
-struct GlanceModel {
+struct GlanceEntity {
     
     enum ModelType {
         case mission

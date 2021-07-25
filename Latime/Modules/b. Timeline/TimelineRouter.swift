@@ -10,7 +10,7 @@ import CoreData
 
 typealias TimelineEntryPoint = TimelineViewProtocol & UIViewController
 
-class TimelineRouter {
+class TimelineRouter: TimelineRouterProtocol {
     
     weak var entry: TimelineEntryPoint!
     weak var context: NSManagedObjectContext!
@@ -22,6 +22,7 @@ class TimelineRouter {
         let view = TimelineViewController()
         let presenter = TimelinePresenter()
         let interactor = TimelineInteractor()
+        let dateManager = TimelineCoreDataManager(context: context)
         
         view.presenter = presenter
         
@@ -29,6 +30,7 @@ class TimelineRouter {
         router.context = context
         
         interactor.presenter = presenter
+        interactor.dataManager = dateManager
         
         presenter.view = view
         presenter.router = router
@@ -37,8 +39,7 @@ class TimelineRouter {
         return view
         
     }
-}
-
-extension TimelineRouter: TimelineRouterProtocol {
+    
+    // MARK: viper router protocol conformance
     
 }

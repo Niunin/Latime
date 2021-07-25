@@ -15,6 +15,8 @@ struct InspectModel {
     var type: ModelType
     var title: String
     var date: Date
+    var interval: TimeInterval?
+    var isRelative: Bool
     var image: UIImage?
     
     enum ModelType {
@@ -27,7 +29,10 @@ struct InspectModel {
     init(_ timePoint: TimePoint) {
         type = timePoint.parentPoint == nil ? .mission : .phase
         title = timePoint.infoName ?? "Title abscent"
+        isRelative = timePoint.isRelative
         date = timePoint.infoDate ?? Date()+3600
+        interval = TimeInterval(Int(timePoint.infoInterval))
+        
         if let data = timePoint.infoImage {
             image = UIImage(data: data)
         }

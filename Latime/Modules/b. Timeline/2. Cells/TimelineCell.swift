@@ -22,9 +22,26 @@ class TimelineCell: UICollectionViewCell {
     private let date = UILabel()
     private let countdown = UILabel()
     
+    // MARK: lifecycle
+    
     override func didMoveToSuperview() {
         setupViews()
     }
+    
+    // MARK: configure
+    
+    func setAsPassed() {
+        title.textColor = .mg2
+    }
+    
+    func setAsMission() {
+        mark.backgroundColor = .red
+    }
+    
+    func setTitle(_ title: String?) {
+        self.title.text = title
+    }
+    
 }
 
 // MARK: - Setup Views
@@ -55,7 +72,7 @@ extension TimelineCell {
     }
     
     func setupTitle(_ label: UILabel) {
-        label.text = "Some phase"
+//        label.text = "Some phase"
         label.font = .F3
     }
     

@@ -35,16 +35,23 @@ class InfoView: UIView {
     private var stackHorizontal = UIStackView()
     private let stackVertical = UIStackView()
     
+    // MARK: life cycle
+    
     override func didMoveToSuperview() {
         setupViews()
     }
     
-    func configure(imageSystemName: String, title: String, info: NSAttributedString) {
+    // MARK: configure
+    
+    func configure(imageSystemName: String, title: String) {
         let configuration = UIImage.SymbolConfiguration(font: UIFont.F5)
         let image = UIImage(systemName: imageSystemName, withConfiguration: configuration)!
         
         self.pic.image = image
         self.title.text = title.uppercased()
+    }
+    
+    func configure(info: NSAttributedString) {
         self.info.attributedText = info
     }
     

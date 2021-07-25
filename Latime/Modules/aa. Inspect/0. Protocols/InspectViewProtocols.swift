@@ -11,7 +11,6 @@ import UIKit
 
 protocol InspectorDatePickerProtocol: AnyObject {
     
-//    var reuseIdentifier: String { get }
     var delegate: InspectDateInputDelegate! { get set }
     func setDate(_ date : Date)
     
@@ -33,13 +32,14 @@ protocol TwoModeSwitchable {
 
 // MARK: - InfoPlate Protocol
 
-protocol DateRepresentable: TwoModeSwitchable {
+protocol DateRepresentable {
     
     var date: Date { get set }
     var interval: DateInterval { get set }
     
-    func configure(_ dateInterval: DateInterval)
-    func configure(_ date: Date)
+    func configure(timeInterval: TimeInterval)
+    func configure(initialDate: Date)
+    func configure(resultDate: Date)
     
 }
 

@@ -30,40 +30,63 @@ class DateIntervalCell: UICollectionViewCell, DateRepresentable {
     
     override func didMoveToSuperview() {
         setupViews()
-        configure(Date())
+        field2.isHidden = true
     }
 
     // MARK: date representable protocol conformance
     
-    func setModeTo(_ mode: ReversableDateMode) {
-        switch mode {
-        case .absolute:
-            field2.isHidden = true
-        case .relative:
-            field2.isHidden = false
-        }
-    }
+    func configure(initialDate: Date) {
+        let format = "HH:mm '•' dd '•' MMM '•' yyyy"
 
-    func configure(_ date: Date) {
-        let str = "14:00, 11, may, 2021".uppercased()
-        let stringWithSeparators = insertSeparators(str)
-        let info = finishString(stringWithSeparators)
+        let df = DateFormatter()
+        df.dateFormat = format
+        let description1 = df.string(from: initialDate)
+        let str1 = description1.uppercased()
+        let info1 = finishString(str1)
         
-        field1.configure(
-            imageSystemName: "asterisk.circle.fill",
-            title: "Anchor time point",
-            info: info
-        )
+        field1.configure(info: info1)
+        field1.configure(imageSystemName: "asterisk.circle.fill", title: "Relative to")
+    }
+    
+    func configure(resultDate: Date) {
+        let format = "HH:mm '•' dd '•' MMM '•' yyyy"
+
+        let df = DateFormatter()
+        df.dateFormat = format
         
-        field2.configure(
-            imageSystemName: "flag.fill",
-            title: "Result",
-            info: info
-        )
+        let description2 = df.string(from: resultDate)
+        let str2 = description2.uppercased()
+        let info2 = finishString(str2)
+        print(str2)
+        
+        field2.configure(info: info2)
+        field2.configure(imageSystemName: "flag.fill", title: "Result")
+        field2.isHidden = false
+    }
+    
+    func configure(timeInterval: TimeInterval) {
+        let date1: Date = Date()
+        let date2: Date = Date(timeIntervalSinceNow: timeInterval)
+
+        let componentsFormatter = DateComponentsFormatter()
+        componentsFormatter.collapsesLargestUnit = false
+        componentsFormatter.allowedUnits = [.day, .hour, .minute]
+        componentsFormatter.unitsStyle = .short
+
+        componentsFormatter.zeroFormattingBehavior = [.dropLeading, .dropTrailing, .dropTrailing ]
+        let componentsDescription = componentsFormatter.string(from: date1, to: date2)!
+        let str = insertSeparators(componentsDescription)
+        let info = finishString(str)
+        
+        field1.configure(info: info)
+        
+        field1.configure(imageSystemName: "timer", title: "Time remains")
+        field2.isHidden = true
 
     }
     
-    func configure(_ dateInterval: DateInterval) {
+    func dateUpDated() {
+        
     }
     
 }

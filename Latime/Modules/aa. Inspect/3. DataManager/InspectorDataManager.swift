@@ -59,7 +59,7 @@ class InspectorDataManager: NSObject {
 // MARK: - CRUD
 
 extension InspectorDataManager: InspectDataManagerProtocol {
-    
+  
     // MARK: retreive
     
     var model: TimePoint {
@@ -67,17 +67,32 @@ extension InspectorDataManager: InspectDataManagerProtocol {
     }
     
     // MARK: update
-    
-    func update(title: String) {
-        modelData.infoName = title
-        saveContext()
-    }
-    
+   
     func update(date: Date) {
+        modelData.isRelative = false
         modelData.infoDate = date
         if let parent = modelData.parentPoint {
             updatePositions(ofParent: parent)
         }
+        saveContext()
+    }
+    
+    func update(interval: Int64) {
+        modelData.isRelative = true
+        
+        guard let relativeTo = modelData.parentPoint?.infoDate else {
+            print(" not worked")
+            return
+        }
+        
+        print(" worked")
+        let date = relativeTo.advanced(by: TimeInterval(Int(interval)))
+        modelData.infoDate = date
+        saveContext()
+    }
+    
+    func update(title: String) {
+        modelData.infoName = title
         saveContext()
     }
     

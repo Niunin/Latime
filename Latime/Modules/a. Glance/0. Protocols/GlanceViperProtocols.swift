@@ -27,7 +27,7 @@ protocol GlanceViewProtocol: AnyObject {
     var presenter: GlancePresenterProtocol! { get set }
     
     func reloadData()
-    func update(models: [GlanceModel])
+    func update(models: [GlanceEntity])
     func remove(rowsAt: [IndexPath])
     func add(rowsTo: [IndexPath])
     
@@ -48,6 +48,8 @@ protocol GlancePresenterProtocol: AnyObject {
     
     func add(subRowToRowAt: IndexPath)
     func delete(rowAt: IndexPath)
+
+    // TODO: remove it
     func reloadData()
     
     func cellWasTapped(AtRowWith: IndexPath)
@@ -57,7 +59,7 @@ protocol GlancePresenterProtocol: AnyObject {
     
     func showPreferences()
     func showInspector(for index: Int?)
-    
+
 }
 
 // MARK: - Interactor Protocol
@@ -90,6 +92,7 @@ protocol GlanceDataManagerProtocol: AnyObject {
     func numberOfVisiblePhases(forParentAt index: Int) -> Int
     
     func updateVisibleTimePoints() -> [TimePoint]
+    // TODO: Rename to folded/unfolded
     func togglePhasesVisibility(forParentAt index: Int) -> (Int?, Bool)
     
     func delete(at index: Int)

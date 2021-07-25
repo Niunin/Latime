@@ -28,7 +28,7 @@ class InspectPresenter: InspectPresenterProtocol {
     func configureView() {
         let model = interactor.model
         let inspectorModel = InspectModel(model)
-        view.configureView(withModel: inspectorModel)
+        view.configure(model: inspectorModel)
     }
     
     // MARK: viper presenter protocol conformance
@@ -57,17 +57,32 @@ class InspectPresenter: InspectPresenterProtocol {
         interactor.update(image: nil)
     }
     
-    func update(date: Date) {
+    func viewUpdated(date: Date) {
+        print("")
         interactor.update(date: date)
     }
     
-    func update(title: String?) {
+    func viewUpdated(timeInterval: TimeInterval) {
+        interactor.update(interval: Int64(timeInterval))
+    }
+    
+    func viewUpdated(title: String?) {
         interactor.update(title: title)
     }
     
-    func configureView(withImage image: UIImage?) {
-        view.configureView(withImage: image)
+    func interactorUpdated(date: Date) {
+        view.configure(date: date)
     }
+    
+    func interactorUpdated(interval: Int64) {
+        let timeInterval = TimeInterval(Int(interval))
+        view.configure(interval: timeInterval)
+    }
+    
+    func interactorUpdated(image: UIImage?) {
+        view.configure(image: image)
+    }
+    
     
 }
 

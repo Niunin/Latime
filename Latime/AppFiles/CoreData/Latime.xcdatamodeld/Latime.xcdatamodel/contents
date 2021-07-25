@@ -4,8 +4,10 @@
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="infoDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="infoImage" optional="YES" attributeType="Binary"/>
+        <attribute name="infoInterval" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="infoName" optional="YES" attributeType="String"/>
         <attribute name="isExposed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isRelative" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="positionOfParentAmongPhases" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="positionOfParentPoint" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="positionOfPhase" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -13,6 +15,6 @@
         <relationship name="phasePoints" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TimePoint" inverseName="parentPoint" inverseEntity="TimePoint"/>
     </entity>
     <elements>
-        <element name="TimePoint" positionX="-63" positionY="-18" width="128" height="179"/>
+        <element name="TimePoint" positionX="-63" positionY="-18" width="128" height="209"/>
     </elements>
 </model>

@@ -32,10 +32,7 @@ class RelativeDateInput: UICollectionViewCell, InspectorDatePickerProtocol {
     
     /// Hierarchy
     weak var delegate: InspectDateInputDelegate!
-    
-    // TODO: rename
-    private var changeNumber = 0
-    
+        
     /// views
     private let stack = UIStackView()
     private let dayField = InputDateField()
@@ -43,6 +40,11 @@ class RelativeDateInput: UICollectionViewCell, InspectorDatePickerProtocol {
     private let minutesField = InputDateField()
     
     private let link = UIView()
+    
+    var hour: Int = 0
+    var min: Int = 0
+    var days: Int = 0
+    
     
     // MARK: life cycle
     
@@ -131,76 +133,17 @@ private extension RelativeDateInput {
             mg.bottomAnchor.constraint(equalTo: stack.bottomAnchor),
         ])
     }
-    
 }
 
-// MARK: UI Delegate TextField
+extension RelativeDateInput: InputCountdownDelegate {
+    
+    func intervalChanged() {
+        let secondsInMinutes: Int = 60 * minutesField.result
+        let secondsInHours: Int = 3600 * hourField.result
+        let secondsInDays:  Int = 3600 * 24 * dayField.result
+        
+        let interval: TimeInterval = TimeInterval(secondsInMinutes + secondsInHours + secondsInDays)
+        delegate.intervalChanged(interval)
+    }
 
-extension RelativeDateInput: UITextFieldDelegate {
-    
-    public func textFieldDidBeginEditing(_ textField: UITextField) {
-        // TODO: fix this color
-        textField.layer.borderColor = UIColor.black.cgColor
-        delegate.rectToVisible(textField.frame)
-   }
-    
-    // TODO: refactor textFieldShouldChange
-    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let ptf = textField as? LimitedTextField, let max = ptf.maxValue {
-            var currentText = textField.text ?? ""
-            // TODO: rename these vars
-            if string == "" {
-                currentText.removeLast()
-                if currentText == "" {
-                    currentText = "00"
-                    changeNumber = 0
-                } else {
-                    currentText = "0" + currentText
-                    changeNumber = 1
-                }
-                textField.text = currentText
-            } else {
-                switch changeNumber {
-                case 1:
-                    let firstSign = currentText.last!
-                    let newString = String(firstSign) + string
-                    if Int(String(newString))! > max {
-                        textField.text = "0" + string
-                        changeNumber = 1
-                    } else {
-                        textField.text = newString
-                        changeNumber = 0
-                    }
-                default:
-                    textField.text = "0" + string
-                    changeNumber = 1
-                }
-            }
-        } else {
-            var currentString = textField.text ?? ""
-            if string == "" {
-                currentString.removeLast()
-                textField.text = currentString
-            } else {
-                textField.text = currentString + string
-            }
-            if textField.text?.first == "0" {
-                textField.text?.removeFirst()
-            }
-            if textField.text == "" {
-                textField.text = "0"
-            }
-        }
-        return false
-    }
-    
-    public func textFieldDidEndEditing(_ textField: UITextField) {
-        changeNumber = 0
-        textField.layer.borderColor = UIColor.clear.cgColor
-    }
-    
 }
-
-
-
-

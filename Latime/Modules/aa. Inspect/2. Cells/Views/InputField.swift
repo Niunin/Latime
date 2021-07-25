@@ -28,20 +28,20 @@ class InputDateField: UIStackView {
     
     // MARK: properties
     
+    weak var delegate: InputCountdownDelegate?
+    
     let textField = PaddingTextField(withInsets: Sizes.textFieldInsets)
     private let descriptionLabel = UILabel()
     private var buttonDot = UIView()
     private let dotview = UIView()
     private var spacer = UIView()
     
-    var delegate: UITextFieldDelegate? {
-        didSet {
-            self.textField.delegate = delegate
-        }
-    }
-    
     private(set) var maxValue: Int? = nil
-    
+
+    // TODO: rename
+    private var changeNumber = 0
+    var result: Int = 0
+
     // MARK: life cycle
     
     override func didMoveToSuperview() {
@@ -94,6 +94,7 @@ extension InputDateField {
         tf.layer.borderColor = UIColor.clear.cgColor
         tf.layer.borderWidth = 1.5
         tf.layer.masksToBounds = true
+        tf.delegate = self
         
         // Text
         tf.font = UIFont.monospaceNumber
@@ -131,6 +132,76 @@ extension InputDateField {
             spacer.heightAnchor.constraint(equalToConstant: 0),
             spacer.widthAnchor.constraint(equalToConstant: 0),
         ])
+    }
+    
+}
+
+// MARK: UI Delegate TextField
+
+extension InputDateField: UITextFieldDelegate {
+    
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
+        // TODO: fix this color
+        textField.layer.borderColor = UIColor.black.cgColor
+//        delegate.rectToVisible(textField.frame)
+   }
+    
+    // TODO: refactor textFieldShouldChange
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let ptf = textField as? LimitedTextField, let max = ptf.maxValue {
+            var currentText = textField.text ?? ""
+            // TODO: rename these vars
+            if string == "" {
+                currentText.removeLast()
+                if currentText == "" {
+                    currentText = "00"
+                    changeNumber = 0
+                } else {
+                    currentText = "0" + currentText
+                    changeNumber = 1
+                }
+                textField.text = currentText
+            } else {
+                switch changeNumber {
+                case 1:
+                    let firstSign = currentText.last!
+                    let newString = String(firstSign) + string
+                    if Int(String(newString))! > max {
+                        textField.text = "0" + string
+                        changeNumber = 1
+                    } else {
+                        textField.text = newString
+                        changeNumber = 0
+                    }
+                default:
+                    textField.text = "0" + string
+                    changeNumber = 1
+                }
+            }
+        } else {
+            var currentString = textField.text ?? ""
+            if string == "" {
+                currentString.removeLast()
+                textField.text = currentString
+            } else {
+                textField.text = currentString + string
+            }
+            if textField.text?.first == "0" {
+                textField.text?.removeFirst()
+            }
+            if textField.text == "" {
+                textField.text = "0"
+            }
+        }
+        result = Int(textField.text ?? "0" ) ?? 0
+        delegate?.intervalChanged()
+        return false
+    }
+    
+    public func textFieldDidEndEditing(_ textField: UITextField) {
+        changeNumber = 0
+        textField.layer.borderColor = UIColor.clear.cgColor
+        result = Int(textField.text ?? "0" ) ?? 0
     }
     
 }

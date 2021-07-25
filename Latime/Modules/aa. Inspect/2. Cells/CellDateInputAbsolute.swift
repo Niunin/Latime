@@ -8,13 +8,19 @@ class DateCell: UICollectionViewCell {
 
     // MARK: properties
     
-    weak var delegate: InspectDateInputDelegate!
+    weak var delegate: InspectDateInputDelegate?
 
     let picker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.preferredDatePickerStyle = .inline
+
         return picker
     }()
+    
+    @IBAction func pickerValueChanged() {
+        print(" @IB pickerValueChanged")
+       delegate?.dateChanged(picker.date)
+    }
     
     let inset = CGFloat(0)
     lazy var bottomConstrant = picker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset)
@@ -25,6 +31,7 @@ class DateCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.backgroundColor = UIColor.white
         configure()
+        picker.addTarget(self, action: #selector(pickerValueChanged), for: .valueChanged)
     }
     
     required init?(coder: NSCoder) {

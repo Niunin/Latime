@@ -55,7 +55,7 @@ class GlanceParentTVCell: UITableViewCell, ParentCellProtocol {
     
     // MARK: parent cell protocol conformance
     
-    func configure(timePoint: GlanceModel) {
+    func configure(timePoint: GlanceEntity) {
         titleLabel.text = timePoint.title
         customImageView.image = timePoint.image
 //        imageWidthConstraint.constant = timePoint.image != nil ? 40 : 0

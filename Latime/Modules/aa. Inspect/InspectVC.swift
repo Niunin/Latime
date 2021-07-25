@@ -49,13 +49,12 @@ class InspectViewController: UIViewController, InspectViewProtocol {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         addKeybordHideTapRecognizer()
-        addKeyboardNotificationsObservers()
+        collectionView.addKeyboardNotificationsObservers()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         presenter.screenWillClose()
-        removeNotifications()
         removeGestureRecognizers()
     }
     
@@ -66,12 +65,33 @@ class InspectViewController: UIViewController, InspectViewProtocol {
         
     // MARK: viper view protocol conformance
     
-    func configureView(withModel: InspectModel) {
-        self.model = withModel
+    func configure(model: InspectModel) {
+        self.model = model
     }
     
-    func configureView(withImage: UIImage?) {
-        inputContainer.setImage(withImage)
+    func configure(image: UIImage?) {
+        inputContainer.setImage(image)
+    }
+    
+    func configure(date: Date) {
+        print(date)
+        guard let cell = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? DateIntervalCell else {
+            Swift.print(" unsuccessfull cell reach")
+            return
+        }
+        
+        let differenceInSeconds = date.timeIntervalSince(Date())
+        cell.configure(timeInterval: differenceInSeconds)
+    }
+    
+    func configure(interval: TimeInterval) {
+        guard let cell = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? DateIntervalCell else {
+            Swift.print(" unsuccessfull cell reach")
+            return
+        }
+        
+        let date = Date(timeInterval: interval, since: Date())
+        cell.configure(resultDate: date)
     }
 
 }
@@ -172,52 +192,6 @@ private extension InspectViewController {
     
 }
 
-// MARK: - Setup Notifications
-
-private extension InspectViewController {
-    
-    func addKeyboardNotificationsObservers() {
-        NotificationCenter.default.addObserver(
-            self, selector: #selector(lowerInputContainer(notification:)),
-            name: UIResponder.keyboardWillHideNotification, object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self, selector: #selector(raiseInputContaier(notification:)),
-            name: UIResponder.keyboardWillShowNotification, object: nil
-        )
-    }
-    
-    func removeNotifications() {
-        NotificationCenter.default.removeObserver(
-            self, name: UIResponder.keyboardWillShowNotification, object: nil
-        )
-        NotificationCenter.default.removeObserver(
-            self, name: UIResponder.keyboardWillHideNotification, object: nil
-        )
-    }
-    
-    @IBAction func lowerInputContainer(notification: NSNotification) {
-        changeInputContainerHeight(notification, to: 0)
-    }
-    
-    @IBAction func raiseInputContaier(notification: NSNotification) {
-        let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
-        let keyboardHeight = keyboardFrame?.height ?? 0
-        changeInputContainerHeight(notification, to: keyboardHeight)
-    }
-    
-    func changeInputContainerHeight(_ notification: NSNotification, to height: CGFloat) {
-        let keyboardAnimationDuration = getKeyboardAnimationDuration(notification)
-        inputContainer.setHeight(to: height, with: keyboardAnimationDuration)
-    }
-    
-    func getKeyboardAnimationDuration(_ notification: NSNotification) -> Double? {
-        let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
-        return duration
-    }
-    
-}
-
 // MARK: - Setup CollectionView Layout
 
 private extension InspectViewController {
@@ -272,24 +246,26 @@ private extension InspectViewController {
 private extension InspectViewController {
     
     func registerCells() {
-        let cellRegDate = UICollectionView.CellRegistration<DateCell, Int> { (cell, indexPath, identifier) in
-        }
-        
-        let cellRegText = UICollectionView.CellRegistration<TextCell, Int> { (cell, indexPath, identifier) in
-            //            cell.label.text = "Custom cell"
-        }
-        
         let cellRegInfo = UICollectionView.CellRegistration<DateIntervalCell, String> { (cell, indexPath, identifier) in
             cell.backgroundColor = .white
             if identifier == Section.info.rawValue {
-                cell.setModeTo(.absolute)
+                cell.configure(timeInterval: 3600)
             } else {
-                cell.setModeTo(.relative)
+                cell.configure(initialDate: Date())
+                cell.configure(resultDate: Date())
             }
+        }
+        
+        let cellRegDate = UICollectionView.CellRegistration<DateCell, Int> { (cell, indexPath, identifier) in
+            cell.delegate = self
         }
         
         let cellRegCountdown = UICollectionView.CellRegistration<RelativeDateInput, Int> { (cell, indexPath, identifier) in
             cell.delegate = self
+        }
+        
+        let cellRegText = UICollectionView.CellRegistration<TextCell, Int> { (cell, indexPath, identifier) in
+            //            cell.label.text = "Custom cell"
         }
         
         dataSource = UICollectionViewDiffableDataSource<Int, Section>(collectionView: collectionView) {
@@ -367,19 +343,15 @@ extension InspectViewController: TitleSegmentedDelegate {
 // MARK: View DateInput Delegate
 
 extension InspectViewController: InspectDateInputDelegate {
-    func rectToVisible(_ rect: CGRect) {
-//        collectionView.scrollRectToVisible(rect, animated: true)
-        print("˚˚˚˚˚˚˚")
-//        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 500, right: 0)
-//        collectionView.scrollToItem(at: IndexPath(item: 0, section: 1), at: .top, animated: true)
-
-    }
     
+    func intervalChanged(_ interval: TimeInterval) {
+        presenter.viewUpdated(timeInterval: interval)
+    }
     
     func dateChanged(_ date: Date) {
-    
+        presenter.viewUpdated(date: date)
     }
-    
+
 }
 
 // MARK: - View Delegate InputContainer
@@ -403,7 +375,7 @@ extension InspectViewController: InputContainerDelegate {
     }
     
     func titleUpdated(_ title: String) {
-        presenter.update(title: title)
+        presenter.viewUpdated(title: title)
     }
     
 }

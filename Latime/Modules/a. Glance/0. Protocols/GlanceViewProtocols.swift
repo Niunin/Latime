@@ -22,7 +22,7 @@ protocol IndicatorProtocol {
 
 protocol PhaseCellProtocol {
     
-    func configure(timePoint: GlanceModel)
+    func configure(timePoint: GlanceEntity)
     
 }
 
@@ -30,7 +30,7 @@ protocol PhaseCellProtocol {
 
 protocol ParentCellProtocol {
 
-    func configure(timePoint: GlanceModel)
+    func configure(timePoint: GlanceEntity)
     
     func insertIndicatorMark()
     func removeIndicatorMark(at index: Int)

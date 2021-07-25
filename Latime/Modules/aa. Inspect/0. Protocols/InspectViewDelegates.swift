@@ -7,15 +7,6 @@
 
 import UIKit
 
-// MARK: - DatePicker Delegate
-
-protocol InspectDateInputDelegate: AnyObject {
-    
-    func dateChanged(_ date : Date)
-    func rectToVisible(_ rect: CGRect)
-    
-}
-
 // MARK: - InputContainer Delegate
 
 protocol InputContainerDelegate: AnyObject {
@@ -25,5 +16,30 @@ protocol InputContainerDelegate: AnyObject {
     func callCamera()
     func callUnsplash()
     func removeImage()
+    
+}
+
+protocol InputCountdownDelegate: AnyObject {
+    
+    func intervalChanged()
+
+}
+
+// MARK: - DatePicker Delegate
+
+protocol InspectDateInputDelegate: AnyObject {
+    
+    func dateChanged(_ date : Date)
+    func intervalChanged(_ interval: TimeInterval)
+    
+}
+
+
+// MARK: - TitleSegmentedControl Delegate
+
+protocol TitleSegmentedDelegate: AnyObject {
+
+    //var currentSegment: Int? { get set }
+    func setCurrentSegment(_:Int)
     
 }
