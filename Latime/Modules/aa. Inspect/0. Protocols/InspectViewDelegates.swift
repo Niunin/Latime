@@ -19,12 +19,6 @@ protocol InputContainerDelegate: AnyObject {
     
 }
 
-protocol InputCountdownDelegate: AnyObject {
-    
-    func intervalChanged()
-
-}
-
 // MARK: - DatePicker Delegate
 
 protocol InspectDateInputDelegate: AnyObject {

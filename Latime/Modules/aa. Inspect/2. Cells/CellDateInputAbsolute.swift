@@ -8,8 +8,9 @@ class DateCell: UICollectionViewCell {
 
     // MARK: properties
     
-    weak var delegate: InspectDateInputDelegate?
-
+//    weak var delegate: InspectDateInputDelegate?
+    var handler: ((_: Date)->())?
+    
     let picker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.preferredDatePickerStyle = .inline
@@ -19,8 +20,10 @@ class DateCell: UICollectionViewCell {
     
     @IBAction func pickerValueChanged() {
         print(" @IB pickerValueChanged")
-       delegate?.dateChanged(picker.date)
+        handler?(picker.date)
+//       delegate?.dateChanged(picker.date)
     }
+    
     
     let inset = CGFloat(0)
     lazy var bottomConstrant = picker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset)
@@ -33,6 +36,7 @@ class DateCell: UICollectionViewCell {
         configure()
         picker.addTarget(self, action: #selector(pickerValueChanged), for: .valueChanged)
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("not implemnted")

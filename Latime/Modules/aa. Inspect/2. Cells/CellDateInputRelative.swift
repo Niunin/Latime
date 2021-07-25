@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - Object
 
-class RelativeDateInput: UICollectionViewCell, InspectorDatePickerProtocol {
+class RelativeDateInput: UICollectionViewCell {
 
     struct Sizes {
         
@@ -31,8 +31,8 @@ class RelativeDateInput: UICollectionViewCell, InspectorDatePickerProtocol {
     // MARK: properties
     
     /// Hierarchy
-    weak var delegate: InspectDateInputDelegate!
-        
+    var handler: ((_: TimeInterval)->())?
+    
     /// views
     private let stack = UIStackView()
     private let dayField = InputDateField()
@@ -82,21 +82,35 @@ private extension RelativeDateInput {
         contentView.addSubview(stack)
     }
     
+    func handlerMake() -> (() -> ()) {
+        return { [weak self] in
+            guard let self = self else {return}
+            let secondsInMinutes: Int = 60 * self.minutesField.result
+            let secondsInHours: Int = 3600 * self.hourField.result
+            let secondsInDays:  Int = 3600 * 24 * self.dayField.result
+            
+            let interval: TimeInterval = TimeInterval(secondsInMinutes + secondsInHours + secondsInDays)
+            self.handler?(interval)
+        }
+    }
+    
     func setupDayField() {
         dayField.configureDescription("days")
-        dayField.delegate = self
+        dayField.updateHandler = handlerMake()
     }
     
     func setupHourField() {
         hourField.configureDescription("hours")
         hourField.setMaxValue(23)
-        hourField.delegate = self
+        hourField.updateHandler = handlerMake()
     }
+    
+    
     
     func setupMinuteField() {
         minutesField.configureDescription("minutes")
         minutesField.setMaxValue(59)
-        minutesField.delegate = self
+        minutesField.updateHandler = handlerMake()
     }
     
     func setupStack(_ stack: UIStackView) {
@@ -135,15 +149,3 @@ private extension RelativeDateInput {
     }
 }
 
-extension RelativeDateInput: InputCountdownDelegate {
-    
-    func intervalChanged() {
-        let secondsInMinutes: Int = 60 * minutesField.result
-        let secondsInHours: Int = 3600 * hourField.result
-        let secondsInDays:  Int = 3600 * 24 * dayField.result
-        
-        let interval: TimeInterval = TimeInterval(secondsInMinutes + secondsInHours + secondsInDays)
-        delegate.intervalChanged(interval)
-    }
-
-}

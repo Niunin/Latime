@@ -79,13 +79,8 @@ extension InspectorDataManager: InspectDataManagerProtocol {
     
     func update(interval: Int64) {
         modelData.isRelative = true
-        
-        guard let relativeTo = modelData.parentPoint?.infoDate else {
-            print(" not worked")
-            return
-        }
-        
-        print(" worked")
+        // TODO: make it work with parent. Now it works with phases only
+        guard let relativeTo = modelData.parentPoint?.infoDate else { return }
         let date = relativeTo.advanced(by: TimeInterval(Int(interval)))
         modelData.infoDate = date
         saveContext()

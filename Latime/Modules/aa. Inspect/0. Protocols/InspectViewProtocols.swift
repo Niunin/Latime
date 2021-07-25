@@ -7,15 +7,6 @@
 
 import UIKit
 
-// MARK: - DatePicker Protocol
-
-protocol InspectorDatePickerProtocol: AnyObject {
-    
-    var delegate: InspectDateInputDelegate! { get set }
-    func setDate(_ date : Date)
-    
-}
-
 // MARK: - Enumeration ReversableDateMode
 
 public enum ReversableDateMode {

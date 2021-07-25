@@ -43,7 +43,7 @@ class InfoView: UIView {
     
     // MARK: configure
     
-    func configure(imageSystemName: String, title: String) {
+    func configure(title: String, imageSystemName: String) {
         let configuration = UIImage.SymbolConfiguration(font: UIFont.F5)
         let image = UIImage(systemName: imageSystemName, withConfiguration: configuration)!
         

@@ -28,8 +28,8 @@ class InputDateField: UIStackView {
     
     // MARK: properties
     
-    weak var delegate: InputCountdownDelegate?
-    
+    var updateHandler: (() -> ())?
+        
     let textField = PaddingTextField(withInsets: Sizes.textFieldInsets)
     private let descriptionLabel = UILabel()
     private var buttonDot = UIView()
@@ -194,7 +194,11 @@ extension InputDateField: UITextFieldDelegate {
             }
         }
         result = Int(textField.text ?? "0" ) ?? 0
-        delegate?.intervalChanged()
+        
+        updateHandler?()
+        
+        // delegate?.intervalChanged()
+        
         return false
     }
     

@@ -77,10 +77,12 @@ class InspectPresenter: InspectPresenterProtocol {
     func interactorUpdated(interval: Int64) {
         let timeInterval = TimeInterval(Int(interval))
         view.configure(interval: timeInterval)
+        configureView()
     }
     
     func interactorUpdated(image: UIImage?) {
         view.configure(image: image)
+        configureView()
     }
     
     

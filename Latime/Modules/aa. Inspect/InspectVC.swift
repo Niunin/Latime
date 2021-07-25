@@ -249,19 +249,26 @@ private extension InspectViewController {
         let cellRegInfo = UICollectionView.CellRegistration<DateIntervalCell, String> { (cell, indexPath, identifier) in
             cell.backgroundColor = .white
             if identifier == Section.info.rawValue {
-                cell.configure(timeInterval: 3600)
-            } else {
-                cell.configure(initialDate: Date())
-                cell.configure(resultDate: Date())
+                cell.configure(timeInterval: self.model.intervalFromNow ?? 0.0 )
+            } else if identifier == Section.info.rawValue {
+                cell.configure(initialDate: self.model.dateRelativeTo ?? Date() )
+                cell.configure(resultDate: self.model.resultDate)
             }
         }
         
         let cellRegDate = UICollectionView.CellRegistration<DateCell, Int> { (cell, indexPath, identifier) in
-            cell.delegate = self
+            cell.handler = { [weak self] (date)  in
+                self?.presenter.viewUpdated(date: date)
+            }
+//            cell.delegate = self
         }
         
         let cellRegCountdown = UICollectionView.CellRegistration<RelativeDateInput, Int> { (cell, indexPath, identifier) in
-            cell.delegate = self
+            cell.handler = { [weak self] (interval)  in
+                self?.presenter.viewUpdated(timeInterval: interval)
+            }
+
+//            cell.delegate = self
         }
         
         let cellRegText = UICollectionView.CellRegistration<TextCell, Int> { (cell, indexPath, identifier) in

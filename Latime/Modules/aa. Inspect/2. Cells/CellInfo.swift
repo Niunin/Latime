@@ -45,7 +45,7 @@ class DateIntervalCell: UICollectionViewCell, DateRepresentable {
         let info1 = finishString(str1)
         
         field1.configure(info: info1)
-        field1.configure(imageSystemName: "asterisk.circle.fill", title: "Relative to")
+        field1.configure(title: "Relative to", imageSystemName: "asterisk.circle.fill")
     }
     
     func configure(resultDate: Date) {
@@ -60,7 +60,7 @@ class DateIntervalCell: UICollectionViewCell, DateRepresentable {
         print(str2)
         
         field2.configure(info: info2)
-        field2.configure(imageSystemName: "flag.fill", title: "Result")
+        field2.configure(title: "Result", imageSystemName: "flag.fill")
         field2.isHidden = false
     }
     
@@ -80,7 +80,7 @@ class DateIntervalCell: UICollectionViewCell, DateRepresentable {
         
         field1.configure(info: info)
         
-        field1.configure(imageSystemName: "timer", title: "Time remains")
+        field1.configure(title: "Time remains", imageSystemName: "timer")
         field2.isHidden = true
 
     }

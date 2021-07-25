@@ -115,7 +115,6 @@ private extension GlanceParentTVCell {
     }
     
     func setupTitle(_ label: UILabel) {
-        label.text = "New point in time"
         label.font = UIFont.F2
         label.numberOfLines = 1
     }
