@@ -11,12 +11,16 @@ import UIKit
 
 class Indicator: UIView, IndicatorProtocol {
     
-    private struct SizeofOfScale {
+    private struct Sizes {
         
-        static let markHeight: CGFloat = 6.0
+        static let markHeight: CGFloat = 4.0
         static let markCornerRadius: CGFloat = markHeight / 2.0
-        static let shortMarkWidth: CGFloat = 6.0
+        
+        static let shortMarkWidth: CGFloat = markHeight
         static let longMarkWidth: CGFloat = 18.0
+        
+        static let shortMarkSize = CGSize(width: shortMarkWidth, height: markHeight)
+        static let longMarkSize = CGSize(width: longMarkWidth, height: markHeight)
         
         static let markSpace: CGFloat = 12.0
         static var shortMarkOffset: CGFloat { shortMarkWidth + markSpace }
@@ -84,17 +88,9 @@ class Indicator: UIView, IndicatorProtocol {
         
 }
 
-// MARK: - Setup Views And Layers
+// MARK: - Setup Views
 
 private extension Indicator {
-    
-    var shortMarkRect: CGRect {
-        CGRect(x: 0, y: 0, width: SizeofOfScale.shortMarkWidth, height: SizeofOfScale.markHeight)
-    }
-    
-    var longMarkRect: CGRect {
-        CGRect(x: 0, y: 0, width: SizeofOfScale.longMarkWidth, height: SizeofOfScale.markHeight)
-    }
     
     func setupViews() {
         setupSelf()
@@ -103,10 +99,24 @@ private extension Indicator {
     func setupSelf() {
         self.layer.addSublayer(shortMarksContainerLayer)
     }
+
+}
+
+// MARK: - Setup Layers
+
+private extension Indicator {
+    
+    var shortMarkRect: CGRect {
+        CGRect(origin: CGPoint(x: 0, y: 0), size: Sizes.shortMarkSize)
+    }
+    
+    var longMarkRect: CGRect {
+        CGRect(origin: CGPoint(x: 0, y: 0), size: Sizes.longMarkSize)
+    }
     
     func setupMarks() {
         setupShortMarksContainerLayer()
-        setupLongMark()
+        setupLongMarkLayer()
     }
     
     func setupShortMarksContainerLayer() {
@@ -127,13 +137,13 @@ private extension Indicator {
         layer.fillColor = UIColor.black.cgColor
         layer.path = markPath(shortMarkRect)
         layer.position = positionOfShortMark(at: index)
-        layer.bounds.size = CGSize(width: 6, height: 6)
-        layer.anchorPoint = CGPoint(x: 0.5, y: 1)
+        layer.bounds.size = Sizes.shortMarkSize
+        layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         return layer
     }
     
     private func markPath(_ rect: CGRect) -> CGPath {
-        return UIBezierPath(roundedRect: rect, cornerRadius: SizeofOfScale.markCornerRadius).cgPath
+        return UIBezierPath(roundedRect: rect, cornerRadius: Sizes.markCornerRadius).cgPath
     }
     
     func markLayer() -> CAShapeLayer {
@@ -143,14 +153,14 @@ private extension Indicator {
     }
     
     func positionOfShortMark(at index: Int) -> CGPoint {
-        var offset: CGFloat = CGFloat(index) * SizeofOfScale.shortMarkOffset
+        var offset: CGFloat = CGFloat(index) * Sizes.shortMarkOffset
         if index > indexOfLongMark {
-            offset += SizeofOfScale.shortMarkOffset + SizeofOfScale.longMarkOffset
+            offset += Sizes.shortMarkOffset + Sizes.longMarkOffset
         }
-        return CGPoint(x: offset+6, y: 6)
+        return CGPoint(x: offset+(Sizes.shortMarkWidth*0.5), y: Sizes.markHeight*0.5)
     }
     
-    func setupLongMark() {
+    func setupLongMarkLayer() {
         self.layer.addSublayer(longMarkLayer)
     }
     
@@ -158,16 +168,18 @@ private extension Indicator {
         let layer = CAShapeLayer()
         layer.fillColor = UIColor.black.cgColor
         layer.path = markPath(longMarkRect)
+        layer.bounds.size = Sizes.longMarkSize
         layer.position = positionOfLongMark()
-        layer.bounds.size = CGSize(width: 18, height: 6)
+        layer.anchorPoint = CGPoint(x: 0.0, y: 0.5)
         return layer
     }
     
     func positionOfLongMark() -> CGPoint {
-        let offset: CGFloat = CGFloat(indexOfLongMark+1) * SizeofOfScale.shortMarkOffset
-        return CGPoint(x: offset, y: 3)
+        let offset: CGFloat = CGFloat(indexOfLongMark) * Sizes.shortMarkOffset
+        
+        return CGPoint(x: offset, y: Sizes.markHeight*0.5)
     }
-
+    
 }
 
 // MARK: - Perform Transform Animations
@@ -212,16 +224,16 @@ private extension Indicator {
         CATransaction.begin()
         CATransaction.setAnimationDuration(0.2)
         CATransaction.setCompletionBlock {
-            self.shortMarksContainerLayer.insertSublayer(layer, at: UInt32(index))
-            self.numberOfShortMarks += 1
-            if index <= self.indexOfLongMark {
-                self.indexOfLongMark += 1
-            }
+            self.offsetMarks(afterMarkAt: index)
         }
-        offsetMarks(afterMarkAt: index)
+        self.shortMarksContainerLayer.insertSublayer(layer, at: UInt32(index))
+        self.numberOfShortMarks += 1
+        if index <= self.indexOfLongMark {
+            self.indexOfLongMark += 1
+        }
+        
         
         CATransaction.commit()
-        
     }
     
     func performRemoveAnimation(at index: Int) {
@@ -256,7 +268,8 @@ private extension Indicator {
             layer.removeAnimation(forKey: "position.x")
             layer.add(animation, forKey: "position.x")
         }
-        longMarkLayer.position = positionOfLongMark()
+        
+        self.longMarkLayer.position = self.positionOfLongMark()
     }
     
 }

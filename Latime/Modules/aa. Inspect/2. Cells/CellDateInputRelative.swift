@@ -10,7 +10,7 @@ import UIKit
 // MARK: - Object
 
 class RelativeDateInput: UICollectionViewCell {
-
+    
     struct Sizes {
         
         static let topOffset: CGFloat = 20
@@ -23,7 +23,7 @@ class RelativeDateInput: UICollectionViewCell {
         
         static let titleSpacingBefore: CGFloat = 40
         static let titleSpacingAfter: CGFloat = 5
-
+        
     }
     
     static let reuseIdentifier = "rel-cell-reuse-identifier"
@@ -56,6 +56,17 @@ class RelativeDateInput: UICollectionViewCell {
     
     func setDate(_ date: Date) {
         
+    }
+    
+    func setTimeInterval(_ interval: TimeInterval) {
+        print("___\( interval)")
+        let days: Int = Int(interval) / (86400)
+        let hours: Int = (Int(interval) % (86400)) / 3600
+        let minutes: Int = ((Int(interval) % (86400)) % (3600)) / 60
+        
+        dayField.textField.text = "\(days)"
+        hourField.textField.text = "\(hours)"
+        minutesField.textField.text = "\(minutes)"
     }
     
 }
@@ -104,8 +115,6 @@ private extension RelativeDateInput {
         hourField.setMaxValue(23)
         hourField.updateHandler = handlerMake()
     }
-    
-    
     
     func setupMinuteField() {
         minutesField.configureDescription("minutes")

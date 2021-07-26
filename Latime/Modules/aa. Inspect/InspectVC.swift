@@ -74,14 +74,13 @@ class InspectViewController: UIViewController, InspectViewProtocol {
     }
     
     func configure(date: Date) {
-        print(date)
-        guard let cell = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? DateIntervalCell else {
+        guard let infoCell = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? DateIntervalCell else {
             Swift.print(" unsuccessfull cell reach")
             return
         }
         
         let differenceInSeconds = date.timeIntervalSince(Date())
-        cell.configure(timeInterval: differenceInSeconds)
+        infoCell.configure(timeInterval: differenceInSeconds)
     }
     
     func configure(interval: TimeInterval) {
@@ -250,29 +249,29 @@ private extension InspectViewController {
             cell.backgroundColor = .white
             if identifier == Section.info.rawValue {
                 cell.configure(timeInterval: self.model.intervalFromNow ?? 0.0 )
-            } else if identifier == Section.info.rawValue {
-                cell.configure(initialDate: self.model.dateRelativeTo ?? Date() )
+            } else if identifier == Section.smallinfo.rawValue {
+                cell.configure(initialDate: self.model.anchorDate ?? Date() )
                 cell.configure(resultDate: self.model.resultDate)
             }
         }
         
         let cellRegDate = UICollectionView.CellRegistration<DateCell, Int> { (cell, indexPath, identifier) in
+            cell.picker.date = self.model.resultDate
             cell.handler = { [weak self] (date)  in
                 self?.presenter.viewUpdated(date: date)
             }
-//            cell.delegate = self
         }
         
         let cellRegCountdown = UICollectionView.CellRegistration<RelativeDateInput, Int> { (cell, indexPath, identifier) in
+            
+            cell.setTimeInterval(self.model.relativeInterval ?? 0 )
             cell.handler = { [weak self] (interval)  in
                 self?.presenter.viewUpdated(timeInterval: interval)
             }
-
-//            cell.delegate = self
         }
         
         let cellRegText = UICollectionView.CellRegistration<TextCell, Int> { (cell, indexPath, identifier) in
-            //            cell.label.text = "Custom cell"
+//            cell.label.text = "Custom cell"
         }
         
         dataSource = UICollectionViewDiffableDataSource<Int, Section>(collectionView: collectionView) {

@@ -58,7 +58,6 @@ class InspectPresenter: InspectPresenterProtocol {
     }
     
     func viewUpdated(date: Date) {
-        print("")
         interactor.update(date: date)
     }
     
@@ -72,6 +71,7 @@ class InspectPresenter: InspectPresenterProtocol {
     
     func interactorUpdated(date: Date) {
         view.configure(date: date)
+        configureView()
     }
     
     func interactorUpdated(interval: Int64) {

@@ -1,3 +1,4 @@
+
 import UIKit
 
 // MARK: - Object
@@ -8,7 +9,7 @@ class DateCell: UICollectionViewCell {
 
     // MARK: properties
     
-//    weak var delegate: InspectDateInputDelegate?
+    /// Hierarchy
     var handler: ((_: Date)->())?
     
     let picker: UIDatePicker = {
@@ -19,11 +20,8 @@ class DateCell: UICollectionViewCell {
     }()
     
     @IBAction func pickerValueChanged() {
-        print(" @IB pickerValueChanged")
         handler?(picker.date)
-//       delegate?.dateChanged(picker.date)
     }
-    
     
     let inset = CGFloat(0)
     lazy var bottomConstrant = picker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset)

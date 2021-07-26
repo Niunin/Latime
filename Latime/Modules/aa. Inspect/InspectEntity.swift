@@ -14,20 +14,13 @@ struct InspectModel {
     
     var type: ModelType
     var title: String
-    var dateRelativeTo: Date?
+    var anchorDate: Date?
     var resultDate: Date
-    var intervalFromNow: TimeInterval?
-    var relativeInterval: TimeInterval?
+    var timeInterval: TimeInterval?
+    var relativeTimeInterval: TimeInterval?
     
     var isRelative: Bool
     var image: UIImage?
-    
-//    var type: ModelType
-//    var title: String
-//    var date: Date
-//    var interval: TimeInterval?
-//    var isRelative: Bool
-//    var image: UIImage?
     
     enum ModelType {
         case mission
@@ -39,14 +32,26 @@ struct InspectModel {
     init(_ timePoint: TimePoint) {
         type = timePoint.parentPoint == nil ? .mission : .phase
         title = timePoint.infoName ?? "Title abscent"
-        isRelative = timePoint.isRelative
-        if let parent = timePoint.parentPoint {
-            dateRelativeTo = parent.infoDate
-        }
-        resultDate = timePoint.infoDate ?? Date()+3600
-        relativeInterval = TimeInterval(timePoint.infoInterval)
-        intervalFromNow = resultDate.timeIntervalSince(dateRelativeTo ?? Date())
         
+        if let date = timePoint.infoDate {
+            
+        } else if let interval = timePoint.infoInterval {
+            
+        }
+        
+        isRelative = timePoint.isRelative
+        
+        if let parent = timePoint.parentPoint {
+            anchorDate = parent.infoDate
+        }
+        
+        resultDate = timePoint.infoDate ?? Date()+3600
+        // relativeInterval = TimeInterval(timePoint.infoInterval)
+        relativeInterval = resultDate.timeIntervalSince(anchorDate ?? Date())
+        intervalFromNow = resultDate.timeIntervalSince(Date())
+
+        print("relative interval \(relativeInterval), fromNowINterval \(intervalFromNow) ")
+
         if let data = timePoint.infoImage {
             image = UIImage(data: data)
         }

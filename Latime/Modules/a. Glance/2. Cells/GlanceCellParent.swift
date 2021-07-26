@@ -115,7 +115,7 @@ private extension GlanceParentTVCell {
     }
     
     func setupTitle(_ label: UILabel) {
-        label.font = UIFont.F2
+        label.font = UIFont.F4
         label.numberOfLines = 1
     }
     

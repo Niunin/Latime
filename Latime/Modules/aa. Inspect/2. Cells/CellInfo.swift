@@ -27,12 +27,15 @@ class DateIntervalCell: UICollectionViewCell, DateRepresentable {
     var interval: DateInterval = DateInterval()
     
     // MARK: life cycle
-    
-    override func didMoveToSuperview() {
-        setupViews()
-        field2.isHidden = true
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setupViews()
     }
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: date representable protocol conformance
     
     func configure(initialDate: Date) {
@@ -57,7 +60,6 @@ class DateIntervalCell: UICollectionViewCell, DateRepresentable {
         let description2 = df.string(from: resultDate)
         let str2 = description2.uppercased()
         let info2 = finishString(str2)
-        print(str2)
         
         field2.configure(info: info2)
         field2.configure(title: "Result", imageSystemName: "flag.fill")
@@ -79,16 +81,11 @@ class DateIntervalCell: UICollectionViewCell, DateRepresentable {
         let info = finishString(str)
         
         field1.configure(info: info)
-        
         field1.configure(title: "Time remains", imageSystemName: "timer")
         field2.isHidden = true
 
     }
-    
-    func dateUpDated() {
-        
-    }
-    
+  
 }
 
 // MARK: - Setup Views
