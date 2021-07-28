@@ -248,7 +248,7 @@ private extension InspectViewController {
         let cellRegInfo = UICollectionView.CellRegistration<DateIntervalCell, String> { (cell, indexPath, identifier) in
             cell.backgroundColor = .white
             if identifier == Section.info.rawValue {
-                cell.configure(timeInterval: self.model.intervalFromNow ?? 0.0 )
+                cell.configure(timeInterval: self.model.timeInterval ?? 0.0 )
             } else if identifier == Section.smallinfo.rawValue {
                 cell.configure(initialDate: self.model.anchorDate ?? Date() )
                 cell.configure(resultDate: self.model.resultDate)
@@ -264,7 +264,7 @@ private extension InspectViewController {
         
         let cellRegCountdown = UICollectionView.CellRegistration<RelativeDateInput, Int> { (cell, indexPath, identifier) in
             
-            cell.setTimeInterval(self.model.relativeInterval ?? 0 )
+            cell.setTimeInterval(self.model.relativeTimeInterval ?? 0 )
             cell.handler = { [weak self] (interval)  in
                 self?.presenter.viewUpdated(timeInterval: interval)
             }

@@ -11,6 +11,18 @@
 		C9076E57269ECDCC00C299DD /* InspectViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9076E56269ECDCC00C299DD /* InspectViewProtocols.swift */; };
 		C9076E59269F2C0000C299DD /* CellDateInputRelative.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9076E58269F2C0000C299DD /* CellDateInputRelative.swift */; };
 		C92109ED2699CF4B00B2FEF8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92109EC2699CF4B00B2FEF8 /* ImagePicker.swift */; };
+		C9446AAD26B17BEB00B027EA /* UnsplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9446AA926B17BEB00B027EA /* UnsplashPresenter.swift */; };
+		C9446AAE26B17BEB00B027EA /* UnsplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9446AAA26B17BEB00B027EA /* UnsplashVC.swift */; };
+		C9446AAF26B17BEB00B027EA /* UnsplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9446AAB26B17BEB00B027EA /* UnsplashRouter.swift */; };
+		C9446AB026B17BEB00B027EA /* UnsplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9446AAC26B17BEB00B027EA /* UnsplashInteractor.swift */; };
+		C9446AB526B17C0600B027EA /* UnsplashCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9446AB226B17C0600B027EA /* UnsplashCell.swift */; };
+		C9446AB626B17C0600B027EA /* UnsplashCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9446AB326B17C0600B027EA /* UnsplashCollectionView.swift */; };
+		C9446AB726B17C0600B027EA /* UnsplashPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9446AB426B17C0600B027EA /* UnsplashPreview.swift */; };
+		C9446ABD26B17C1200B027EA /* UnsplashNetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9446AB926B17C1200B027EA /* UnsplashNetworkInterface.swift */; };
+		C9446ABE26B17C1200B027EA /* UnsplashNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9446ABA26B17C1200B027EA /* UnsplashNetworkService.swift */; };
+		C9446ABF26B17C1200B027EA /* UnsplashEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9446ABB26B17C1200B027EA /* UnsplashEntity.swift */; };
+		C9446AC026B17C1200B027EA /* UnsplashPhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9446ABC26B17C1200B027EA /* UnsplashPhotoModel.swift */; };
+		C9446AC226B17C9F00B027EA /* UnsplashViperProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9446AC126B17C9F00B027EA /* UnsplashViperProtocols.swift */; };
 		C952081926A0911300A35DCD /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952081826A0911300A35DCD /* InfoView.swift */; };
 		C952081B26A0916400A35DCD /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952081A26A0916400A35DCD /* InputField.swift */; };
 		C952081D26A0919800A35DCD /* PaddingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952081C26A0919800A35DCD /* PaddingTextField.swift */; };
@@ -87,6 +99,18 @@
 		C9076E56269ECDCC00C299DD /* InspectViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectViewProtocols.swift; sourceTree = "<group>"; };
 		C9076E58269F2C0000C299DD /* CellDateInputRelative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDateInputRelative.swift; sourceTree = "<group>"; };
 		C92109EC2699CF4B00B2FEF8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		C9446AA926B17BEB00B027EA /* UnsplashPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashPresenter.swift; sourceTree = "<group>"; };
+		C9446AAA26B17BEB00B027EA /* UnsplashVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashVC.swift; sourceTree = "<group>"; };
+		C9446AAB26B17BEB00B027EA /* UnsplashRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashRouter.swift; sourceTree = "<group>"; };
+		C9446AAC26B17BEB00B027EA /* UnsplashInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashInteractor.swift; sourceTree = "<group>"; };
+		C9446AB226B17C0600B027EA /* UnsplashCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashCell.swift; sourceTree = "<group>"; };
+		C9446AB326B17C0600B027EA /* UnsplashCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashCollectionView.swift; sourceTree = "<group>"; };
+		C9446AB426B17C0600B027EA /* UnsplashPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashPreview.swift; sourceTree = "<group>"; };
+		C9446AB926B17C1200B027EA /* UnsplashNetworkInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashNetworkInterface.swift; sourceTree = "<group>"; };
+		C9446ABA26B17C1200B027EA /* UnsplashNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashNetworkService.swift; sourceTree = "<group>"; };
+		C9446ABB26B17C1200B027EA /* UnsplashEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashEntity.swift; sourceTree = "<group>"; };
+		C9446ABC26B17C1200B027EA /* UnsplashPhotoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashPhotoModel.swift; sourceTree = "<group>"; };
+		C9446AC126B17C9F00B027EA /* UnsplashViperProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashViperProtocols.swift; sourceTree = "<group>"; };
 		C952081826A0911300A35DCD /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		C952081A26A0916400A35DCD /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
 		C952081C26A0919800A35DCD /* PaddingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextField.swift; sourceTree = "<group>"; };
@@ -217,9 +241,45 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		C9446AB126B17C0600B027EA /* 1. Views */ = {
+			isa = PBXGroup;
+			children = (
+				C9446AB326B17C0600B027EA /* UnsplashCollectionView.swift */,
+				C9446AB226B17C0600B027EA /* UnsplashCell.swift */,
+				C9446AB426B17C0600B027EA /* UnsplashPreview.swift */,
+			);
+			path = "1. Views";
+			sourceTree = "<group>";
+		};
+		C9446AB826B17C1200B027EA /* 4. NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				C9446AB926B17C1200B027EA /* UnsplashNetworkInterface.swift */,
+				C9446ABA26B17C1200B027EA /* UnsplashNetworkService.swift */,
+				C9446ABC26B17C1200B027EA /* UnsplashPhotoModel.swift */,
+			);
+			path = "4. NetworkManager";
+			sourceTree = "<group>";
+		};
+		C9446AC326B17CA400B027EA /* 0. Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "0. Protocols";
+			sourceTree = "<group>";
+		};
 		C952081526A07EEF00A35DCD /* aac. Unsplash */ = {
 			isa = PBXGroup;
 			children = (
+				C9446AC326B17CA400B027EA /* 0. Protocols */,
+				C9446AB126B17C0600B027EA /* 1. Views */,
+				C9446AB826B17C1200B027EA /* 4. NetworkManager */,
+				C9446ABB26B17C1200B027EA /* UnsplashEntity.swift */,
+				C9446AAC26B17BEB00B027EA /* UnsplashInteractor.swift */,
+				C9446AA926B17BEB00B027EA /* UnsplashPresenter.swift */,
+				C9446AAB26B17BEB00B027EA /* UnsplashRouter.swift */,
+				C9446AAA26B17BEB00B027EA /* UnsplashVC.swift */,
+				C9446AC126B17C9F00B027EA /* UnsplashViperProtocols.swift */,
 			);
 			path = "aac. Unsplash";
 			sourceTree = "<group>";
@@ -554,13 +614,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				C967553C267A6671003A016A /* InspectRouter.swift in Sources */,
+				C9446AAE26B17BEB00B027EA /* UnsplashVC.swift in Sources */,
+				C9446ABD26B17C1200B027EA /* UnsplashNetworkInterface.swift in Sources */,
 				C96754F1267A6242003A016A /* CoreDataStack.swift in Sources */,
 				C9675532267A6671003A016A /* InspectViperProtocols.swift in Sources */,
 				C9675535267A6671003A016A /* InputContainer.swift in Sources */,
+				C9446AAD26B17BEB00B027EA /* UnsplashPresenter.swift in Sources */,
 				C9675533267A6671003A016A /* InspectPresenter.swift in Sources */,
 				C9675530267A6671003A016A /* Date + Extensions.swift in Sources */,
 				C992AACB269D85260078B9A8 /* CellDateInputAbsolute.swift in Sources */,
+				C9446ABE26B17C1200B027EA /* UnsplashNetworkService.swift in Sources */,
 				C952081D26A0919800A35DCD /* PaddingTextField.swift in Sources */,
+				C9446AC026B17C1200B027EA /* UnsplashPhotoModel.swift in Sources */,
 				C96754BC267A5FC1003A016A /* AppDelegate.swift in Sources */,
 				C96754BE267A5FC1003A016A /* SceneDelegate.swift in Sources */,
 				C952081B26A0916400A35DCD /* InputField.swift in Sources */,
@@ -572,6 +637,7 @@
 				C92109ED2699CF4B00B2FEF8 /* ImagePicker.swift in Sources */,
 				C9675540267A6671003A016A /* GlanceEntiti.swift in Sources */,
 				C9790490267E29C0008C8093 /* GlanceCountdownView.swift in Sources */,
+				C9446AB626B17C0600B027EA /* UnsplashCollectionView.swift in Sources */,
 				C9EA16092696D64F005105F0 /* TimelineViperProtocols.swift in Sources */,
 				C967554B267A6671003A016A /* GlanceDataManager.swift in Sources */,
 				C9675544267A6671003A016A /* GlanceContextMenuProtocols.swift in Sources */,
@@ -582,13 +648,18 @@
 				C9ECAD6B26A432DC00CA39D2 /* GlanceViewProtocols.swift in Sources */,
 				C9E15A5526A5FABD002989B5 /* TimelineEntity.swift in Sources */,
 				C9675542267A6671003A016A /* GlancePresenter.swift in Sources */,
+				C9446AB726B17C0600B027EA /* UnsplashPreview.swift in Sources */,
 				C9675529267A6671003A016A /* CoreData + Extensions.swift in Sources */,
 				C979048A267E26F6008C8093 /* GlanceCellParent.swift in Sources */,
 				C9EA16142697045B005105F0 /* TimelineCellToday.swift in Sources */,
+				C9446AAF26B17BEB00B027EA /* UnsplashRouter.swift in Sources */,
+				C9446AB526B17C0600B027EA /* UnsplashCell.swift in Sources */,
 				C967553F267A6671003A016A /* GlanceRouter.swift in Sources */,
 				C9675531267A6671003A016A /* InspectEntity.swift in Sources */,
 				C967553E267A6671003A016A /* InspectInteractor.swift in Sources */,
+				C9446AB026B17BEB00B027EA /* UnsplashInteractor.swift in Sources */,
 				C967552B267A6671003A016A /* Notification + Extensions.swift in Sources */,
+				C9446AC226B17C9F00B027EA /* UnsplashViperProtocols.swift in Sources */,
 				C9EA16122696DFAB005105F0 /* TimelineCell.swift in Sources */,
 				C9B9AD312689C46C00A182DA /* Indicator.swift in Sources */,
 				C992AACF269D85440078B9A8 /* HeaderSegmentedControl.swift in Sources */,
@@ -599,6 +670,7 @@
 				C967554C267A6671003A016A /* GlanceInteractor.swift in Sources */,
 				C9675546267A6671003A016A /* GlanceVC.swift in Sources */,
 				C96754C6267A5FC2003A016A /* Latime.xcdatamodeld in Sources */,
+				C9446ABF26B17C1200B027EA /* UnsplashEntity.swift in Sources */,
 				C967552C267A6671003A016A /* UIFont + Extensions.swift in Sources */,
 				C97724312694A5290050665A /* InputContainerTextField.swift in Sources */,
 				C9EA160F2696D67A005105F0 /* TimelineVC.swift in Sources */,
