@@ -34,9 +34,6 @@ struct InspectModel {
         title = timePoint.infoName ?? "Title abscent"
         
         if let date = timePoint.infoDate {
-            
-        } else if let interval = timePoint.infoInterval {
-            
         }
         
         isRelative = timePoint.isRelative
@@ -46,11 +43,10 @@ struct InspectModel {
         }
         
         resultDate = timePoint.infoDate ?? Date()+3600
-        // relativeInterval = TimeInterval(timePoint.infoInterval)
-        relativeInterval = resultDate.timeIntervalSince(anchorDate ?? Date())
-        intervalFromNow = resultDate.timeIntervalSince(Date())
+        relativeTimeInterval = resultDate.timeIntervalSince(anchorDate ?? Date())
+        timeInterval = resultDate.timeIntervalSince(Date())
 
-        print("relative interval \(relativeInterval), fromNowINterval \(intervalFromNow) ")
+//        print("relative interval \(relativeInterval), fromNowINterval \(intervalFromNow) ")
 
         if let data = timePoint.infoImage {
             image = UIImage(data: data)
