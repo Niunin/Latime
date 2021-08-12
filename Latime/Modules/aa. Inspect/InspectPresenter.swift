@@ -10,14 +10,14 @@ import UIKit.UIImage
 
 // MARK: - Object
 
-class InspectPresenter: InspectPresenterProtocol {
-    
+class InspectPresenter: InspectPresenterInterface, InspectInteractorOutputInterface {
+ 
     // MARK: properties
     
     /// Hierarchy
-    weak var view: InspectViewProtocol!
-    var router: InspectRouterProtocol!
-    var interactor: InspectInteractorProtocol! {
+    weak var view: InspectViewInterface!
+    var router: InspectRouterInterface!
+    var interactor: InspectInteractorInterface! {
         didSet {
             configureView()
         }
@@ -27,11 +27,11 @@ class InspectPresenter: InspectPresenterProtocol {
     
     func configureView() {
         let model = interactor.model
-        let inspectorModel = InspectModel(model)
+        let inspectorModel = InspectModel(model, dateHandler: interactor.dateHandler!)
         view.configure(model: inspectorModel)
     }
     
-    // MARK: viper presenter protocol conformance
+    // MARK: viper presenter interface protocol conformance
     
     func buttonPressedRemove() {
         interactor.delete()
@@ -57,6 +57,10 @@ class InspectPresenter: InspectPresenterProtocol {
         interactor.update(image: nil)
     }
     
+    func segmentedControlSwitched(_: Int) {
+        // interactor.update(relativeMode: Bool)
+    }
+    
     func viewUpdated(date: Date) {
         interactor.update(date: date)
     }
@@ -69,14 +73,13 @@ class InspectPresenter: InspectPresenterProtocol {
         interactor.update(title: title)
     }
     
+    // MARK: viper interactor output interface protocol conformance
+    
     func interactorUpdated(date: Date) {
-        view.configure(date: date)
         configureView()
     }
     
-    func interactorUpdated(interval: Int64) {
-        let timeInterval = TimeInterval(Int(interval))
-        view.configure(interval: timeInterval)
+    func interactorUpdated(interval: TimeInterval) {
         configureView()
     }
     

@@ -58,7 +58,7 @@ class InspectorDataManager: NSObject {
 
 // MARK: - CRUD
 
-extension InspectorDataManager: InspectDataManagerProtocol {
+extension InspectorDataManager: InspectDataManagerInterface {
   
     // MARK: retreive
     
@@ -69,20 +69,10 @@ extension InspectorDataManager: InspectDataManagerProtocol {
     // MARK: update
    
     func update(date: Date) {
-        modelData.isRelative = false
         modelData.infoDate = date
         if let parent = modelData.parentPoint {
             updatePositions(ofParent: parent)
         }
-        saveContext()
-    }
-    
-    func update(interval: Int64) {
-        modelData.isRelative = true
-        // TODO: make it work with parent. Now it works with phases only
-        guard let relativeTo = modelData.parentPoint?.infoDate else { return }
-        let date = relativeTo.advanced(by: TimeInterval(Int(interval)))
-        modelData.infoDate = date
         saveContext()
     }
     

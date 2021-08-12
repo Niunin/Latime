@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - Object
 
-class InspectViewController: UIViewController, InspectViewProtocol {
+class InspectViewController: UIViewController, InspectViewInterface {
     
     enum Section: String, CaseIterable, Hashable {
         
@@ -24,7 +24,7 @@ class InspectViewController: UIViewController, InspectViewProtocol {
     // MARK: properties
     
     /// Hierarchy
-    var presenter: InspectPresenterProtocol!
+    var presenter: InspectPresenterInterface!
     private var model: InspectModel!
     
     /// Views and controls
@@ -33,6 +33,7 @@ class InspectViewController: UIViewController, InspectViewProtocol {
     internal lazy var inputContainer = InputContainer(view: self, delegate: self)
     internal var tap: UITapGestureRecognizer!
     
+    private var pickedSegment = 0
     // MARK: life cycle
     
     override func viewDidLoad() {
@@ -43,7 +44,6 @@ class InspectViewController: UIViewController, InspectViewProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
-        setCurrentSegment(0)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -67,30 +67,33 @@ class InspectViewController: UIViewController, InspectViewProtocol {
     
     func configure(model: InspectModel) {
         self.model = model
+        
+        // FIXME: It should not be here
+        // TODO: Separate first and following runs
+        if collectionView != nil {
+            recon()
+        }
+        
+    }
+    
+    func recon() {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Section>()
+        if  pickedSegment == 0 {
+            snapshot.appendSections([0])
+            snapshot.appendItems([.info])
+            snapshot.appendSections([1])
+            snapshot.appendItems([.calendar, .reminder])
+        } else {
+            snapshot.appendSections([0])
+            snapshot.appendItems([.smallinfo])
+            snapshot.appendSections([1])
+            snapshot.appendItems([.countdown, .reminder])
+        }
+        dataSource.apply(snapshot, animatingDifferences: true )
     }
     
     func configure(image: UIImage?) {
         inputContainer.setImage(image)
-    }
-    
-    func configure(date: Date) {
-        guard let infoCell = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? DateIntervalCell else {
-            Swift.print(" unsuccessfull cell reach")
-            return
-        }
-        
-        let differenceInSeconds = date.timeIntervalSince(Date())
-        infoCell.configure(timeInterval: differenceInSeconds)
-    }
-    
-    func configure(interval: TimeInterval) {
-        guard let cell = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? DateIntervalCell else {
-            Swift.print(" unsuccessfull cell reach")
-            return
-        }
-        
-        let date = Date(timeInterval: interval, since: Date())
-        cell.configure(resultDate: date)
     }
 
 }
@@ -151,6 +154,21 @@ private extension InspectViewController {
         
         registerCells()
         registerHeaders()
+        
+        // Remove it from here
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Section>()
+        if pickedSegment == 0 {
+            snapshot.appendSections([0])
+            snapshot.appendItems([.info])
+            snapshot.appendSections([1])
+            snapshot.appendItems([.calendar, .reminder])
+        } else {
+            snapshot.appendSections([0])
+            snapshot.appendItems([.smallinfo])
+            snapshot.appendSections([1])
+            snapshot.appendItems([.countdown, .reminder])
+        }
+        dataSource.apply(snapshot, animatingDifferences: true )
     }
     
     func setupSelf() {
@@ -248,15 +266,15 @@ private extension InspectViewController {
         let cellRegInfo = UICollectionView.CellRegistration<DateIntervalCell, String> { (cell, indexPath, identifier) in
             cell.backgroundColor = .white
             if identifier == Section.info.rawValue {
-                cell.configure(timeInterval: self.model.timeInterval ?? 0.0 )
+                cell.configure(timeInterval: self.model.dateHandler.intervalFromReferenceToResult )
             } else if identifier == Section.smallinfo.rawValue {
-                cell.configure(initialDate: self.model.anchorDate ?? Date() )
-                cell.configure(resultDate: self.model.resultDate)
+                cell.configure(initialDate: self.model.dateHandler.referenceDate )
+                cell.configure(resultDate: self.model.dateHandler.resultDate)
             }
         }
         
         let cellRegDate = UICollectionView.CellRegistration<DateCell, Int> { (cell, indexPath, identifier) in
-            cell.picker.date = self.model.resultDate
+            cell.picker.date = self.model.dateHandler.resultDate
             cell.handler = { [weak self] (date)  in
                 self?.presenter.viewUpdated(date: date)
             }
@@ -264,7 +282,7 @@ private extension InspectViewController {
         
         let cellRegCountdown = UICollectionView.CellRegistration<RelativeDateInput, Int> { (cell, indexPath, identifier) in
             
-            cell.setTimeInterval(self.model.relativeTimeInterval ?? 0 )
+            cell.setTimeInterval(self.model.dateHandler.intervalFromReferenceToResult )
             cell.handler = { [weak self] (interval)  in
                 self?.presenter.viewUpdated(timeInterval: interval)
             }
@@ -311,7 +329,7 @@ extension InspectViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
     }
-    
+
 }
 
 // MARK: - UI Delegate GestureRecognizer
@@ -329,21 +347,10 @@ extension InspectViewController: UIGestureRecognizerDelegate {
 extension InspectViewController: TitleSegmentedDelegate {
     
     func setCurrentSegment(_ segment: Int) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, Section>()
-        if segment == 0 {
-            snapshot.appendSections([0])
-            snapshot.appendItems([.info])
-            snapshot.appendSections([1])
-            snapshot.appendItems([.calendar, .reminder])
-        } else {
-            snapshot.appendSections([0])
-            snapshot.appendItems([.smallinfo])
-            snapshot.appendSections([1])
-            snapshot.appendItems([.countdown, .reminder])
-        }
-        dataSource.apply(snapshot, animatingDifferences: true )
+        self.pickedSegment = segment
+        recon()
     }
-    
+
 }
 
 // MARK: View DateInput Delegate

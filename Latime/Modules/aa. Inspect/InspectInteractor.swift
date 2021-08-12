@@ -10,13 +10,14 @@ import UIKit.UIImage
 
 // MARK: - Object
 
-class InspectInteractor: InspectInteractorProtocol {
+class InspectInteractor: InspectInteractorInterface {
     
     // MARK: properties
     
     /// Hierarchy
-    weak var presenter: InspectPresenterProtocol!
-    var dataManager: InspectDataManagerProtocol!
+    weak var output: InspectInteractorOutputInterface?
+    var dataManager: InspectDataManagerInterface!
+    var dateHandler: DateHandlerProtocol?
     
     var titleIsEmpty: Bool {
         if dataManager.model.infoName == "" {
@@ -25,7 +26,7 @@ class InspectInteractor: InspectInteractorProtocol {
             return false
         }
     }
-    
+
     // MARK: init - deinit
     
     init() {
@@ -47,18 +48,25 @@ class InspectInteractor: InspectInteractorProtocol {
     }
     
     func update(date: Date) {
+        dateHandler?.setResultDate(date)
         dataManager.update(date: date)
-        presenter.interactorUpdated(date: date)
+        
+        output?.interactorUpdated(interval: dateHandler?.intervalFromReferenceToResult ?? 180)
+    }
+
+    func update(interval: Int64) {
+        dateHandler?.setInterval(TimeInterval(interval))
+        dataManager.update(date: dateHandler?.resultDate ?? Date())
+        output?.interactorUpdated(date: dateHandler?.resultDate ?? Date())
     }
     
-    func update(interval: Int64) {
-        dataManager.update(interval: interval)
-        presenter.interactorUpdated(interval: interval)
+    func update(isDependent: Bool) {
+        
     }
     
     func update(image: UIImage?) {
         dataManager.update(image: image)
-        presenter.interactorUpdated(image: image)
+        output?.interactorUpdated(image: image)
     }
     
     func delete() {
@@ -98,5 +106,3 @@ private extension InspectInteractor {
     }
 
 }
-
-

@@ -18,7 +18,7 @@ protocol UnsplashInteractorProtocol {
     func orderImagesDataPackage(with query: String?)
     func getItemFor(index: Int, completion: @escaping (_ image: UIImage?,_ imageSource: ImageSource ) -> Void)
     func getFullSizeItemFor(index: Int)
-    
+
 }
 
 // MARK: - Object
