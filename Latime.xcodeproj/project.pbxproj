@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6595DD4D26C54C9000DDD712 /* GlanceDateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595DD4C26C54C9000DDD712 /* GlanceDateHandler.swift */; };
 		C9076E55269ECCC400C299DD /* CellInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9076E54269ECCC400C299DD /* CellInfo.swift */; };
 		C9076E57269ECDCC00C299DD /* InspectViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9076E56269ECDCC00C299DD /* InspectViewProtocols.swift */; };
 		C9076E59269F2C0000C299DD /* CellDateInputRelative.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9076E58269F2C0000C299DD /* CellDateInputRelative.swift */; };
@@ -97,7 +96,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6595DD4C26C54C9000DDD712 /* GlanceDateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceDateHandler.swift; sourceTree = "<group>"; };
 		C9076E54269ECCC400C299DD /* CellInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellInfo.swift; sourceTree = "<group>"; };
 		C9076E56269ECDCC00C299DD /* InspectViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectViewProtocols.swift; sourceTree = "<group>"; };
 		C9076E58269F2C0000C299DD /* CellDateInputRelative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDateInputRelative.swift; sourceTree = "<group>"; };
@@ -204,15 +202,6 @@
 			children = (
 				C9675507267A6671003A016A /* InspectEntity.swift */,
 				C9CE570F26C29F34002AD6EC /* DateHandler.swift */,
-			);
-			path = Entity;
-			sourceTree = "<group>";
-		};
-		6595DD4A26C54C7500DDD712 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-				C967551A267A6671003A016A /* GlanceEntiti.swift */,
-				6595DD4C26C54C9000DDD712 /* GlanceDateHandler.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -424,10 +413,10 @@
 		C9675517267A6671003A016A /* a. Glance */ = {
 			isa = PBXGroup;
 			children = (
-				6595DD4A26C54C7500DDD712 /* Entity */,
 				C9ECAD6926A4321D00CA39D2 /* 0. Protocols */,
 				C967551D267A6671003A016A /* 2. Cells */,
 				C92109EE2699D3D300B2FEF8 /* 3. DataManager */,
+				C967551A267A6671003A016A /* GlanceEntiti.swift */,
 				C9675528267A6671003A016A /* GlanceInteractor.swift */,
 				C967551C267A6671003A016A /* GlancePresenter.swift */,
 				C9675518267A6671003A016A /* GlanceRouter.swift */,
@@ -677,7 +666,6 @@
 				C9446AC226B17C9F00B027EA /* UnsplashViperProtocols.swift in Sources */,
 				C9EA16122696DFAB005105F0 /* TimelineCell.swift in Sources */,
 				C9B9AD312689C46C00A182DA /* Indicator.swift in Sources */,
-				6595DD4D26C54C9000DDD712 /* GlanceDateHandler.swift in Sources */,
 				C992AACF269D85440078B9A8 /* HeaderSegmentedControl.swift in Sources */,
 				C9675541267A6671003A016A /* GlanceViperProtocols.swift in Sources */,
 				C9EA16072696D640005105F0 /* TimelineRouter.swift in Sources */,
