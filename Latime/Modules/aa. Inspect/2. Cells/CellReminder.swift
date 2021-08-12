@@ -53,7 +53,7 @@ class TextCell: UICollectionViewCell {
     }
     
     func configure() {
-        backgroundColor = .systemBackground
+        backgroundColor = .green
         stack.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(stack)
         let inset = CGFloat(30)

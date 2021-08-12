@@ -43,8 +43,9 @@ class GlanceCountdownView: UIView {
     
     // MARK: configure
     
-    func configure(_ date: Date) {
-        let str = DateModel.fullDateDescription(from: Date(), to: date)
+    func configure(_ timePoint: GlanceEntity) {
+        //let str = DateModel.fullDateDescription(from: Date(), to: date)
+        let str = timePoint.fullDateDescription()
         let stringWithSeparators = insertSeparators(str)
         let info = finishString(stringWithSeparators)
         countdown1.attributedText = info

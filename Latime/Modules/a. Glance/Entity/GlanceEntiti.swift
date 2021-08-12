@@ -48,3 +48,25 @@ struct GlanceEntity {
     }
     
 }
+
+// MARK: Date Methods
+
+extension GlanceEntity {
+    
+    private var start: Date {
+        get {
+            Date()
+        }
+    }
+    
+    func fullDateDescription() -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.collapsesLargestUnit = false
+        formatter.allowedUnits = [.day, .hour, .minute]
+        formatter.unitsStyle = .short
+        formatter.zeroFormattingBehavior = [.dropLeading, .dropTrailing, .dropTrailing ]
+        let description = formatter.string(from: start, to: self.date)!
+        return description
+    }
+    
+}
