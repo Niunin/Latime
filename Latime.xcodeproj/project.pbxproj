@@ -67,7 +67,7 @@
 		C9A02AF0267A6D5A00F8E85F /* LatimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A02AEF267A6D5A00F8E85F /* LatimeTests.swift */; };
 		C9B9AD312689C46C00A182DA /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B9AD302689C46C00A182DA /* Indicator.swift */; };
 		C9C4A599269F55B4005224A2 /* InspectContextMenuProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C4A598269F55B4005224A2 /* InspectContextMenuProtocols.swift */; };
-		C9CE571026C29F34002AD6EC /* DateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CE570F26C29F34002AD6EC /* DateHandler.swift */; };
+		C9CE571026C29F34002AD6EC /* InspectDateEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CE570F26C29F34002AD6EC /* InspectDateEntity.swift */; };
 		C9DE3C412684A94900FE773D /* UIKit + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DE3C402684A94900FE773D /* UIKit + Extension.swift */; };
 		C9E15A5026A5C567002989B5 /* UICollectionView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E15A4F26A5C567002989B5 /* UICollectionView + Extensions.swift */; };
 		C9E15A5326A5F4F9002989B5 /* TimelineDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E15A5226A5F4F9002989B5 /* TimelineDataManager.swift */; };
@@ -161,7 +161,7 @@
 		C9A02AEF267A6D5A00F8E85F /* LatimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatimeTests.swift; sourceTree = "<group>"; };
 		C9B9AD302689C46C00A182DA /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		C9C4A598269F55B4005224A2 /* InspectContextMenuProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectContextMenuProtocols.swift; sourceTree = "<group>"; };
-		C9CE570F26C29F34002AD6EC /* DateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHandler.swift; sourceTree = "<group>"; };
+		C9CE570F26C29F34002AD6EC /* InspectDateEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectDateEntity.swift; sourceTree = "<group>"; };
 		C9DE3C402684A94900FE773D /* UIKit + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit + Extension.swift"; sourceTree = "<group>"; };
 		C9E15A4F26A5C567002989B5 /* UICollectionView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView + Extensions.swift"; sourceTree = "<group>"; };
 		C9E15A5226A5F4F9002989B5 /* TimelineDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineDataManager.swift; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				C9675507267A6671003A016A /* InspectEntity.swift */,
-				C9CE570F26C29F34002AD6EC /* DateHandler.swift */,
+				C9CE570F26C29F34002AD6EC /* InspectDateEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -616,7 +616,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9CE571026C29F34002AD6EC /* DateHandler.swift in Sources */,
+				C9CE571026C29F34002AD6EC /* InspectDateEntity.swift in Sources */,
 				C967553C267A6671003A016A /* InspectRouter.swift in Sources */,
 				C9446AAE26B17BEB00B027EA /* UnsplashVC.swift in Sources */,
 				C9446ABD26B17C1200B027EA /* UnsplashNetworkInterface.swift in Sources */,

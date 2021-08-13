@@ -10,17 +10,18 @@ import UIKit.UIImage
 
 // MARK: - Data Structure
 
-struct InspectModel {
+struct InspectEntity {
     
     var title: String
     var hasParent: Bool
-    var dateHandler: DateHandlerProtocol
+    var dateHandler: DateHandler
     var image: UIImage?
     
     // MARK: init
     
-    init(_ timePoint: TimePoint, dateHandler: DateHandlerProtocol) {
-        self.dateHandler = dateHandler
+    init(_ timePoint: TimePoint) {
+        
+        self.dateHandler = DateHandler(model: timePoint)
         title = timePoint.infoName ?? "Title abscent"
         hasParent = timePoint.parentPoint != nil
         

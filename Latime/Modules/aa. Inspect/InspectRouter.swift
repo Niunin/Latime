@@ -36,7 +36,7 @@ class InspectRouter: InspectRouterInterface {
         
         interactor.output = presenter
         interactor.dataManager = dataManager
-        interactor.dateHandler = DateHandler(resultDate: dataManager.model.infoDate ?? Date())
+//        interactor.dateHandler = DateHandler(model: model)
 
         
         presenter.view = view

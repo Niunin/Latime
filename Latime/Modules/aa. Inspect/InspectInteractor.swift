@@ -10,14 +10,15 @@ import UIKit.UIImage
 
 // MARK: - Object
 
-class InspectInteractor: InspectInteractorInterface {
+class InspectInteractor: InspectInteractorInterface {    
     
     // MARK: properties
     
     /// Hierarchy
     weak var output: InspectInteractorOutputInterface?
     var dataManager: InspectDataManagerInterface!
-    var dateHandler: DateHandlerProtocol?
+    
+     var data: InspectEntity?
     
     var titleIsEmpty: Bool {
         if dataManager.model.infoName == "" {
@@ -37,10 +38,11 @@ class InspectInteractor: InspectInteractorInterface {
         removeNotificationsObservers()
     }
     
-    // MARK: viper interactor protocol conformance
+    // MARK: viper interactor interface protocol methods
     
-    var model: TimePoint {
-        return dataManager.model
+    func updateData()  {
+        let model = dataManager.model
+        data = InspectEntity(model)
     }
     
     func update(title: String?) {
@@ -48,20 +50,28 @@ class InspectInteractor: InspectInteractorInterface {
     }
     
     func update(date: Date) {
-        dateHandler?.setResultDate(date)
-        dataManager.update(date: date)
-        
-        output?.interactorUpdated(interval: dateHandler?.intervalFromReferenceToResult ?? 180)
+        data?.dateHandler.setResultDate(date)
+        saveDate()
+        propagate()
     }
 
     func update(interval: Int64) {
-        dateHandler?.setInterval(TimeInterval(interval))
-        dataManager.update(date: dateHandler?.resultDate ?? Date())
-        output?.interactorUpdated(date: dateHandler?.resultDate ?? Date())
+        data?.dateHandler.setInterval(TimeInterval(interval))
+        saveDate()
+        propagate()
+    }
+    
+    private func saveDate() {
+        dataManager.update(date: data?.dateHandler.resultDate ?? Date())
+    }
+    
+    private func propagate() {
+        if data != nil {
+            output?.interactorUpdatedData(data: data!)
+        }
     }
     
     func update(isDependent: Bool) {
-        
     }
     
     func update(image: UIImage?) {

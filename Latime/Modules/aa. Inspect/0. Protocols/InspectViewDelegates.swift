@@ -19,14 +19,14 @@ protocol InputContainerDelegate: AnyObject {
     
 }
 
-// MARK: - DatePicker Delegate
-
-protocol InspectDateInputDelegate: AnyObject {
-    
-    func dateChanged(_ date : Date)
-    func intervalChanged(_ interval: TimeInterval)
-    
-}
+//// MARK: - DatePicker Delegate
+//
+//protocol InspectDateInputDelegate: AnyObject {
+//    
+//    func dateChanged(_ date : Date)
+//    func intervalChanged(_ interval: TimeInterval)
+//    
+//}
 
 
 // MARK: - TitleSegmentedControl Delegate

@@ -26,9 +26,8 @@ class InspectPresenter: InspectPresenterInterface, InspectInteractorOutputInterf
     // MARK: configure
     
     func configureView() {
-        let model = interactor.model
-        let inspectorModel = InspectModel(model, dateHandler: interactor.dateHandler!)
-        view.configure(model: inspectorModel)
+        interactor.updateData()
+        view.configure(model: interactor.data!)
     }
     
     // MARK: viper presenter interface protocol conformance
@@ -57,8 +56,8 @@ class InspectPresenter: InspectPresenterInterface, InspectInteractorOutputInterf
         interactor.update(image: nil)
     }
     
-    func segmentedControlSwitched(_: Int) {
-        // interactor.update(relativeMode: Bool)
+    func switchToggledIsDependent(_ isDependent: Bool) {
+        interactor.update(isDependent: isDependent)
     }
     
     func viewUpdated(date: Date) {
@@ -75,17 +74,13 @@ class InspectPresenter: InspectPresenterInterface, InspectInteractorOutputInterf
     
     // MARK: viper interactor output interface protocol conformance
     
-    func interactorUpdated(date: Date) {
-        configureView()
-    }
-    
-    func interactorUpdated(interval: TimeInterval) {
-        configureView()
+    func interactorUpdatedData(data: InspectEntity) {
+        view.configure(model: data)
     }
     
     func interactorUpdated(image: UIImage?) {
         view.configure(image: image)
-        configureView()
+        // configureView()
     }
     
     

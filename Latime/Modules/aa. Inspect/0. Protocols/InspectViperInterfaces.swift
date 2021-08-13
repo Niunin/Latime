@@ -29,7 +29,7 @@ protocol InspectViewInterface: AnyObject {
     
     var presenter: InspectPresenterInterface! { get set }
     
-    func configure(model: InspectModel)
+    func configure(model: InspectEntity)
     func configure(image: UIImage?)
     
 }
@@ -49,7 +49,7 @@ protocol InspectPresenterInterface: AnyObject {
     func buttonPressedCamera()
     func buttonPressedUnsplash()
     func buttonPressedImageRemove()
-    func segmentedControlSwitched(_:Int)
+    func switchToggledIsDependent(_:Bool)
     
     func viewUpdated(title: String?)
     func viewUpdated(date : Date)
@@ -61,9 +61,11 @@ protocol InspectPresenterInterface: AnyObject {
 
 protocol InspectInteractorInterface: AnyObject {
     
-    var model: TimePoint { get }
-    var dateHandler: DateHandlerProtocol? { get set }
+    var data: InspectEntity? { get }
+//    var model: TimePoint { get }
+//    var dateHandler: DateHandler? { get set }
     
+    func updateData()
     func update(title: String?)
     func update(date: Date)
     func update(interval: Int64)
@@ -79,8 +81,7 @@ protocol InspectInteractorInterface: AnyObject {
 
 protocol InspectInteractorOutputInterface: AnyObject {
     
-    func interactorUpdated(date: Date)
-    func interactorUpdated(interval: TimeInterval)
+    func interactorUpdatedData(data: InspectEntity) 
     func interactorUpdated(image: UIImage?)
     
 }

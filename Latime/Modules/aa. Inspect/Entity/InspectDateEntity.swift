@@ -7,29 +7,9 @@
 
 import Foundation
 
-// MARK: - DateHandler Protocol
-
-protocol DateHandlerProtocol {
-    
-    /// Dates
-    var referenceDate: Date { get }
-    var resultDate: Date { get }
-    
-    /// Intervals
-    var intervalFromNowToResult: TimeInterval { get }
-    var intervalFromReferenceToResult: TimeInterval { get }
-    
-    // MARK: methods
-    
-    mutating func setInterval(_: TimeInterval)
-    mutating func setResultDate(_: Date)
-    mutating func setReferenceDateType(_: DateHandler.ReferenceType)
-
-}
-
 // MARK: - Data Structure
 
-struct DateHandler: DateHandlerProtocol {
+struct DateHandler {
     
     enum ReferenceType {
         case current, parent
@@ -72,9 +52,9 @@ struct DateHandler: DateHandlerProtocol {
     
     //MARK: init
     
-    init(resultDate: Date, parentDate: Date? = nil) {
-        self.parentDate = parentDate
-        self.resultDate = resultDate
+    init (model: TimePoint) {
+        self.parentDate = model.parentPoint?.infoDate
+        self.resultDate = model.infoDate!
         intervalFromReferenceToResult = DateInterval(start: referenceDate, end: resultDate).duration
     }
     

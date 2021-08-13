@@ -25,7 +25,7 @@ class InspectViewController: UIViewController, InspectViewInterface {
     
     /// Hierarchy
     var presenter: InspectPresenterInterface!
-    private var model: InspectModel!
+    private var model: InspectEntity!
     
     /// Views and controls
     var dataSource: UICollectionViewDiffableDataSource<Int, Section>! = nil
@@ -65,7 +65,7 @@ class InspectViewController: UIViewController, InspectViewInterface {
         
     // MARK: viper view protocol conformance
     
-    func configure(model: InspectModel) {
+    func configure(model: InspectEntity) {
         self.model = model
         
         // FIXME: It should not be here
@@ -76,8 +76,10 @@ class InspectViewController: UIViewController, InspectViewInterface {
         
     }
     
+    // TODO: Refactor this
     func recon() {
         var snapshot = NSDiffableDataSourceSnapshot<Int, Section>()
+        
         if  pickedSegment == 0 {
             snapshot.appendSections([0])
             snapshot.appendItems([.info])
@@ -155,7 +157,7 @@ private extension InspectViewController {
         registerCells()
         registerHeaders()
         
-        // Remove it from here
+        // TODO: Remove it from here
         var snapshot = NSDiffableDataSourceSnapshot<Int, Section>()
         if pickedSegment == 0 {
             snapshot.appendSections([0])
@@ -263,9 +265,11 @@ private extension InspectViewController {
 private extension InspectViewController {
     
     func registerCells() {
+        /// Cell Date Interval registration
         let cellRegInfo = UICollectionView.CellRegistration<DateIntervalCell, String> { (cell, indexPath, identifier) in
             cell.backgroundColor = .white
             if identifier == Section.info.rawValue {
+                print("_\(self.model.dateHandler.intervalFromReferenceToResult)")
                 cell.configure(timeInterval: self.model.dateHandler.intervalFromReferenceToResult )
             } else if identifier == Section.smallinfo.rawValue {
                 cell.configure(initialDate: self.model.dateHandler.referenceDate )
@@ -273,21 +277,25 @@ private extension InspectViewController {
             }
         }
         
+        /// Cell Date Interval registration
         let cellRegDate = UICollectionView.CellRegistration<DateCell, Int> { (cell, indexPath, identifier) in
             cell.picker.date = self.model.dateHandler.resultDate
             cell.handler = { [weak self] (date)  in
                 self?.presenter.viewUpdated(date: date)
+                self?.updateInfo1()
             }
         }
         
+        /// Cell Date Interval registration
         let cellRegCountdown = UICollectionView.CellRegistration<RelativeDateInput, Int> { (cell, indexPath, identifier) in
-            
             cell.setTimeInterval(self.model.dateHandler.intervalFromReferenceToResult )
             cell.handler = { [weak self] (interval)  in
                 self?.presenter.viewUpdated(timeInterval: interval)
+                self?.updateInfo2()
             }
         }
         
+        /// Cell Date Interval registration
         let cellRegText = UICollectionView.CellRegistration<TextCell, Int> { (cell, indexPath, identifier) in
 //            cell.label.text = "Custom cell"
         }
@@ -307,6 +315,18 @@ private extension InspectViewController {
         }
     }
     
+    func updateInfo1() {
+        var snapshot = dataSource.snapshot()
+        snapshot.reloadItems([.info])
+        dataSource.apply(snapshot, animatingDifferences: true )
+    }
+    
+    func updateInfo2() {
+        var snapshot = dataSource.snapshot()
+        snapshot.reloadItems([.smallinfo])
+        dataSource.apply(snapshot, animatingDifferences: true )
+    }
+    
     func registerHeaders() {
         let headerReg = UICollectionView.SupplementaryRegistration<TitleSegmentedView>(elementKind: "header-element-kind") {
             (supplementaryView, string, indexPath) in
@@ -314,12 +334,13 @@ private extension InspectViewController {
         }
         
         dataSource.supplementaryViewProvider = { (view, kind, index) in
-            
             return self.collectionView.dequeueConfiguredReusableSupplementary(
                 using: headerReg, for: index)
         }
     }
     
+    
+        
 }
 
 // MARK: - UI Delegate CollectionView
@@ -349,20 +370,6 @@ extension InspectViewController: TitleSegmentedDelegate {
     func setCurrentSegment(_ segment: Int) {
         self.pickedSegment = segment
         recon()
-    }
-
-}
-
-// MARK: View DateInput Delegate
-
-extension InspectViewController: InspectDateInputDelegate {
-    
-    func intervalChanged(_ interval: TimeInterval) {
-        presenter.viewUpdated(timeInterval: interval)
-    }
-    
-    func dateChanged(_ date: Date) {
-        presenter.viewUpdated(date: date)
     }
 
 }
