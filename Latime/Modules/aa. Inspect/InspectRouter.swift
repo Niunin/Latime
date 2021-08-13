@@ -8,11 +8,11 @@
 import UIKit
 import CoreData
 
-typealias InspectEntryPoint = InspectViewProtocol & UIViewController
+typealias InspectEntryPoint = InspectViewInterface & UIViewController
 
 // MARK: - Object
 
-class InspectRouter: InspectRouterProtocol {
+class InspectRouter: InspectRouterInterface {
     
     // MARK: properties
     
@@ -34,9 +34,10 @@ class InspectRouter: InspectRouterProtocol {
         
         router.entry = view as InspectEntryPoint
         
-        interactor.presenter = presenter
+        interactor.output = presenter
         interactor.dataManager = dataManager
-        
+//        interactor.dateHandler = DateHandler(model: model)
+
         presenter.view = view
         presenter.router = router
         presenter.interactor = interactor

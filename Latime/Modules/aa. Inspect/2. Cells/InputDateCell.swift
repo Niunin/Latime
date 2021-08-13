@@ -3,7 +3,7 @@ import UIKit
 
 // MARK: - Object
 
-class DateCell: UICollectionViewCell {
+class InputDateCell: UICollectionViewCell {
     
     static let reuseIdentifier = "text-cell-reuse-identifier"
 
@@ -30,11 +30,10 @@ class DateCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = UIColor.white
+        contentView.backgroundColor = .clear
         configure()
         picker.addTarget(self, action: #selector(pickerValueChanged), for: .valueChanged)
     }
-    
     
     required init?(coder: NSCoder) {
         fatalError("not implemnted")
@@ -43,7 +42,6 @@ class DateCell: UICollectionViewCell {
     // MARK: configure
     
     func configure() {
-        backgroundColor = .systemBackground
         picker.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(picker)
         NSLayoutConstraint.activate([

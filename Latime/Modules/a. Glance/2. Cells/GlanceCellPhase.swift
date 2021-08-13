@@ -40,7 +40,7 @@ class GlancePhaseTVCell: UITableViewCell, PhaseCellProtocol {
 
     func configure(timePoint: GlanceEntity) {
         let title = timePoint.title
-        let time = DateModel.fullDateDescription(from: Date(), to: timePoint.date)
+        let time = timePoint.fullDateDescription()
         label.attributedText = getDescriptionText(title, time)
     }
     

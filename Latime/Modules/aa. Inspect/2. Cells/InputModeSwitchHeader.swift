@@ -1,6 +1,6 @@
 import UIKit
 
-class TitleSegmentedView: UICollectionReusableView {
+class InputModeSwitchHeader: UICollectionReusableView {
     
     static let reuseIdentifier = "segmented-control-title-identifier"
     weak var delegate: TitleSegmentedDelegate?
@@ -19,7 +19,7 @@ class TitleSegmentedView: UICollectionReusableView {
     }
 }
 
-extension TitleSegmentedView {
+extension InputModeSwitchHeader {
     
     func setupSelf() {
         addSubview(segmentedControl)

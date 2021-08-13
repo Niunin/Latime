@@ -10,47 +10,97 @@ import UIKit.UIImage
 
 // MARK: - Data Structure
 
-struct InspectModel {
+struct InspectEntity {
     
-    var type: ModelType
     var title: String
-    var anchorDate: Date?
-    var resultDate: Date
-    var timeInterval: TimeInterval?
-    var relativeTimeInterval: TimeInterval?
-    
-    var isRelative: Bool
+    var hasParent: Bool
+    var dateHandler: DateHandler
     var image: UIImage?
-    
-    enum ModelType {
-        case mission
-        case phase
-    }
     
     // MARK: init
     
     init(_ timePoint: TimePoint) {
-        type = timePoint.parentPoint == nil ? .mission : .phase
+        
+        self.dateHandler = DateHandler(model: timePoint)
         title = timePoint.infoName ?? "Title abscent"
+        hasParent = timePoint.parentPoint != nil
         
-        if let date = timePoint.infoDate {
+        if let imageData = timePoint.infoImage {
+            image = UIImage(data: imageData)
         }
-        
-        isRelative = timePoint.isRelative
-        
-        if let parent = timePoint.parentPoint {
-            anchorDate = parent.infoDate
-        }
-        
-        resultDate = timePoint.infoDate ?? Date()+3600
-        relativeTimeInterval = resultDate.timeIntervalSince(anchorDate ?? Date())
-        timeInterval = resultDate.timeIntervalSince(Date())
+    }
+    
+}
 
-//        print("relative interval \(relativeInterval), fromNowINterval \(intervalFromNow) ")
+// MARK: - Date Data Structure
 
-        if let data = timePoint.infoImage {
-            image = UIImage(data: data)
+struct DateHandler {
+    
+    enum ReferenceType {
+        case current, parent
+    }
+    
+    //MARK: properties
+    
+    private var referenceType: ReferenceType = .current
+    
+    /// reference dates (get only)
+    private var currentDate: Date {
+        get {
+            Date()
         }
+    }
+    
+    private var parentDate: Date?
+    
+    var referenceDate: Date {
+        get {
+            if referenceType == .parent, parentDate != nil {
+                return parentDate!
+            } else   {
+                return currentDate
+            }
+        }
+    }
+    
+    /// result date
+    private(set) var resultDate: Date = Date()
+    
+    /// Intervals
+    var intervalFromNowToResult: TimeInterval {
+        get {
+            DateInterval(start: currentDate, end: resultDate).duration
+        }
+    }
+    
+    private(set) var intervalFromReferenceToResult: TimeInterval = 0
+    
+    //MARK: init
+    
+    init (model: TimePoint) {
+        self.parentDate = model.parentPoint?.infoDate
+        self.resultDate = model.infoDate!
+        intervalFromReferenceToResult = DateInterval(start: referenceDate, end: resultDate).duration
+    }
+    
+    func currentTimeChanged() {
+        
+    }
+    
+    // MARK: date work protocol methods
+    
+    mutating func setReferenceDateType(_ type: ReferenceType) {
+        referenceType = type
+    }
+    
+    mutating func setInterval(_ timeInterval: TimeInterval) {
+        intervalFromReferenceToResult = timeInterval
+        resultDate = DateInterval(start: referenceDate, duration: timeInterval).end
+    }
+    
+    mutating func setResultDate(_ date: Date) {
+        resultDate = date
+        intervalFromReferenceToResult = DateInterval(start: referenceDate, end: resultDate).duration
     }
     
 }

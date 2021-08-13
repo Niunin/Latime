@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - Object
 
-class RelativeDateInput: UICollectionViewCell {
+class InputIntervalCell: UICollectionViewCell {
     
     struct Sizes {
         
@@ -73,7 +73,7 @@ class RelativeDateInput: UICollectionViewCell {
 
 // MARK: - Setup Views
 
-private extension RelativeDateInput {
+private extension InputIntervalCell {
     
     func setupViews() {
         setupSelf()

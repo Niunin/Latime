@@ -59,7 +59,7 @@ class GlanceParentTVCell: UITableViewCell, ParentCellProtocol {
         titleLabel.text = timePoint.title
         customImageView.image = timePoint.image
 //        imageWidthConstraint.constant = timePoint.image != nil ? 40 : 0
-        countdownView.configure(timePoint.date)
+        countdownView.configure(timePoint)
         
         // FIXME: sdf-f-------
         indicatorView.removeFromSuperview()
@@ -101,8 +101,6 @@ private extension GlanceParentTVCell {
     
     func setupSelf() {
         self.backgroundColor = .clear
-        
-        contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 15
         contentView.clipsToBounds = true
         selectionStyle = .none

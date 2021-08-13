@@ -10,35 +10,38 @@ import UIKit.UIImage
 
 // MARK: - Object
 
-class InspectPresenter: InspectPresenterProtocol {
-    
+class InspectPresenter: InspectPresenterInterface, InspectInteractorOutputInterface {
+ 
     // MARK: properties
     
     /// Hierarchy
-    weak var view: InspectViewProtocol!
-    var router: InspectRouterProtocol!
-    var interactor: InspectInteractorProtocol! {
-        didSet {
-            configureView()
-        }
-    }
+    // TODO: ! -> ?
+    weak var view: InspectViewInterface!
+    var router: InspectRouterInterface!
+    var interactor: InspectInteractorInterface!
     
     // MARK: configure
     
     func configureView() {
-        let model = interactor.model
-        let inspectorModel = InspectModel(model)
-        view.configure(model: inspectorModel)
+        
+        interactor.refreshData()
     }
     
-    // MARK: viper presenter protocol conformance
+    // MARK: viper presenter interface protocol conformance
+    
+    func viewDidLoad() {
+        configureView()
+    }
+    
+    func viewWillAppear() {
+    }
+    
+    func viewWillDisappear() {
+        interactor.prepareForClosing()
+    }
     
     func buttonPressedRemove() {
         interactor.delete()
-    }
-    
-    func screenWillClose() {
-        interactor.prepareForClosing()
     }
     
     func buttonPressedImagePicker() {
@@ -57,6 +60,10 @@ class InspectPresenter: InspectPresenterProtocol {
         interactor.update(image: nil)
     }
     
+    func switchToggledIsDependent(_ isDependent: Bool) {
+        interactor.update(isDependent: isDependent)
+    }
+    
     func viewUpdated(date: Date) {
         interactor.update(date: date)
     }
@@ -69,20 +76,15 @@ class InspectPresenter: InspectPresenterProtocol {
         interactor.update(title: title)
     }
     
-    func interactorUpdated(date: Date) {
-        view.configure(date: date)
-        configureView()
-    }
+    // MARK: viper interactor output interface protocol conformance
     
-    func interactorUpdated(interval: Int64) {
-        let timeInterval = TimeInterval(Int(interval))
-        view.configure(interval: timeInterval)
-        configureView()
+    func interactorUpdatedData(data: InspectEntity) {
+        view.configure(withModel: data)
     }
     
     func interactorUpdated(image: UIImage?) {
         view.configure(image: image)
-        configureView()
+        // configureView()
     }
     
     

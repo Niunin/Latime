@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20D91" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="TimePoint" representedClassName="TimePoint" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="infoDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="infoImage" optional="YES" attributeType="Binary"/>
-        <attribute name="infoInterval" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="infoName" optional="YES" attributeType="String"/>
         <attribute name="isExposed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="isRelative" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="movesWithParent" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="positionOfParentAmongPhases" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="positionOfParentPoint" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="positionOfPhase" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -15,6 +14,6 @@
         <relationship name="phasePoints" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TimePoint" inverseName="parentPoint" inverseEntity="TimePoint"/>
     </entity>
     <elements>
-        <element name="TimePoint" positionX="-63" positionY="-18" width="128" height="209"/>
+        <element name="TimePoint" positionX="-63" positionY="-18" width="128" height="194"/>
     </elements>
 </model>

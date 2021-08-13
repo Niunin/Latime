@@ -10,13 +10,14 @@ import UIKit.UIImage
 
 // MARK: - Object
 
-class InspectInteractor: InspectInteractorProtocol {
+class InspectInteractor: InspectInteractorInterface {    
     
     // MARK: properties
     
     /// Hierarchy
-    weak var presenter: InspectPresenterProtocol!
-    var dataManager: InspectDataManagerProtocol!
+    weak var output: InspectInteractorOutputInterface?
+    var dataManager: InspectDataManagerInterface!
+    var data: InspectEntity?
     
     var titleIsEmpty: Bool {
         if dataManager.model.infoName == "" {
@@ -25,7 +26,7 @@ class InspectInteractor: InspectInteractorProtocol {
             return false
         }
     }
-    
+
     // MARK: init - deinit
     
     init() {
@@ -36,10 +37,12 @@ class InspectInteractor: InspectInteractorProtocol {
         removeNotificationsObservers()
     }
     
-    // MARK: viper interactor protocol conformance
+    // MARK: viper interactor interface protocol methods
     
-    var model: TimePoint {
-        return dataManager.model
+    func refreshData()  {
+        let model = dataManager.model
+        data = InspectEntity(model)
+        respond()
     }
     
     func update(title: String?) {
@@ -47,18 +50,33 @@ class InspectInteractor: InspectInteractorProtocol {
     }
     
     func update(date: Date) {
-        dataManager.update(date: date)
-        presenter.interactorUpdated(date: date)
+        data?.dateHandler.setResultDate(date)
+        saveDate()
+        respond()
+    }
+
+    func update(interval: Int64) {
+        data?.dateHandler.setInterval(TimeInterval(interval))
+        saveDate()
+        respond()
     }
     
-    func update(interval: Int64) {
-        dataManager.update(interval: interval)
-        presenter.interactorUpdated(interval: interval)
+    private func saveDate() {
+        dataManager.update(date: data?.dateHandler.resultDate ?? Date())
+    }
+    
+    private func respond() {
+        if data != nil {
+            output?.interactorUpdatedData(data: data!)
+        }
+    }
+    
+    func update(isDependent: Bool) {
     }
     
     func update(image: UIImage?) {
         dataManager.update(image: image)
-        presenter.interactorUpdated(image: image)
+        output?.interactorUpdated(image: image)
     }
     
     func delete() {
@@ -98,5 +116,3 @@ private extension InspectInteractor {
     }
 
 }
-
-

@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - Object
 
-class InspectViewController: UIViewController, InspectViewProtocol {
+class InspectViewController: UIViewController, InspectViewInterface {
     
     enum Section: String, CaseIterable, Hashable {
         
@@ -24,8 +24,8 @@ class InspectViewController: UIViewController, InspectViewProtocol {
     // MARK: properties
     
     /// Hierarchy
-    var presenter: InspectPresenterProtocol!
-    private var model: InspectModel!
+    var presenter: InspectPresenterInterface!
+    private var model: InspectEntity!
     
     /// Views and controls
     var dataSource: UICollectionViewDiffableDataSource<Int, Section>! = nil
@@ -33,17 +33,18 @@ class InspectViewController: UIViewController, InspectViewProtocol {
     internal lazy var inputContainer = InputContainer(view: self, delegate: self)
     internal var tap: UITapGestureRecognizer!
     
+    private var pickedSegment = 0
     // MARK: life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.viewDidLoad()
         setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewWillAppear(animated)        
         setupNavigationBar()
-        setCurrentSegment(0)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -54,7 +55,7 @@ class InspectViewController: UIViewController, InspectViewProtocol {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        presenter.screenWillClose()
+        presenter.viewWillDisappear()
         removeGestureRecognizers()
     }
     
@@ -65,32 +66,32 @@ class InspectViewController: UIViewController, InspectViewProtocol {
         
     // MARK: viper view protocol conformance
     
-    func configure(model: InspectModel) {
+    func configure(withModel model: InspectEntity) {
         self.model = model
+
+        if collectionView != nil {
+            updateSnapshot(animated: true)
+        }
+    }
+    
+    private func updateSnapshot(animated: Bool) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Section>()
+        if pickedSegment == 0 {
+            snapshot.appendSections([0])
+            snapshot.appendItems([.info])
+            snapshot.appendSections([1])
+            snapshot.appendItems([.calendar, .reminder])
+        } else {
+            snapshot.appendSections([0])
+            snapshot.appendItems([.smallinfo])
+            snapshot.appendSections([1])
+            snapshot.appendItems([.countdown, .reminder])
+        }
+        dataSource.apply(snapshot, animatingDifferences: animated )
     }
     
     func configure(image: UIImage?) {
         inputContainer.setImage(image)
-    }
-    
-    func configure(date: Date) {
-        guard let infoCell = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? DateIntervalCell else {
-            Swift.print(" unsuccessfull cell reach")
-            return
-        }
-        
-        let differenceInSeconds = date.timeIntervalSince(Date())
-        infoCell.configure(timeInterval: differenceInSeconds)
-    }
-    
-    func configure(interval: TimeInterval) {
-        guard let cell = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? DateIntervalCell else {
-            Swift.print(" unsuccessfull cell reach")
-            return
-        }
-        
-        let date = Date(timeInterval: interval, since: Date())
-        cell.configure(resultDate: date)
     }
 
 }
@@ -151,6 +152,8 @@ private extension InspectViewController {
         
         registerCells()
         registerHeaders()
+        
+        updateSnapshot(animated: false)
     }
     
     func setupSelf() {
@@ -245,63 +248,76 @@ private extension InspectViewController {
 private extension InspectViewController {
     
     func registerCells() {
-        let cellRegInfo = UICollectionView.CellRegistration<DateIntervalCell, String> { (cell, indexPath, identifier) in
+        let cellDisplayResult = UICollectionView.CellRegistration<DisplayResultCell, String> { (cell, indexPath, identifier) in
             cell.backgroundColor = .white
             if identifier == Section.info.rawValue {
-                cell.configure(timeInterval: self.model.timeInterval ?? 0.0 )
+                print("_\(self.model.dateHandler.intervalFromReferenceToResult)")
+                cell.configure(timeInterval: self.model.dateHandler.intervalFromReferenceToResult )
             } else if identifier == Section.smallinfo.rawValue {
-                cell.configure(initialDate: self.model.anchorDate ?? Date() )
-                cell.configure(resultDate: self.model.resultDate)
+                cell.configure(initialDate: self.model.dateHandler.referenceDate )
+                cell.configure(resultDate: self.model.dateHandler.resultDate)
             }
         }
         
-        let cellRegDate = UICollectionView.CellRegistration<DateCell, Int> { (cell, indexPath, identifier) in
-            cell.picker.date = self.model.resultDate
+        let cellInputDate = UICollectionView.CellRegistration<InputDateCell, Int> { (cell, indexPath, identifier) in
+            cell.picker.date = self.model.dateHandler.resultDate
             cell.handler = { [weak self] (date)  in
                 self?.presenter.viewUpdated(date: date)
+                self?.updateInfo1()
             }
         }
         
-        let cellRegCountdown = UICollectionView.CellRegistration<RelativeDateInput, Int> { (cell, indexPath, identifier) in
-            
-            cell.setTimeInterval(self.model.relativeTimeInterval ?? 0 )
+        let cellInputInterval = UICollectionView.CellRegistration<InputIntervalCell, Int> { (cell, indexPath, identifier) in
+            cell.setTimeInterval(self.model.dateHandler.intervalFromReferenceToResult )
             cell.handler = { [weak self] (interval)  in
                 self?.presenter.viewUpdated(timeInterval: interval)
+                self?.updateInfo2()
             }
         }
         
-        let cellRegText = UICollectionView.CellRegistration<TextCell, Int> { (cell, indexPath, identifier) in
-//            cell.label.text = "Custom cell"
-        }
+        let cellReminderSwitch = UICollectionView.CellRegistration<ReminderSwitchCell, Int> { (cell, indexPath, identifier) in }
         
         dataSource = UICollectionViewDiffableDataSource<Int, Section>(collectionView: collectionView) {
             (collectionView: UICollectionView, indexPath: IndexPath, item: Section) -> UICollectionViewCell? in
             switch item {
             case .info, .smallinfo:
-                return collectionView.dequeueConfiguredReusableCell(using: cellRegInfo, for: indexPath, item: item.rawValue)
+                return collectionView.dequeueConfiguredReusableCell(using: cellDisplayResult, for: indexPath, item: item.rawValue)
             case .calendar:
-                return collectionView.dequeueConfiguredReusableCell(using: cellRegDate, for: indexPath, item: 1)
+                return collectionView.dequeueConfiguredReusableCell(using: cellInputDate, for: indexPath, item: 1)
             case .countdown:
-                return collectionView.dequeueConfiguredReusableCell(using: cellRegCountdown, for: indexPath, item: 2)
+                return collectionView.dequeueConfiguredReusableCell(using: cellInputInterval, for: indexPath, item: 2)
             case .reminder:
-                return collectionView.dequeueConfiguredReusableCell(using: cellRegText, for: indexPath, item: 3)
+                return collectionView.dequeueConfiguredReusableCell(using: cellReminderSwitch, for: indexPath, item: 3)
             }
         }
     }
     
+    // TODO: Rename it
+    // FIXME: double snpshot Update
+    func updateInfo1() {
+        var snapshot = dataSource.snapshot()
+        snapshot.reloadItems([.info])
+        dataSource.apply(snapshot, animatingDifferences: true )
+    }
+    
+    func updateInfo2() {
+        var snapshot = dataSource.snapshot()
+        snapshot.reloadItems([.smallinfo])
+        dataSource.apply(snapshot, animatingDifferences: true )
+    }
+    
     func registerHeaders() {
-        let headerReg = UICollectionView.SupplementaryRegistration<TitleSegmentedView>(elementKind: "header-element-kind") {
+        let headerReg = UICollectionView.SupplementaryRegistration<InputModeSwitchHeader>(elementKind: "header-element-kind") {
             (supplementaryView, string, indexPath) in
             supplementaryView.delegate = self
         }
         
         dataSource.supplementaryViewProvider = { (view, kind, index) in
-            
             return self.collectionView.dequeueConfiguredReusableSupplementary(
                 using: headerReg, for: index)
         }
     }
-    
+
 }
 
 // MARK: - UI Delegate CollectionView
@@ -311,7 +327,7 @@ extension InspectViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
     }
-    
+
 }
 
 // MARK: - UI Delegate GestureRecognizer
@@ -329,33 +345,8 @@ extension InspectViewController: UIGestureRecognizerDelegate {
 extension InspectViewController: TitleSegmentedDelegate {
     
     func setCurrentSegment(_ segment: Int) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, Section>()
-        if segment == 0 {
-            snapshot.appendSections([0])
-            snapshot.appendItems([.info])
-            snapshot.appendSections([1])
-            snapshot.appendItems([.calendar, .reminder])
-        } else {
-            snapshot.appendSections([0])
-            snapshot.appendItems([.smallinfo])
-            snapshot.appendSections([1])
-            snapshot.appendItems([.countdown, .reminder])
-        }
-        dataSource.apply(snapshot, animatingDifferences: true )
-    }
-    
-}
-
-// MARK: View DateInput Delegate
-
-extension InspectViewController: InspectDateInputDelegate {
-    
-    func intervalChanged(_ interval: TimeInterval) {
-        presenter.viewUpdated(timeInterval: interval)
-    }
-    
-    func dateChanged(_ date: Date) {
-        presenter.viewUpdated(date: date)
+        self.pickedSegment = segment
+        updateSnapshot(animated: true)
     }
 
 }

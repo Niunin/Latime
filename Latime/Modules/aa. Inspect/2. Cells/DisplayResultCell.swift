@@ -9,7 +9,7 @@ import UIKit
 
 //MARK: - Object
 
-class DateIntervalCell: UICollectionViewCell, DateRepresentable {
+class DisplayResultCell: UICollectionViewCell, DateRepresentable {
     
     private struct Sizes {
         
@@ -90,7 +90,7 @@ class DateIntervalCell: UICollectionViewCell, DateRepresentable {
 
 // MARK: - Setup Views
 
-private extension DateIntervalCell {
+private extension DisplayResultCell {
     
     private func setupViews() {
         setupSelf()
