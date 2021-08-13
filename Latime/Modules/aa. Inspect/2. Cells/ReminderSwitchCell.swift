@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TextCell: UICollectionViewCell {
+class ReminderSwitchCell: UICollectionViewCell {
     
     private struct Sizes {
         
@@ -69,7 +69,7 @@ class TextCell: UICollectionViewCell {
 
 // MARK: - Setup Views
 
-private extension TextCell {
+private extension ReminderSwitchCell {
     
     private func setupViews() {
         setupSelf()

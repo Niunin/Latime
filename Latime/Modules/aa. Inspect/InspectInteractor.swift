@@ -17,8 +17,7 @@ class InspectInteractor: InspectInteractorInterface {
     /// Hierarchy
     weak var output: InspectInteractorOutputInterface?
     var dataManager: InspectDataManagerInterface!
-    
-     var data: InspectEntity?
+    var data: InspectEntity?
     
     var titleIsEmpty: Bool {
         if dataManager.model.infoName == "" {

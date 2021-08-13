@@ -3,7 +3,7 @@ import UIKit
 
 // MARK: - Object
 
-class DateCell: UICollectionViewCell {
+class InputDateCell: UICollectionViewCell {
     
     static let reuseIdentifier = "text-cell-reuse-identifier"
 

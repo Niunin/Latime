@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C9076E55269ECCC400C299DD /* CellInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9076E54269ECCC400C299DD /* CellInfo.swift */; };
+		C9076E55269ECCC400C299DD /* DisplayResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9076E54269ECCC400C299DD /* DisplayResultCell.swift */; };
 		C9076E57269ECDCC00C299DD /* InspectViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9076E56269ECDCC00C299DD /* InspectViewProtocols.swift */; };
-		C9076E59269F2C0000C299DD /* CellDateInputRelative.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9076E58269F2C0000C299DD /* CellDateInputRelative.swift */; };
+		C9076E59269F2C0000C299DD /* InputIntervalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9076E58269F2C0000C299DD /* InputIntervalCell.swift */; };
 		C92109ED2699CF4B00B2FEF8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92109EC2699CF4B00B2FEF8 /* ImagePicker.swift */; };
 		C9446AAD26B17BEB00B027EA /* UnsplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9446AA926B17BEB00B027EA /* UnsplashPresenter.swift */; };
 		C9446AAE26B17BEB00B027EA /* UnsplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9446AAA26B17BEB00B027EA /* UnsplashVC.swift */; };
@@ -43,7 +43,7 @@
 		C9675531267A6671003A016A /* InspectEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675507267A6671003A016A /* InspectEntity.swift */; };
 		C9675532267A6671003A016A /* InspectViperInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675508267A6671003A016A /* InspectViperInterfaces.swift */; };
 		C9675533267A6671003A016A /* InspectPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675509267A6671003A016A /* InspectPresenter.swift */; };
-		C9675535267A6671003A016A /* InputContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967550C267A6671003A016A /* InputContainer.swift */; };
+		C9675535267A6671003A016A /* InputMessageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967550C267A6671003A016A /* InputMessageContainer.swift */; };
 		C967553C267A6671003A016A /* InspectRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675513267A6671003A016A /* InspectRouter.swift */; };
 		C967553D267A6671003A016A /* InspectorDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675515267A6671003A016A /* InspectorDataManager.swift */; };
 		C967553E267A6671003A016A /* InspectInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675516267A6671003A016A /* InspectInteractor.swift */; };
@@ -58,12 +58,12 @@
 		C967554C267A6671003A016A /* GlanceInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9675528267A6671003A016A /* GlanceInteractor.swift */; };
 		C9675551267A6B35003A016A /* CoreDataTestStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967554E267A6B34003A016A /* CoreDataTestStack.swift */; };
 		C9675552267A6B35003A016A /* GlancePresenterStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967554F267A6B35003A016A /* GlancePresenterStub.swift */; };
-		C97724312694A5290050665A /* InputContainerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97724302694A5290050665A /* InputContainerTextField.swift */; };
+		C97724312694A5290050665A /* InputMessageContainerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97724302694A5290050665A /* InputMessageContainerTextField.swift */; };
 		C979048A267E26F6008C8093 /* GlanceCellParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9790489267E26F6008C8093 /* GlanceCellParent.swift */; };
 		C9790490267E29C0008C8093 /* GlanceCountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C979048F267E29C0008C8093 /* GlanceCountdownView.swift */; };
-		C992AACB269D85260078B9A8 /* CellDateInputAbsolute.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992AACA269D85260078B9A8 /* CellDateInputAbsolute.swift */; };
-		C992AACD269D85320078B9A8 /* CellReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992AACC269D85320078B9A8 /* CellReminder.swift */; };
-		C992AACF269D85440078B9A8 /* HeaderSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992AACE269D85440078B9A8 /* HeaderSegmentedControl.swift */; };
+		C992AACB269D85260078B9A8 /* InputDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992AACA269D85260078B9A8 /* InputDateCell.swift */; };
+		C992AACD269D85320078B9A8 /* ReminderSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992AACC269D85320078B9A8 /* ReminderSwitchCell.swift */; };
+		C992AACF269D85440078B9A8 /* InputModeSwitchHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992AACE269D85440078B9A8 /* InputModeSwitchHeader.swift */; };
 		C9A02AF0267A6D5A00F8E85F /* LatimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A02AEF267A6D5A00F8E85F /* LatimeTests.swift */; };
 		C9B9AD312689C46C00A182DA /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B9AD302689C46C00A182DA /* Indicator.swift */; };
 		C9C4A599269F55B4005224A2 /* InspectContextMenuProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C4A598269F55B4005224A2 /* InspectContextMenuProtocols.swift */; };
@@ -96,9 +96,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C9076E54269ECCC400C299DD /* CellInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellInfo.swift; sourceTree = "<group>"; };
+		C9076E54269ECCC400C299DD /* DisplayResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayResultCell.swift; sourceTree = "<group>"; };
 		C9076E56269ECDCC00C299DD /* InspectViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectViewProtocols.swift; sourceTree = "<group>"; };
-		C9076E58269F2C0000C299DD /* CellDateInputRelative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDateInputRelative.swift; sourceTree = "<group>"; };
+		C9076E58269F2C0000C299DD /* InputIntervalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputIntervalCell.swift; sourceTree = "<group>"; };
 		C92109EC2699CF4B00B2FEF8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		C9446AA926B17BEB00B027EA /* UnsplashPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashPresenter.swift; sourceTree = "<group>"; };
 		C9446AAA26B17BEB00B027EA /* UnsplashVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashVC.swift; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 		C9675507267A6671003A016A /* InspectEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectEntity.swift; sourceTree = "<group>"; };
 		C9675508267A6671003A016A /* InspectViperInterfaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectViperInterfaces.swift; sourceTree = "<group>"; };
 		C9675509267A6671003A016A /* InspectPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectPresenter.swift; sourceTree = "<group>"; };
-		C967550C267A6671003A016A /* InputContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputContainer.swift; sourceTree = "<group>"; };
+		C967550C267A6671003A016A /* InputMessageContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputMessageContainer.swift; sourceTree = "<group>"; };
 		C9675513267A6671003A016A /* InspectRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectRouter.swift; sourceTree = "<group>"; };
 		C9675515267A6671003A016A /* InspectorDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorDataManager.swift; sourceTree = "<group>"; };
 		C9675516267A6671003A016A /* InspectInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectInteractor.swift; sourceTree = "<group>"; };
@@ -152,12 +152,12 @@
 		C9675528267A6671003A016A /* GlanceInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceInteractor.swift; sourceTree = "<group>"; };
 		C967554E267A6B34003A016A /* CoreDataTestStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTestStack.swift; sourceTree = "<group>"; };
 		C967554F267A6B35003A016A /* GlancePresenterStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlancePresenterStub.swift; sourceTree = "<group>"; };
-		C97724302694A5290050665A /* InputContainerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContainerTextField.swift; sourceTree = "<group>"; };
+		C97724302694A5290050665A /* InputMessageContainerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMessageContainerTextField.swift; sourceTree = "<group>"; };
 		C9790489267E26F6008C8093 /* GlanceCellParent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceCellParent.swift; sourceTree = "<group>"; };
 		C979048F267E29C0008C8093 /* GlanceCountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceCountdownView.swift; sourceTree = "<group>"; };
-		C992AACA269D85260078B9A8 /* CellDateInputAbsolute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDateInputAbsolute.swift; sourceTree = "<group>"; };
-		C992AACC269D85320078B9A8 /* CellReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellReminder.swift; sourceTree = "<group>"; };
-		C992AACE269D85440078B9A8 /* HeaderSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSegmentedControl.swift; sourceTree = "<group>"; };
+		C992AACA269D85260078B9A8 /* InputDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDateCell.swift; sourceTree = "<group>"; };
+		C992AACC269D85320078B9A8 /* ReminderSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderSwitchCell.swift; sourceTree = "<group>"; };
+		C992AACE269D85440078B9A8 /* InputModeSwitchHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputModeSwitchHeader.swift; sourceTree = "<group>"; };
 		C9A02AEF267A6D5A00F8E85F /* LatimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatimeTests.swift; sourceTree = "<group>"; };
 		C9B9AD302689C46C00A182DA /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		C9C4A598269F55B4005224A2 /* InspectContextMenuProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectContextMenuProtocols.swift; sourceTree = "<group>"; };
@@ -209,11 +209,11 @@
 		C9076E53269ECC5600C299DD /* 2. Cells */ = {
 			isa = PBXGroup;
 			children = (
-				C992AACA269D85260078B9A8 /* CellDateInputAbsolute.swift */,
-				C9076E58269F2C0000C299DD /* CellDateInputRelative.swift */,
-				C9076E54269ECCC400C299DD /* CellInfo.swift */,
-				C992AACC269D85320078B9A8 /* CellReminder.swift */,
-				C992AACE269D85440078B9A8 /* HeaderSegmentedControl.swift */,
+				C9076E54269ECCC400C299DD /* DisplayResultCell.swift */,
+				C992AACA269D85260078B9A8 /* InputDateCell.swift */,
+				C9076E58269F2C0000C299DD /* InputIntervalCell.swift */,
+				C992AACE269D85440078B9A8 /* InputModeSwitchHeader.swift */,
+				C992AACC269D85320078B9A8 /* ReminderSwitchCell.swift */,
 				C92109EF2699D55300B2FEF8 /* Views */,
 			);
 			path = "2. Cells";
@@ -438,8 +438,8 @@
 		C977242F2694A5100050665A /* 1. Views */ = {
 			isa = PBXGroup;
 			children = (
-				C967550C267A6671003A016A /* InputContainer.swift */,
-				C97724302694A5290050665A /* InputContainerTextField.swift */,
+				C967550C267A6671003A016A /* InputMessageContainer.swift */,
+				C97724302694A5290050665A /* InputMessageContainerTextField.swift */,
 			);
 			path = "1. Views";
 			sourceTree = "<group>";
@@ -622,11 +622,11 @@
 				C9446ABD26B17C1200B027EA /* UnsplashNetworkInterface.swift in Sources */,
 				C96754F1267A6242003A016A /* CoreDataStack.swift in Sources */,
 				C9675532267A6671003A016A /* InspectViperInterfaces.swift in Sources */,
-				C9675535267A6671003A016A /* InputContainer.swift in Sources */,
+				C9675535267A6671003A016A /* InputMessageContainer.swift in Sources */,
 				C9446AAD26B17BEB00B027EA /* UnsplashPresenter.swift in Sources */,
 				C9675533267A6671003A016A /* InspectPresenter.swift in Sources */,
 				C9675530267A6671003A016A /* Date + Extensions.swift in Sources */,
-				C992AACB269D85260078B9A8 /* CellDateInputAbsolute.swift in Sources */,
+				C992AACB269D85260078B9A8 /* InputDateCell.swift in Sources */,
 				C9446ABE26B17C1200B027EA /* UnsplashNetworkService.swift in Sources */,
 				C952081D26A0919800A35DCD /* PaddingTextField.swift in Sources */,
 				C9446AC026B17C1200B027EA /* UnsplashPhotoModel.swift in Sources */,
@@ -646,9 +646,9 @@
 				C967554B267A6671003A016A /* GlanceDataManager.swift in Sources */,
 				C9675544267A6671003A016A /* GlanceContextMenuProtocols.swift in Sources */,
 				C967552F267A6671003A016A /* CoreAnimation + Extensions.swift in Sources */,
-				C9076E55269ECCC400C299DD /* CellInfo.swift in Sources */,
+				C9076E55269ECCC400C299DD /* DisplayResultCell.swift in Sources */,
 				C967552D267A6671003A016A /* UIColor + Extensions.swift in Sources */,
-				C9076E59269F2C0000C299DD /* CellDateInputRelative.swift in Sources */,
+				C9076E59269F2C0000C299DD /* InputIntervalCell.swift in Sources */,
 				C9ECAD6B26A432DC00CA39D2 /* GlanceViewProtocols.swift in Sources */,
 				C9E15A5526A5FABD002989B5 /* TimelineEntity.swift in Sources */,
 				C9675542267A6671003A016A /* GlancePresenter.swift in Sources */,
@@ -666,7 +666,7 @@
 				C9446AC226B17C9F00B027EA /* UnsplashViperProtocols.swift in Sources */,
 				C9EA16122696DFAB005105F0 /* TimelineCell.swift in Sources */,
 				C9B9AD312689C46C00A182DA /* Indicator.swift in Sources */,
-				C992AACF269D85440078B9A8 /* HeaderSegmentedControl.swift in Sources */,
+				C992AACF269D85440078B9A8 /* InputModeSwitchHeader.swift in Sources */,
 				C9675541267A6671003A016A /* GlanceViperProtocols.swift in Sources */,
 				C9EA16072696D640005105F0 /* TimelineRouter.swift in Sources */,
 				C967553D267A6671003A016A /* InspectorDataManager.swift in Sources */,
@@ -676,7 +676,7 @@
 				C96754C6267A5FC2003A016A /* Latime.xcdatamodeld in Sources */,
 				C9446ABF26B17C1200B027EA /* UnsplashEntity.swift in Sources */,
 				C967552C267A6671003A016A /* UIFont + Extensions.swift in Sources */,
-				C97724312694A5290050665A /* InputContainerTextField.swift in Sources */,
+				C97724312694A5290050665A /* InputMessageContainerTextField.swift in Sources */,
 				C9EA160F2696D67A005105F0 /* TimelineVC.swift in Sources */,
 				C9E15A5726A6BD29002989B5 /* TimelineViewProtocols.swift in Sources */,
 				C967552E267A6671003A016A /* Foundation + Extensions.swift in Sources */,
@@ -684,7 +684,7 @@
 				C9ECAD6626A419B400CA39D2 /* InspectViewDelegates.swift in Sources */,
 				C9E77DCF269CB2A500F8D582 /* InspectVC.swift in Sources */,
 				C952081926A0911300A35DCD /* InfoView.swift in Sources */,
-				C992AACD269D85320078B9A8 /* CellReminder.swift in Sources */,
+				C992AACD269D85320078B9A8 /* ReminderSwitchCell.swift in Sources */,
 				C9DE3C412684A94900FE773D /* UIKit + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

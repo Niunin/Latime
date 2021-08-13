@@ -265,8 +265,7 @@ private extension InspectViewController {
 private extension InspectViewController {
     
     func registerCells() {
-        /// Cell Date Interval registration
-        let cellRegInfo = UICollectionView.CellRegistration<DateIntervalCell, String> { (cell, indexPath, identifier) in
+        let cellDisplayResult = UICollectionView.CellRegistration<DisplayResultCell, String> { (cell, indexPath, identifier) in
             cell.backgroundColor = .white
             if identifier == Section.info.rawValue {
                 print("_\(self.model.dateHandler.intervalFromReferenceToResult)")
@@ -277,8 +276,7 @@ private extension InspectViewController {
             }
         }
         
-        /// Cell Date Interval registration
-        let cellRegDate = UICollectionView.CellRegistration<DateCell, Int> { (cell, indexPath, identifier) in
+        let cellInputDate = UICollectionView.CellRegistration<InputDateCell, Int> { (cell, indexPath, identifier) in
             cell.picker.date = self.model.dateHandler.resultDate
             cell.handler = { [weak self] (date)  in
                 self?.presenter.viewUpdated(date: date)
@@ -286,8 +284,7 @@ private extension InspectViewController {
             }
         }
         
-        /// Cell Date Interval registration
-        let cellRegCountdown = UICollectionView.CellRegistration<RelativeDateInput, Int> { (cell, indexPath, identifier) in
+        let cellInputInterval = UICollectionView.CellRegistration<InputIntervalCell, Int> { (cell, indexPath, identifier) in
             cell.setTimeInterval(self.model.dateHandler.intervalFromReferenceToResult )
             cell.handler = { [weak self] (interval)  in
                 self?.presenter.viewUpdated(timeInterval: interval)
@@ -295,22 +292,19 @@ private extension InspectViewController {
             }
         }
         
-        /// Cell Date Interval registration
-        let cellRegText = UICollectionView.CellRegistration<TextCell, Int> { (cell, indexPath, identifier) in
-//            cell.label.text = "Custom cell"
-        }
+        let cellReminderSwitch = UICollectionView.CellRegistration<ReminderSwitchCell, Int> { (cell, indexPath, identifier) in }
         
         dataSource = UICollectionViewDiffableDataSource<Int, Section>(collectionView: collectionView) {
             (collectionView: UICollectionView, indexPath: IndexPath, item: Section) -> UICollectionViewCell? in
             switch item {
             case .info, .smallinfo:
-                return collectionView.dequeueConfiguredReusableCell(using: cellRegInfo, for: indexPath, item: item.rawValue)
+                return collectionView.dequeueConfiguredReusableCell(using: cellDisplayResult, for: indexPath, item: item.rawValue)
             case .calendar:
-                return collectionView.dequeueConfiguredReusableCell(using: cellRegDate, for: indexPath, item: 1)
+                return collectionView.dequeueConfiguredReusableCell(using: cellInputDate, for: indexPath, item: 1)
             case .countdown:
-                return collectionView.dequeueConfiguredReusableCell(using: cellRegCountdown, for: indexPath, item: 2)
+                return collectionView.dequeueConfiguredReusableCell(using: cellInputInterval, for: indexPath, item: 2)
             case .reminder:
-                return collectionView.dequeueConfiguredReusableCell(using: cellRegText, for: indexPath, item: 3)
+                return collectionView.dequeueConfiguredReusableCell(using: cellReminderSwitch, for: indexPath, item: 3)
             }
         }
     }
@@ -328,7 +322,7 @@ private extension InspectViewController {
     }
     
     func registerHeaders() {
-        let headerReg = UICollectionView.SupplementaryRegistration<TitleSegmentedView>(elementKind: "header-element-kind") {
+        let headerReg = UICollectionView.SupplementaryRegistration<InputModeSwitchHeader>(elementKind: "header-element-kind") {
             (supplementaryView, string, indexPath) in
             supplementaryView.delegate = self
         }
