@@ -1,13 +1,38 @@
 //
-//  DateHandler.swift
+//  InspectorModel.swift
 //  Latime
 //
-//  Created by Andrei Niunin on 10.08.2021.
+//  Created by Andrei Niunin on 24.05.2021.
 //
 
 import Foundation
+import UIKit.UIImage
 
 // MARK: - Data Structure
+
+struct InspectEntity {
+    
+    var title: String
+    var hasParent: Bool
+    var dateHandler: DateHandler
+    var image: UIImage?
+    
+    // MARK: init
+    
+    init(_ timePoint: TimePoint) {
+        
+        self.dateHandler = DateHandler(model: timePoint)
+        title = timePoint.infoName ?? "Title abscent"
+        hasParent = timePoint.parentPoint != nil
+        
+        if let imageData = timePoint.infoImage {
+            image = UIImage(data: imageData)
+        }
+    }
+    
+}
+
+// MARK: - Date Data Structure
 
 struct DateHandler {
     
@@ -57,7 +82,6 @@ struct DateHandler {
         self.resultDate = model.infoDate!
         intervalFromReferenceToResult = DateInterval(start: referenceDate, end: resultDate).duration
     }
-    
     
     func currentTimeChanged() {
         

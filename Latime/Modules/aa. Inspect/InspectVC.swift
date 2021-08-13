@@ -38,11 +38,12 @@ class InspectViewController: UIViewController, InspectViewInterface {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.viewDidLoad()
         setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewWillAppear(animated)        
         setupNavigationBar()
     }
     
@@ -54,7 +55,7 @@ class InspectViewController: UIViewController, InspectViewInterface {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        presenter.screenWillClose()
+        presenter.viewWillDisappear()
         removeGestureRecognizers()
     }
     
@@ -65,22 +66,17 @@ class InspectViewController: UIViewController, InspectViewInterface {
         
     // MARK: viper view protocol conformance
     
-    func configure(model: InspectEntity) {
+    func configure(withModel model: InspectEntity) {
         self.model = model
-        
-        // FIXME: It should not be here
-        // TODO: Separate first and following runs
+
         if collectionView != nil {
-            recon()
+            updateSnapshot(animated: true)
         }
-        
     }
     
-    // TODO: Refactor this
-    func recon() {
+    private func updateSnapshot(animated: Bool) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, Section>()
-        
-        if  pickedSegment == 0 {
+        if pickedSegment == 0 {
             snapshot.appendSections([0])
             snapshot.appendItems([.info])
             snapshot.appendSections([1])
@@ -91,7 +87,7 @@ class InspectViewController: UIViewController, InspectViewInterface {
             snapshot.appendSections([1])
             snapshot.appendItems([.countdown, .reminder])
         }
-        dataSource.apply(snapshot, animatingDifferences: true )
+        dataSource.apply(snapshot, animatingDifferences: animated )
     }
     
     func configure(image: UIImage?) {
@@ -157,20 +153,7 @@ private extension InspectViewController {
         registerCells()
         registerHeaders()
         
-        // TODO: Remove it from here
-        var snapshot = NSDiffableDataSourceSnapshot<Int, Section>()
-        if pickedSegment == 0 {
-            snapshot.appendSections([0])
-            snapshot.appendItems([.info])
-            snapshot.appendSections([1])
-            snapshot.appendItems([.calendar, .reminder])
-        } else {
-            snapshot.appendSections([0])
-            snapshot.appendItems([.smallinfo])
-            snapshot.appendSections([1])
-            snapshot.appendItems([.countdown, .reminder])
-        }
-        dataSource.apply(snapshot, animatingDifferences: true )
+        updateSnapshot(animated: false)
     }
     
     func setupSelf() {
@@ -309,6 +292,8 @@ private extension InspectViewController {
         }
     }
     
+    // TODO: Rename it
+    // FIXME: double snpshot Update
     func updateInfo1() {
         var snapshot = dataSource.snapshot()
         snapshot.reloadItems([.info])
@@ -332,9 +317,7 @@ private extension InspectViewController {
                 using: headerReg, for: index)
         }
     }
-    
-    
-        
+
 }
 
 // MARK: - UI Delegate CollectionView
@@ -363,7 +346,7 @@ extension InspectViewController: TitleSegmentedDelegate {
     
     func setCurrentSegment(_ segment: Int) {
         self.pickedSegment = segment
-        recon()
+        updateSnapshot(animated: true)
     }
 
 }

@@ -39,9 +39,10 @@ class InspectInteractor: InspectInteractorInterface {
     
     // MARK: viper interactor interface protocol methods
     
-    func updateData()  {
+    func refreshData()  {
         let model = dataManager.model
         data = InspectEntity(model)
+        respond()
     }
     
     func update(title: String?) {
@@ -51,20 +52,20 @@ class InspectInteractor: InspectInteractorInterface {
     func update(date: Date) {
         data?.dateHandler.setResultDate(date)
         saveDate()
-        propagate()
+        respond()
     }
 
     func update(interval: Int64) {
         data?.dateHandler.setInterval(TimeInterval(interval))
         saveDate()
-        propagate()
+        respond()
     }
     
     private func saveDate() {
         dataManager.update(date: data?.dateHandler.resultDate ?? Date())
     }
     
-    private func propagate() {
+    private func respond() {
         if data != nil {
             output?.interactorUpdatedData(data: data!)
         }

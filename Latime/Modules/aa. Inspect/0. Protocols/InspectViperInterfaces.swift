@@ -29,7 +29,7 @@ protocol InspectViewInterface: AnyObject {
     
     var presenter: InspectPresenterInterface! { get set }
     
-    func configure(model: InspectEntity)
+    func configure(withModel: InspectEntity)
     func configure(image: UIImage?)
     
 }
@@ -42,7 +42,9 @@ protocol InspectPresenterInterface: AnyObject {
     var router: InspectRouterInterface! { get set }
     var interactor: InspectInteractorInterface! { get set }
     
-    func screenWillClose()
+    func viewDidLoad()
+    func viewWillAppear()
+    func viewWillDisappear()
     
     func buttonPressedRemove()
     func buttonPressedImagePicker()
@@ -65,7 +67,7 @@ protocol InspectInteractorInterface: AnyObject {
 //    var model: TimePoint { get }
 //    var dateHandler: DateHandler? { get set }
     
-    func updateData()
+    func refreshData()
     func update(title: String?)
     func update(date: Date)
     func update(interval: Int64)

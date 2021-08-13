@@ -15,29 +15,33 @@ class InspectPresenter: InspectPresenterInterface, InspectInteractorOutputInterf
     // MARK: properties
     
     /// Hierarchy
+    // TODO: ! -> ?
     weak var view: InspectViewInterface!
     var router: InspectRouterInterface!
-    var interactor: InspectInteractorInterface! {
-        didSet {
-            configureView()
-        }
-    }
+    var interactor: InspectInteractorInterface!
     
     // MARK: configure
     
     func configureView() {
-        interactor.updateData()
-        view.configure(model: interactor.data!)
+        
+        interactor.refreshData()
     }
     
     // MARK: viper presenter interface protocol conformance
     
-    func buttonPressedRemove() {
-        interactor.delete()
+    func viewDidLoad() {
+        configureView()
     }
     
-    func screenWillClose() {
+    func viewWillAppear() {
+    }
+    
+    func viewWillDisappear() {
         interactor.prepareForClosing()
+    }
+    
+    func buttonPressedRemove() {
+        interactor.delete()
     }
     
     func buttonPressedImagePicker() {
@@ -75,7 +79,7 @@ class InspectPresenter: InspectPresenterInterface, InspectInteractorOutputInterf
     // MARK: viper interactor output interface protocol conformance
     
     func interactorUpdatedData(data: InspectEntity) {
-        view.configure(model: data)
+        view.configure(withModel: data)
     }
     
     func interactorUpdated(image: UIImage?) {

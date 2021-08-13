@@ -38,7 +38,6 @@ class InspectRouter: InspectRouterInterface {
         interactor.dataManager = dataManager
 //        interactor.dateHandler = DateHandler(model: model)
 
-        
         presenter.view = view
         presenter.router = router
         presenter.interactor = interactor
